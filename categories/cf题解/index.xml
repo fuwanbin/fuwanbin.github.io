@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on 傅万斌的个人网站</title>
-    <link>https://fuwanbin.github.io/posts/</link>
-    <description>Recent content in Posts on 傅万斌的个人网站</description>
+    <title>CF题解 on 傅万斌的个人网站</title>
+    <link>https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/</link>
+    <description>Recent content in CF题解 on 傅万斌的个人网站</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sat, 08 Jan 2022 16:09:24 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Jan 2022 16:09:24 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Test</title>
       <link>https://fuwanbin.github.io/posts/test/</link>
@@ -18,15 +18,6 @@
       <description>传送门 A.Berland Poker 给你n张牌，其中m张joker，平均分给k个人，保证n%k==0
 问分数的最大值。这里分数指拿到joker最多的人的牌的数量-拿到joker最少的人的牌的数量。那么我们可以知道，让其中一个人尽可能全部拿joker，剩下的尽可能平分即可。
 int n, m, k; void solve() { cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; k; int maxn = n / k; if (maxn &amp;lt;= m) cout &amp;lt;&amp;lt; maxn - (int)ceil((1.0 * m - maxn) / (1.0 * k - 1)) &amp;lt;&amp;lt; endl; else cout &amp;lt;&amp;lt; m &amp;lt;&amp;lt; endl; }  B.</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://fuwanbin.github.io/posts/hello-world/</link>
-      <pubDate>Tue, 20 Oct 2020 10:30:48 +0800</pubDate>
-      
-      <guid>https://fuwanbin.github.io/posts/hello-world/</guid>
-      <description>123123123 asdsadsa </description>
     </item>
     
   </channel>

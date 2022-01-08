@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test on 傅万斌的个人网站</title>
+    <link>https://fuwanbin.github.io/categories/test/</link>
+    <description>Recent content in test on 傅万斌的个人网站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 20 Oct 2020 10:30:48 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Hello World</title>
+      <link>https://fuwanbin.github.io/posts/hello-world/</link>
+      <pubDate>Tue, 20 Oct 2020 10:30:48 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/hello-world/</guid>
+      <description>123123123 asdsadsa </description>
+    </item>
+    
+  </channel>
+</rss>
