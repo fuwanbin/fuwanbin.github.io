@@ -8,17 +8,7 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sun, 09 Jan 2022 00:04:57 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>实用链接合集</title>
-      <link>https://fuwanbin.github.io/posts/links/</link>
-      <pubDate>Sun, 09 Jan 2022 00:04:57 +0800</pubDate>
-      
-      <guid>https://fuwanbin.github.io/posts/links/</guid>
-      <description>Linux gdb调试 http://www.freecplus.net/b72113dda88a43b48728e0552fd8a74c.html
-C++ ACM </description>
-    </item>
-    
+    <lastBuildDate>Wed, 22 Jul 2020 12:13:57 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Codeforces#658</title>
       <link>https://fuwanbin.github.io/posts/cf-7/</link>
