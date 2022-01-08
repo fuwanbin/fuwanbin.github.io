@@ -8,27 +8,7 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sat, 08 Jan 2022 16:09:24 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Test</title>
-      <link>https://fuwanbin.github.io/posts/test/</link>
-      <pubDate>Sat, 08 Jan 2022 16:09:24 +0800</pubDate>
-      
-      <guid>https://fuwanbin.github.io/posts/test/</guid>
-      <description>传送门 A.Berland Poker 给你n张牌，其中m张joker，平均分给k个人，保证n%k==0
-问分数的最大值。这里分数指拿到joker最多的人的牌的数量-拿到joker最少的人的牌的数量。那么我们可以知道，让其中一个人尽可能全部拿joker，剩下的尽可能平分即可。
-int n, m, k; void solve() { cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; k; int maxn = n / k; if (maxn &amp;lt;= m) cout &amp;lt;&amp;lt; maxn - (int)ceil((1.0 * m - maxn) / (1.0 * k - 1)) &amp;lt;&amp;lt; endl; else cout &amp;lt;&amp;lt; m &amp;lt;&amp;lt; endl; }  B.</description>
-    </item>
-    
-    <item>
-      <title>Hello World</title>
-      <link>https://fuwanbin.github.io/posts/hello-world/</link>
-      <pubDate>Tue, 20 Oct 2020 10:30:48 +0800</pubDate>
-      
-      <guid>https://fuwanbin.github.io/posts/hello-world/</guid>
-      <description>123123123 asdsadsa </description>
-    </item>
-    
+    <lastBuildDate>Fri, 16 Oct 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://fuwanbin.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Chapter 1</title>
       <link>https://fuwanbin.github.io/docs/example-doc/chapter-1/</link>
@@ -63,6 +43,84 @@ int n, m, k; void solve() { cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&a
       
       <guid>https://fuwanbin.github.io/docs/example-doc/nested-chapter/chapter-2/</guid>
       <description>&lt;p&gt;This is chapter 2 of nested chapter.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Codeforces#658</title>
+      <link>https://fuwanbin.github.io/posts/cf-7/</link>
+      <pubDate>Wed, 22 Jul 2020 12:13:57 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-7/</guid>
+      <description>传送门
+A.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。
+int num[1005];void solve(int T){int a, b;memset(num, 0, sizeof(num));cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;for (int i = 1; i &amp;lt;= n; i++){cin &amp;gt;&amp;gt; a;num[a] = 1;}for (int i = 1; i &amp;lt;= m; i++){cin &amp;gt;&amp;gt; b;if (num[b] == 1)num[b] = 2;}for (int i = 1; i &amp;lt;= 1000; i++)if (num[i] == 2){cout &amp;lt;&amp;lt; &amp;quot;YES\n1 &amp;quot;;cout &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl;return;}cout &amp;lt;&amp;lt; &amp;quot;NO\n&amp;quot;;} B.</description>
+    </item>
+    
+    <item>
+      <title>Codeforces-Global#9</title>
+      <link>https://fuwanbin.github.io/posts/cf-6/</link>
+      <pubDate>Sun, 05 Jul 2020 13:22:04 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-6/</guid>
+      <description>传送门
+A.Sign Flipping  题意：给一个包含$n$个整数的数组，可以随意改变他们的正负号使得至少有$\frac{n-1}{2}$个相邻数字的差$\ge0$，且至少有$\frac{n-1}{2}$个相邻数字的差$\leq0$。 对于任意的三个数字$a$,$-b$,$c$，其中$a$,$b$,$c$ &amp;gt; $0$，一定符合以上我们所说的要求。我们再延申至任意长度的数组。
+int n, k;int a[105];void solve(){cin &amp;gt;&amp;gt; n;bool f = 1;for (int i = 1; i &amp;lt;= n; i++){cin &amp;gt;&amp;gt; a[i];a[i] = abs(a[i]);}for (int i = 1; i &amp;lt;= n; i++){if (f)cout &amp;lt;&amp;lt; a[i] &amp;lt;&amp;lt; &amp;quot; &amp;quot;;else cout &amp;lt;&amp;lt; -a[i] &amp;lt;&amp;lt; &amp;quot; &amp;quot;;f ^= 1;}cout &amp;lt;&amp;lt; endl;} B.</description>
+    </item>
+    
+    <item>
+      <title>Codeforces#650</title>
+      <link>https://fuwanbin.github.io/posts/cf-5/</link>
+      <pubDate>Wed, 17 Jun 2020 01:19:52 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-5/</guid>
+      <description>传送门
+A.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。
+void solve(){string s;cin &amp;gt;&amp;gt; s;cout &amp;lt;&amp;lt; s[0];for (int i = 1; i &amp;lt; s.size() - 1; i += 2)cout &amp;lt;&amp;lt; s[i];cout &amp;lt;&amp;lt; s[s.size() - 1] &amp;lt;&amp;lt; endl;} B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。</description>
+    </item>
+    
+    <item>
+      <title>Codeforces#648</title>
+      <link>https://fuwanbin.github.io/posts/cf-4/</link>
+      <pubDate>Mon, 08 Jun 2020 14:55:33 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-4/</guid>
+      <description>传送门
+A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可
+#define clr(a, b) memset((a), (b), sizeof(a))int n, m, a;int l[55], r[55];void solve(){clr(l, 0);//有t个case，记得初始化clr(r, 0);cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;int L = n, R = m;//记录还有几行几列是没有1的for (int i = 1; i &amp;lt;= n; i++)for (int j = 1; j &amp;lt;= m; j++){cin &amp;gt;&amp;gt; a;if (a == 1){if (l[i] == 0)L--;if (r[j] == 0)R--;l[i] = r[j] = 1;}}if (min(L, R) % 2 == 1)cout &amp;lt;&amp;lt; &amp;quot;Ashish\n&amp;quot;;else cout &amp;lt;&amp;lt; &amp;quot;Vivek\n&amp;quot;;} B.</description>
+    </item>
+    
+    <item>
+      <title>Codeforces#646</title>
+      <link>https://fuwanbin.github.io/posts/cf-3/</link>
+      <pubDate>Mon, 01 Jun 2020 12:05:37 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-3/</guid>
+      <description>传送门
+A.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可
+int n, m, k, x;void solve(){cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; x;int odd = 0, ev = 0;for (int i = 1; i &amp;lt;= n; i++){cin &amp;gt;&amp;gt; k;if (k % 2 == 1)odd++;else ev++;}bool f = 0;for (int i = 0; i &amp;lt;= odd; i++)if (i % 2 == 1 &amp;amp;&amp;amp; i &amp;lt;= x &amp;amp;&amp;amp; x - i &amp;lt;= ev)f = 1;if (f)cout &amp;lt;&amp;lt; &amp;quot;YES\n&amp;quot;;else cout &amp;lt;&amp;lt; &amp;quot;NO\n&amp;quot;;} B.</description>
+    </item>
+    
+    <item>
+      <title>Codeforces-Edu#88</title>
+      <link>https://fuwanbin.github.io/posts/cf-2/</link>
+      <pubDate>Fri, 29 May 2020 12:54:28 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-2/</guid>
+      <description>传送门
+A.Berland Poker 给你n张牌，其中m张joker，平均分给k个人，保证n%k==0
+问分数的最大值。这里分数指拿到joker最多的人的牌的数量-拿到joker最少的人的牌的数量。那么我们可以知道，让其中一个人尽可能全部拿joker，剩下的尽可能平分即可。
+int n, m, k;void solve(){cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m &amp;gt;&amp;gt; k;int maxn = n / k;if (maxn &amp;lt;= m)cout &amp;lt;&amp;lt; maxn - (int)ceil((1.0 * m - maxn) / (1.0 * k - 1)) &amp;lt;&amp;lt; endl;elsecout &amp;lt;&amp;lt; m &amp;lt;&amp;lt; endl;} B.</description>
+    </item>
+    
+    <item>
+      <title>Codeforces#645</title>
+      <link>https://fuwanbin.github.io/posts/cf-1/</link>
+      <pubDate>Wed, 27 May 2020 14:51:04 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/cf-1/</guid>
+      <description>传送门
+A.Park Lighting 给n×m个格子，格子之间那条线是路；你可以在路的中间放一个路灯，来照亮相邻两个格子，求照亮所有格子的最少路灯数。
+int n, m;void solve(){cin &amp;gt;&amp;gt; n &amp;gt;&amp;gt; m;if (n % 2 == 0 || m % 2 == 0)cout &amp;lt;&amp;lt; m * n / 2 &amp;lt;&amp;lt; endl;elsecout &amp;lt;&amp;lt; m * (n - 1) / 2 + (m + 1) / 2 &amp;lt;&amp;lt; endl;} B.</description>
     </item>
     
   </channel>

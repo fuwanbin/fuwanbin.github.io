@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang='en' class="dark" ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Codeforces#658 | 傅万斌的个人网站</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.4" />
+<link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
+<script defer src="https://fuwanbin.github.io/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/languages/dart.min.js"
+     crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+   integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" 
+  integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+   integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js" 
+  integrity="sha256-Zmpaaj&#43;GXFsPF5WdPArSrnW3b30dovldeKsW00xBVwE="  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="传送门
+A.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。
+int num[1005];void solve(int T){int a, b;memset(num, 0, sizeof(num));cin &gt;&gt; n &gt;&gt; m;for (int i = 1; i &lt;= n; i&#43;&#43;){cin &gt;&gt; a;num[a] = 1;}for (int i = 1; i &lt;= m; i&#43;&#43;){cin &gt;&gt; b;if (num[b] == 1)num[b] = 2;}for (int i = 1; i &lt;= 1000; i&#43;&#43;)if (num[i] == 2){cout &lt;&lt; &quot;YES\n1 &quot;;cout &lt;&lt; i &lt;&lt; endl;return;}cout &lt;&lt; &quot;NO\n&quot;;} B.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://fuwanbin.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Codeforces#658",
+      "item":"https://fuwanbin.github.io/posts/cf-7/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://fuwanbin.github.io/posts/cf-7/"
+    },
+    "headline": "Codeforces#658 | 傅万斌的个人网站","datePublished": "2020-07-22T12:13:57+08:00",
+    "dateModified": "2020-07-22T12:13:57+08:00",
+    "wordCount":  397 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "傅万斌的个人网站",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuwanbin.github.io/images/icon.png"
+        }
+        },
+    "description": "传送门\nA.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。\nint num[1005];\rvoid solve(int T)\r{\rint a, b;\rmemset(num, 0, sizeof(num));\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rfor (int i = 1; i \u0026lt;= n; i\u002b\u002b)\r{\rcin \u0026gt;\u0026gt; a;\rnum[a] = 1;\r}\rfor (int i = 1; i \u0026lt;= m; i\u002b\u002b)\r{\rcin \u0026gt;\u0026gt; b;\rif (num[b] == 1)num[b] = 2;\r}\rfor (int i = 1; i \u0026lt;= 1000; i\u002b\u002b)\rif (num[i] == 2)\r{\rcout \u0026lt;\u0026lt; \u0026quot;YES\\n1 \u0026quot;;\rcout \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl;\rreturn;\r}\rcout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B."
+}
+</script><meta property="og:title" content="Codeforces#658 | 傅万斌的个人网站" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
+
+
+<meta property="og:url" content="https://fuwanbin.github.io/posts/cf-7/" />
+
+
+
+
+<meta property="og:description" content="传送门
+A.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。
+int num[1005];void solve(int T){int a, b;memset(num, 0, sizeof(num));cin &gt;&gt; n &gt;&gt; m;for (int i = 1; i &lt;= n; i&#43;&#43;){cin &gt;&gt; a;num[a] = 1;}for (int i = 1; i &lt;= m; i&#43;&#43;){cin &gt;&gt; b;if (num[b] == 1)num[b] = 2;}for (int i = 1; i &lt;= 1000; i&#43;&#43;)if (num[i] == 2){cout &lt;&lt; &quot;YES\n1 &quot;;cout &lt;&lt; i &lt;&lt; endl;return;}cout &lt;&lt; &quot;NO\n&quot;;} B." />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="傅万斌的个人网站" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2020-07-22T12:13:57&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2020-07-22T12:13:57&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if ((storageColorScheme == 'Auto' && window.matchMedia("(prefers-color-scheme: light)").matches) || storageColorScheme == "Light") {
+        document.getElementsByTagName('html')[0].classList.remove('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">傅万斌的个人网站</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Posts</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == 'Auto') {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'adjust')
+        element.firstElementChild.classList.add('fa-adjust')
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Codeforces#658</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-07-22</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p><a href="https://codeforces.com/contest/1382">传送门</a></p>
+<h2 id="acommon-subsequence">A.Common Subsequence</h2>
+<p>题意：找出两个数组中一个相同的元素。
+标记一下出现的数字即可。</p>
+<pre><code class="language-cpp">int num[1005];
+void solve(int T)
+{
+	int a, b;
+	memset(num, 0, sizeof(num));
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 1; i &lt;= n; i++)
+	{
+		cin &gt;&gt; a;
+		num[a] = 1;
+	}
+	for (int i = 1; i &lt;= m; i++)
+	{
+		cin &gt;&gt; b;
+		if (num[b] == 1)num[b] = 2;
+	}
+	for (int i = 1; i &lt;= 1000; i++)
+		if (num[i] == 2)
+		{
+			cout &lt;&lt; &quot;YES\n1 &quot;;
+			cout &lt;&lt; i &lt;&lt; endl;
+			return;
+		}
+	cout &lt;&lt; &quot;NO\n&quot;;
+}
+</code></pre>
+<h2 id="bsequential-nim">B.Sequential Nim</h2>
+<p>题意：给一堆石子堆，每次只能从最前面的非空的石子堆里取任意石子，无子可取即为输。
+我们先看全是1的数组，很显然输赢和数组长度有关。
+然后我们把其中一个1换成其他大于1的数字，比如这个样例：
+6
+1 1 2 1 1 1
+如果按照“每人取完当前石子堆”进行游戏，一定是后手赢。我们看，A选手拿完$a_1$，B选手拿完$a_2$，接着，A选手可以选择拿2个或者1个，这将决定比赛输赢。首先确定：我们声明一个数组$b$是以$a_4$开始到$a_n$，一定可以确定$b$的唯一赢家，那么如果赢家是先手，A选手就会选择拿1个，让自己成为$b$的先手;否则拿2个，使自己成为后手。
+结论：第一个碰到非1的人决定比赛输赢。</p>
+<pre><code class="language-cpp">int n, k, m;
+int a[100005];
+void solve(int T)
+{
+	cin &gt;&gt; n;
+	int pos = -1;
+	for (int i = 1; i &lt;= n; i++)
+	{
+		cin &gt;&gt; a[i];
+		if (a[i] != 1 &amp;&amp; pos == -1)pos = i;
+	}
+	if (pos == -1)if (n % 2 == 0)cout &lt;&lt; &quot;Second\n&quot;;
+	else cout &lt;&lt; &quot;First\n&quot;;
+	else if (pos % 2 == 1)cout &lt;&lt; &quot;First\n&quot;;
+	else cout &lt;&lt; &quot;Second\n&quot;;
+}
+</code></pre>
+<h2 id="cprefix-flip">C.Prefix Flip</h2>
+<p>题意：给两个$01$串$a$,$b$。一次操作：选一个$a$的前缀，取反再翻转。问$a$-&gt;$b$的每次操作。
+先把$a$全部变成$0$或$1$，再从后往前循环$b$数组选择下标位置。</p>
+<pre><code class="language-cpp">int n, k, m;
+vector&lt;int&gt; ans;
+void solve(int T)
+{
+	ans.clear();
+	cin &gt;&gt; n;
+	string a, b; cin &gt;&gt; a &gt;&gt; b;
+	for (int i = 1; i &lt; a.size(); i++)
+		if (a[i] != a[i - 1])
+			ans.push_back(i - 1);
+	b[n] = a[n - 1];//a的最后状态取决于a[n-1]
+	for (int i = n - 1; i &gt;= 0; i--)
+		if (b[i] != b[i + 1])
+			ans.push_back(i);
+	cout &lt;&lt; ans.size() &lt;&lt; &quot; &quot;;
+	for (auto x : ans)cout &lt;&lt; x + 1 &lt;&lt; &quot; &quot;;
+	cout &lt;&lt; endl;
+}
+</code></pre>
+<h2 id="dunmerge">D.Unmerge</h2>
+<p>题意：给两个数组的$merge$规则：如果一个是空数组，结果为另一个数组，否则每次取两个数组中第一位数字较小的。给一个$2n$的序列$p$，问是不是两个数组$merge$之后的结果。
+4
+3 2 6 1 5 7 8 4
+以这个样例举例：
+初始状态：<img src="https://img-blog.csdnimg.cn/20200722120243998.png" alt="在这里插入图片描述">
+$c_1=3$，随便选个数组填上：
+<img src="https://img-blog.csdnimg.cn/20200722120356626.png" alt="在这里插入图片描述">
+$c_2=2$，如果放入$b$数组，那么$c_1$应该为$2$而不是$3$，所以放入$a$数组：
+<img src="https://img-blog.csdnimg.cn/20200722120522753.png" alt="在这里插入图片描述">
+$c_3=6$，如果继续放入$a$数组，那么之后的1，5也应该是$a$数组的，这时候$a$数组就有5个元素，显然不对，因此放入b。
+这时候我们可以断定：3，2来自同一数组。同理，我们得知6，1，5一组，7一组，8，4一组。那么以ab的长度都是$n$为基础，我们把615和7分一组，32和84分一组。
+结论：先把$2n$个数分成若干组，再01背包判断选出几组刚好能构成长度为$n$的数组。</p>
+<pre><code class="language-cpp">int n, k, m;
+int a[4005];
+vector&lt;int&gt; ans;
+int dp[40000];
+void solve(int T)
+{
+	memset(dp, 0, sizeof(dp));
+	ans.clear();
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n + n; i++)cin &gt;&gt; a[i];
+	int tmp = a[1];
+	int num = 1;
+	for (int i = 2; i &lt;= n + n; i++)
+	{
+		if (a[i] &lt; tmp)num++;
+		else if (a[i] &gt; tmp)
+		{
+			ans.push_back(num);
+			num = 1;
+			tmp = a[i];
+		}
+	}
+	ans.push_back(num);
+	sort(ans.begin(), ans.end());
+	for (int i = 0; i &lt; ans.size(); i++) {
+		for (int j = n; j &gt;= ans[i]; j--) {
+			dp[j] = max(dp[j], dp[j - ans[i]] + ans[i]);
+		}
+	}
+	if (n - dp[n] == 0)cout &lt;&lt; &quot;YES\n&quot;;//刚好装满
+	else cout &lt;&lt; &quot;NO\n&quot;;
+}
+</code></pre>
+
+        </div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">Next</span>
+        <a href="https://fuwanbin.github.io/posts/cf-6/" class="block">Codeforces-Global#9</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+    <div class="col-span-2">
+        
+        
+        <div class="sticky top-16 z-10 hidden lg:block px-6 py-4  bg-primary-bg ">
+    <span class="text-lg font-semibold">On This Page</span>
+</div>
+<div class="sticky-toc hidden lg:block px-6 pb-6 ">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#acommon-subsequence">A.Common Subsequence</a></li>
+    <li><a href="#bsequential-nim">B.Sequential Nim</a></li>
+    <li><a href="#cprefix-flip">C.Prefix Flip</a></li>
+    <li><a href="#dunmerge">D.Unmerge</a></li>
+  </ul>
+</nav>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        enableStickyToc();
+    });
+</script>
+        
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://fuwanbin.github.io/">Wanbin Fu</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

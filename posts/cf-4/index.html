@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang='en' class="dark" ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Codeforces#648 | 傅万斌的个人网站</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.4" />
+<link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
+<script defer src="https://fuwanbin.github.io/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/languages/dart.min.js"
+     crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+   integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" 
+  integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+   integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js" 
+  integrity="sha256-Zmpaaj&#43;GXFsPF5WdPArSrnW3b30dovldeKsW00xBVwE="  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="传送门
+A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可
+#define clr(a, b) memset((a), (b), sizeof(a))int n, m, a;int l[55], r[55];void solve(){clr(l, 0);//有t个case，记得初始化clr(r, 0);cin &gt;&gt; n &gt;&gt; m;int L = n, R = m;//记录还有几行几列是没有1的for (int i = 1; i &lt;= n; i&#43;&#43;)for (int j = 1; j &lt;= m; j&#43;&#43;){cin &gt;&gt; a;if (a == 1){if (l[i] == 0)L--;if (r[j] == 0)R--;l[i] = r[j] = 1;}}if (min(L, R) % 2 == 1)cout &lt;&lt; &quot;Ashish\n&quot;;else cout &lt;&lt; &quot;Vivek\n&quot;;} B.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://fuwanbin.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Codeforces#648",
+      "item":"https://fuwanbin.github.io/posts/cf-4/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://fuwanbin.github.io/posts/cf-4/"
+    },
+    "headline": "Codeforces#648 | 傅万斌的个人网站","datePublished": "2020-06-08T14:55:33+08:00",
+    "dateModified": "2020-06-08T14:55:33+08:00",
+    "wordCount":  710 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "傅万斌的个人网站",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuwanbin.github.io/images/icon.png"
+        }
+        },
+    "description": "传送门\nA.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可\n#define clr(a, b) memset((a), (b), sizeof(a))\rint n, m, a;\rint l[55], r[55];\rvoid solve()\r{\rclr(l, 0);\/\/有t个case，记得初始化\rclr(r, 0);\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rint L = n, R = m;\/\/记录还有几行几列是没有1的\rfor (int i = 1; i \u0026lt;= n; i\u002b\u002b)\rfor (int j = 1; j \u0026lt;= m; j\u002b\u002b)\r{\rcin \u0026gt;\u0026gt; a;\rif (a == 1)\r{\rif (l[i] == 0)L--;\rif (r[j] == 0)R--;\rl[i] = r[j] = 1;\r}\r}\rif (min(L, R) % 2 == 1)cout \u0026lt;\u0026lt; \u0026quot;Ashish\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;Vivek\\n\u0026quot;;\r}\r B."
+}
+</script><meta property="og:title" content="Codeforces#648 | 傅万斌的个人网站" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
+
+
+<meta property="og:url" content="https://fuwanbin.github.io/posts/cf-4/" />
+
+
+
+
+<meta property="og:description" content="传送门
+A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可
+#define clr(a, b) memset((a), (b), sizeof(a))int n, m, a;int l[55], r[55];void solve(){clr(l, 0);//有t个case，记得初始化clr(r, 0);cin &gt;&gt; n &gt;&gt; m;int L = n, R = m;//记录还有几行几列是没有1的for (int i = 1; i &lt;= n; i&#43;&#43;)for (int j = 1; j &lt;= m; j&#43;&#43;){cin &gt;&gt; a;if (a == 1){if (l[i] == 0)L--;if (r[j] == 0)R--;l[i] = r[j] = 1;}}if (min(L, R) % 2 == 1)cout &lt;&lt; &quot;Ashish\n&quot;;else cout &lt;&lt; &quot;Vivek\n&quot;;} B." />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="傅万斌的个人网站" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2020-06-08T14:55:33&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2020-06-08T14:55:33&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if ((storageColorScheme == 'Auto' && window.matchMedia("(prefers-color-scheme: light)").matches) || storageColorScheme == "Light") {
+        document.getElementsByTagName('html')[0].classList.remove('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">傅万斌的个人网站</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Posts</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == 'Auto') {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'adjust')
+        element.firstElementChild.classList.add('fa-adjust')
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Codeforces#648</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-06-08</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>4 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p><a href="http://codeforces.com/contest/1365">传送门</a></p>
+<h2 id="amatrix-game">A.Matrix Game</h2>
+<p>      给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$<sub>$ij$</sub>变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。
+       因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可</p>
+<pre><code class="language-cpp">#define clr(a, b) memset((a), (b), sizeof(a))
+int n, m, a;
+int l[55], r[55];
+void solve()
+{
+	clr(l, 0);//有t个case，记得初始化
+	clr(r, 0);
+	cin &gt;&gt; n &gt;&gt; m;
+	int L = n, R = m;//记录还有几行几列是没有1的
+	for (int i = 1; i &lt;= n; i++)
+		for (int j = 1; j &lt;= m; j++)
+		{
+			cin &gt;&gt; a;
+			if (a == 1)
+			{
+				if (l[i] == 0)L--;
+				if (r[j] == 0)R--;
+				l[i] = r[j] = 1;
+			}
+		}
+	if (min(L, R) % 2 == 1)cout &lt;&lt; &quot;Ashish\n&quot;;
+	else cout &lt;&lt; &quot;Vivek\n&quot;;
+
+}
+</code></pre>
+<h2 id="btrouble-sort">B.Trouble Sort</h2>
+<p>       给你一个包含$n$个数的数组$a[]$，和一 一对应的type数组$b[]$(只有0，1)。你可以交换两个数$a$<sub>$i$</sub>,$a$<sub>$j$</sub>当且仅当$b$<sub>$i$</sub>不等于$b$<sub>$j$</sub>。问能否经过任意次交换，使得数组$a$是非递减的。
+       首先我们知道，如果type全为0或1，这个数组是操作不了的，这时候判断他最初是不是非递减的，如果不是，就是NO。当type数组中有至少1个不同时，他是可以任意调换的：我们假设要交换相同type的$a$<sub>$i$</sub>与$a$<sub>$j$</sub>，我们找到与他们type不同的$a$<sub>$k$</sub>，然后以$a$<sub>$k$</sub>为中介，$swap($$a$<sub>$i$</sub>,$a$<sub>$k$</sub>$)$,$swap($$a$<sub>$j$</sub>,$a$<sub>$k$</sub>$)$,$swap($$a$<sub>$i$</sub>,$a$<sub>$k$</sub>$)$，这样就交换成功了。因此只要存在至少1个type是与其他不同的，这个数组就可以任意调换（可以自己举个例子，就清楚了），要变成非递减的也不是问题。</p>
+<pre><code class="language-cpp">int n, m, x, y;
+int a[550], b[550];
+void solve()
+{
+	int z = 0, o = 0;
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i++)cin &gt;&gt; a[i];
+	for (int i = 1; i &lt;= n; i++)
+	{
+		cin &gt;&gt; b[i];
+		if (b[i] == 1)o = 1;
+		if (b[i] == 0)z = 1;
+	}
+	bool f = 0;
+	for (int i = 1; i &lt; n; i++)
+		if (a[i] &gt; a[i + 1])f = 1;
+	if (f &amp;&amp; (z + o != 2))cout &lt;&lt; &quot;NO\n&quot;;//当type只有0或只有1，且原数组不是非递减的，输出NO
+	else cout &lt;&lt; &quot;YES\n&quot;;
+}
+</code></pre>
+<h2 id="crotation-matching">C.Rotation Matching</h2>
+<p>给你包含$n$个数的$a$,$b$数组，他们都是$[1,n]$的任意一个排列，你可以左移或右移任意数组任意位数一次，问在所有情况中，$a$,$b$数组能对上的位置最多有多少个。当$i$$==$$j$且$a$<sub>$i$</sub>$==$$b$<sub>$i$</sub>，我们说这个位置能对上。左移一个数组表示在下方，右移相反。<img src="https://img-blog.csdnimg.cn/20200608122221625.png" alt="在这里插入图片描述">
+这道题，可能很多人最开始会想到kmp，hash，或者最长公共子序列，<del>是的这些我都想过。</del> 在真正了解了题意后，我们发现，找到某个数字$x$在$a$，$b$数组中的位置，他们的下标差($posa[x]-posb[x]$)即为：要使这个数字对上，需要左移或右移数组$b$（这里我们固定$a$数组，只移动$b$数组，当然反着来也行）几个位置。在这里我们把右移当作正方向(下标差为正)，左移当作负方向(下标差为负)，如果下标差为2，表示右移数组$b$，数字$x$能对上，也表示当移动2位时，能对上的数字个数加1。我们不妨用num数组记录移动位置数不同时，能对上的数字个数。由于数组没有负的下标，且左移$x$位等价于右移$n-x$位,所以把左移$x$位的$num[-x]$表示为$num[n-x]$。可能我的表达不够清晰，看下面的简介代码就知道了。</p>
+<pre><code class="language-cpp">int n, m;
+int a[200005], b[200005];
+int posa[200005], posb[200005];//记录每个数字的位置
+int num[200005];
+void solve()
+{
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i++)
+	{
+		cin &gt;&gt; a[i];
+		posa[a[i]] = i;
+	}
+	for (int i = 1; i &lt;= n; i++)
+	{
+		cin &gt;&gt; b[i];
+		posb[b[i]] = i;
+	}
+	for (int i = 1; i &lt;= n; i++)
+	{
+		int dif = posa[i] - posb[i];
+		if (dif &lt; 0)dif += n;//小于0表示这里要左移，下标+n，表示为右移
+		num[dif]++;
+	}
+	//num[0]表示不移动时能对上的数字个数，移动n次就是没有移动，可以不用加入比较
+	cout &lt;&lt; *max_element(num, num + n) &lt;&lt; endl;//找到num数组[0,n)中最大的数
+}
+</code></pre>
+<h2 id="dsolve-the-maze">D.Solve The Maze</h2>
+<p>给你$n×m$的迷宫，包含如下几种cell。
+      Empty — &lsquo;.&rsquo;
+      Wall — &lsquo;#&rsquo;
+      Good person  — &lsquo;G&rsquo;
+      Bad person — &lsquo;B&rsquo;
+保证出口的cell(n, m)为Empty。
+我们可以在任意Empty的cell上建立一个Wall，使得这个cell无法到达。B和G只能上下左右移动，且不能移动到Wall的cell，但可以移动到B或G的cell。问我们能不能通过建墙，使得所有B不能到达出口，且所有G都能到达出口。先把B困住是比较容易的，只要把B的4个方向都建墙就行。建好后再从出口bfs一遍，把能走到的cell标记一下，看看有没有哪个G的位置是没有被标记到的。有很多细节，看代码。</p>
+<pre><code class="language-cpp">#define pii pair&lt;int, int&gt; 
+#define pb push_back
+#define clr(a, b) memset((a), (b), sizeof(a))
+int n, m, x, y;
+char mp[55][55];
+vector&lt;pii&gt;G, B;//存放BG的坐标
+bool vis[55][55];//标记bfs过后能走到的位置
+int dir[4][2] = { {1, 0},{-1, 0},{0,1},{0,-1} };//bfs四个方向
+void bfs(int x, int y)//最简单的bfs模板
+{
+	queue&lt;pii&gt;q;
+	q.push(pii(x, y));
+	vis[x][y] = 1;
+	while (q.size())
+	{
+		pii tmp = q.front();
+		q.pop();
+		for (int i = 0; i &lt; 4; i++)
+		{
+			int nx = tmp.first + dir[i][0];
+			int ny = tmp.second + dir[i][1];
+			if (nx &gt; 0 &amp;&amp; nx &lt;= n &amp;&amp; ny&gt;0 &amp;&amp; ny &lt;= m &amp;&amp; !vis[nx][ny] &amp;&amp; mp[nx][ny] != '#')
+			{
+				vis[nx][ny] = 1;
+				q.push(pii(nx, ny));
+			}
+		}
+	}
+}
+void solve()
+{
+	G.clear();
+	B.clear();
+	clr(mp, ' ');
+	clr(vis, 0);//mp也要初始化，我们在给B周围建墙的时候，如果B是在mp边界的，会被前面没有清空的mp影响
+	cin &gt;&gt; n &gt;&gt; m;
+	for (int i = 1; i &lt;= n; i++)
+		for (int j = 1; j &lt;= m; j++)
+		{
+			cin &gt;&gt; mp[i][j];
+			if (mp[i][j] == 'B')B.pb(pii(i, j));
+			else if (mp[i][j] == 'G')G.pb(pii(i, j));
+		}
+	bool f = 0;
+	//B的位置也要用数组存起来是因为，如果你是去遍历mp，找到B然后建墙，就会把B周围的B用Wall覆盖，明显是错的
+	for (pii p : B)
+	{
+		int i = p.first, j = p.second;
+		//如果B旁边就是G，那么只要存在G，且G能到出口，B也能，所有答案一定是NO
+		if (mp[i - 1][j] == 'G' || mp[i + 1][j] == 'G' || mp[i][j + 1] == 'G' || mp[i][j - 1] == 'G')
+		{
+			f = 1;
+			break;
+		}
+		if (mp[i - 1][j] == '.')mp[i - 1][j] = '#';
+		if (mp[i + 1][j] == '.')mp[i + 1][j] = '#';
+		if (mp[i][j + 1] == '.')mp[i][j + 1] = '#';
+		if (mp[i][j - 1] == '.')mp[i][j - 1] = '#';//只有Empty的cell才可以建墙
+	}
+	//我们在给B建墙的时候，可能会在出口处也建了墙，那么如果迷宫里面有G，是肯定出不来的
+	if (f || (G.size() &gt; 0 &amp;&amp; mp[n][m] == '#'))
+	{
+		cout &lt;&lt; &quot;NO\n&quot;;
+		return;
+	}
+	if (mp[n][m] != '#')bfs(n, m);//如果出口没有被堵住，就bfs
+	for (int i = 1; i &lt;= n; i++)
+		for (int j = 1; j &lt;= m; j++)
+		{
+		//B在被标记过的位置，表示可以逃出去
+			if (vis[i][j] &amp;&amp; mp[i][j] == 'B')
+			{
+				cout &lt;&lt; &quot;NO\n&quot;;
+				return;
+			}
+		}
+	for (pii p : G)
+	{
+	//只要有一个G不在被标记的位置，答案为NO
+		if (vis[p.first][p.second] != 1)
+		{
+			cout &lt;&lt; &quot;NO\n&quot;;
+			return;
+		}
+	}
+	cout &lt;&lt; &quot;YES\n&quot;;
+}
+</code></pre>
+<h2 id="emaximum-subsequence-value">E.Maximum Subsequence Value</h2>
+<p>题意是，给你$n$个数，要你选出$k$个数，先把他们转为2进制，对于二进制的第$i$位，如果你选的$k$个数里至少有$max(1, k-2)$个数字的二进制的第$i$位是1，答案就+=$2^i$。求怎么取$k$个数能让最后答案为$\Sigma2^i$最大。比如3，4，1，二进制为011，100， 001。三个数字全选，二进制里三个位置的1的数量都是至少有$max(1, 3-2)$个，因此答案为$2^0+2^1+2^2=7$。
+我们观察$max(1, k-2)$，发现当$k=0,1,2,3$时结果都是1。所以我们可以至少选3个数(贪心)。现在我们来比较一下$k$取3和$k$取4，对于答案有什么影响。当k=3，我们选三个数字，假设有x个位置的1的数量是符合要求的(数字1的数量要求为1)。现在我们取k=4，即在这3个数基础上再选一个数，这时候数字1的数量要求就是2了，那么你选的前3个数的x个为1的位置，第4个数对应的位置都要为1，且第4个数还要有除了这x个位置外的位置要为1，答案才能增加，否则，选的越多，答案可能就会越小。显而易见，当我们取了最优的3个数之后，再取一个数，都可能会使答案变小。
+比如1，3，8，12，我们取最优的三个数：1，3，12，这时候有4个位置符合要求，如果现在你还要选8，符合要求的位置数就会降为1。
+我们就可以暴力n^3取最优的三个数，就可以得到答案。
+1的数量越多，或者1的位置越靠前都不一定是最优的，可以很容易举出反例。</p>
+<pre><code class="language-cpp">int n；
+ll a[505];
+ll ans = 0;
+void solve()
+{
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i++)
+		cin &gt;&gt; a[i];
+	for (int i = 0; i &lt; n; ++i) {
+		for (int j = 0; j &lt; n; ++j) {
+			for (int k = 0; k &lt; n; ++k) {
+			//   |这个竖杠表示当两个都为0是，结果才为0
+				ans = max(ans, a[i] | a[j] | a[k]);
+			}
+		}
+	}
+	cout &lt;&lt; ans &lt;&lt; endl;
+}
+</code></pre>
+
+        </div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">Previous</span>
+        <a href="https://fuwanbin.github.io/posts/cf-5/" class="block">Codeforces#650</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">Next</span>
+        <a href="https://fuwanbin.github.io/posts/cf-3/" class="block">Codeforces#646</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+    <div class="col-span-2">
+        
+        
+        <div class="sticky top-16 z-10 hidden lg:block px-6 py-4  bg-primary-bg ">
+    <span class="text-lg font-semibold">On This Page</span>
+</div>
+<div class="sticky-toc hidden lg:block px-6 pb-6 ">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#amatrix-game">A.Matrix Game</a></li>
+    <li><a href="#btrouble-sort">B.Trouble Sort</a></li>
+    <li><a href="#crotation-matching">C.Rotation Matching</a></li>
+    <li><a href="#dsolve-the-maze">D.Solve The Maze</a></li>
+    <li><a href="#emaximum-subsequence-value">E.Maximum Subsequence Value</a></li>
+  </ul>
+</nav>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        enableStickyToc();
+    });
+</script>
+        
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://fuwanbin.github.io/">Wanbin Fu</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>
