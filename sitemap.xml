@@ -2,8 +2,32 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fuwanbin.github.io/categories/c&#43;&#43;/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/tags/c&#43;&#43;11/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/posts/multithreading_concurrent_2/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
     <loc>https://fuwanbin.github.io/categories/</loc>
-    <lastmod>2022-01-09T00:58:30+08:00</lastmod>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/posts/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/tags/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</loc>
+    <lastmod>2022-01-09T21:18:54+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/posts/multithreading_concurrent_1/</loc>
+    <lastmod>2022-01-09T16:40:28+08:00</lastmod>
   </url><url>
     <loc>https://fuwanbin.github.io/categories/linux/</loc>
     <lastmod>2022-01-09T00:58:30+08:00</lastmod>
@@ -11,10 +35,7 @@
     <loc>https://fuwanbin.github.io/posts/linux_signal/</loc>
     <lastmod>2022-01-09T00:58:30+08:00</lastmod>
   </url><url>
-    <loc>https://fuwanbin.github.io/posts/</loc>
-    <lastmod>2022-01-09T00:58:30+08:00</lastmod>
-  </url><url>
-    <loc>https://fuwanbin.github.io/</loc>
+    <loc>https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/</loc>
     <lastmod>2022-01-09T00:58:30+08:00</lastmod>
   </url><url>
     <loc>https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/</loc>
@@ -44,8 +65,6 @@
     <loc>https://fuwanbin.github.io/authors/</loc>
   </url><url>
     <loc>https://fuwanbin.github.io/series/</loc>
-  </url><url>
-    <loc>https://fuwanbin.github.io/tags/</loc>
   </url><url>
     <loc>https://fuwanbin.github.io/authors/example-author/</loc>
   </url>

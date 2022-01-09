@@ -70,18 +70,30 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
+            "name": "Codeforces#650",
+            "description": "传送门\nA.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。\nvoid solve()\r{\rstring s;\rcin \u0026gt;\u0026gt; s;\rcout \u0026lt;\u0026lt; s[0];\rfor (int i = 1; i \u0026lt; s.size() - 1; i += 2)cout \u0026lt;\u0026lt; s[i];\rcout \u0026lt;\u0026lt; s[s.size() - 1] \u0026lt;\u0026lt; endl;\r}\r B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。",
+            "url": "https://fuwanbin.github.io/posts/cf-5/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
+            "name": "Codeforces#648",
+            "description": "传送门\nA.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可\n#define clr(a, b) memset((a), (b), sizeof(a))\rint n, m, a;\rint l[55], r[55];\rvoid solve()\r{\rclr(l, 0);//有t个case，记得初始化\rclr(r, 0);\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rint L = n, R = m;//记录还有几行几列是没有1的\rfor (int i = 1; i \u0026lt;= n; i++)\rfor (int j = 1; j \u0026lt;= m; j++)\r{\rcin \u0026gt;\u0026gt; a;\rif (a == 1)\r{\rif (l[i] == 0)L--;\rif (r[j] == 0)R--;\rl[i] = r[j] = 1;\r}\r}\rif (min(L, R) % 2 == 1)cout \u0026lt;\u0026lt; \u0026quot;Ashish\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;Vivek\\n\u0026quot;;\r}\r B.",
+            "url": "https://fuwanbin.github.io/posts/cf-4/"
+        },{
+            "@type":"ListItem",
+            "position":  3 ,
             "name": "Codeforces#646",
             "description": "传送门\nA.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可\nint n, m, k, x;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; x;\rint odd = 0, ev = 0;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; k;\rif (k % 2 == 1)odd++;\relse ev++;\r}\rbool f = 0;\rfor (int i = 0; i \u0026lt;= odd; i++)\rif (i % 2 == 1 \u0026amp;\u0026amp; i \u0026lt;= x \u0026amp;\u0026amp; x - i \u0026lt;= ev)f = 1;\rif (f)cout \u0026lt;\u0026lt; \u0026quot;YES\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/cf-3/"
         },{
             "@type":"ListItem",
-            "position":  2 ,
+            "position":  4 ,
             "name": "Codeforces-Edu#88",
             "description": "传送门\nA.Berland Poker 给你n张牌，其中m张joker，平均分给k个人，保证n%k==0\n问分数的最大值。这里分数指拿到joker最多的人的牌的数量-拿到joker最少的人的牌的数量。那么我们可以知道，让其中一个人尽可能全部拿joker，剩下的尽可能平分即可。\nint n, m, k;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m \u0026gt;\u0026gt; k;\rint maxn = n / k;\rif (maxn \u0026lt;= m)\rcout \u0026lt;\u0026lt; maxn - (int)ceil((1.0 * m - maxn) / (1.0 * k - 1)) \u0026lt;\u0026lt; endl;\relse\rcout \u0026lt;\u0026lt; m \u0026lt;\u0026lt; endl;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/cf-2/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  5 ,
             "name": "Codeforces#645",
             "description": "传送门\nA.Park Lighting 给n×m个格子，格子之间那条线是路；你可以在路的中间放一个路灯，来照亮相邻两个格子，求照亮所有格子的最少路灯数。\nint n, m;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rif (n % 2 == 0 || m % 2 == 0)\rcout \u0026lt;\u0026lt; m * n / 2 \u0026lt;\u0026lt; endl;\relse\rcout \u0026lt;\u0026lt; m * (n - 1) / 2 + (m + 1) / 2 \u0026lt;\u0026lt; endl;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/cf-1/"
@@ -119,7 +131,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-09T00:58:30&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-09T21:18:54&#43;08:00" />
 
 
 
@@ -203,6 +215,92 @@
 </article>
 <div class="bg-secondary-bg rounded px-6">
     <div class="overflow-hidden divide-y">
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/cf-5/" class="font-bold text-xl hover:text-eureka">Codeforces#650</a>
+</div>
+<div class="content">
+  
+    传送门
+A.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。
+void solve(){string s;cin &gt;&gt; s;cout &lt;&lt; s[0];for (int i = 1; i &lt; s.size() - 1; i &#43;= 2)cout &lt;&lt; s[i];cout &lt;&lt; s[s.size() - 1] &lt;&lt; endl;} B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-06-17</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/cf-4/" class="font-bold text-xl hover:text-eureka">Codeforces#648</a>
+</div>
+<div class="content">
+  
+    传送门
+A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可
+#define clr(a, b) memset((a), (b), sizeof(a))int n, m, a;int l[55], r[55];void solve(){clr(l, 0);//有t个case，记得初始化clr(r, 0);cin &gt;&gt; n &gt;&gt; m;int L = n, R = m;//记录还有几行几列是没有1的for (int i = 1; i &lt;= n; i&#43;&#43;)for (int j = 1; j &lt;= m; j&#43;&#43;){cin &gt;&gt; a;if (a == 1){if (l[i] == 0)L--;if (r[j] == 0)R--;l[i] = r[j] = 1;}}if (min(L, R) % 2 == 1)cout &lt;&lt; &#34;Ashish\n&#34;;else cout &lt;&lt; &#34;Vivek\n&#34;;} B.
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-06-08</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>4 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
   
   <div class="py-6">
     <div class="flex flex-col-reverse lg:flex-row justify-between">

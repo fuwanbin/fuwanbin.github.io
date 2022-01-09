@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>多进程 on 傅万斌的个人网站</title>
+    <link>https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/</link>
+    <description>Recent content in 多进程 on 傅万斌的个人网站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Sun, 09 Jan 2022 00:58:30 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux信号</title>
+      <link>https://fuwanbin.github.io/posts/linux_signal/</link>
+      <pubDate>Sun, 09 Jan 2022 00:58:30 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/linux_signal/</guid>
+      <description>一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl + C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“&amp;amp;”符号。
+./main &amp;amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl + C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 
+killall main #或 kill &amp;lt;进程id&amp;gt;   二、signal信号  在程序运行时，Ctrl + C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。
+程序演示 #include &amp;lt;stdio.h&amp;gt; #include &amp;lt;unistd.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; #include &amp;lt;signal.h&amp;gt; // 这是我们自定义的函数表示对信号的行为，自定义的行为会覆盖掉缺省行为 void fun(int sig) { printf(&amp;quot;收到了信号: %d\n&amp;quot;, sig); } int main() { // 指定信号对应的行为, 同时覆盖掉其缺省的 使程序终止 的行为 // SIGINT和SIGTERM是宏定义，表示信号值 signal(SIGINT, fun); // 键盘中断Ctrl + C signal(SIGTERM, fun); // killall或kill while(1) { } return 0; }   现在程序收到Ctrl + C的信号时已经不会终止，反而会执行我们指定的fun()函数。为了能跳出程序，方便之后的程序演示，我们按Ctrl + Z暂时挂起程序,挂起的程序还会留在进程中，并暂停运行。   如我们之前所说，killall和kill也不能终止程序了。那这时候我们要怎么终止程序呢？从之前给的链接我们学到，可以添加参数 -9 来强制杀死进程。</description>
+    </item>
+    
+  </channel>
+</rss>
