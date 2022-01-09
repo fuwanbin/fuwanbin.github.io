@@ -93,7 +93,7 @@
 
 
 
-<meta property="og:updated_time" content="2020-07-22T12:13:57&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-09T00:58:30&#43;08:00" />
 
 
 
@@ -339,6 +339,52 @@
   
   <div class="w-full ">
     <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/linux_signal/" class="font-bold text-xl hover:text-eureka">Linux信号</a>
+</div>
+<div class="content">
+  
+    一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl &#43; C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“&amp;”符号。
+./main &amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl &#43; C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 
+killall main #或 kill &lt;进程id&gt;   二、signal信号  在程序运行时，Ctrl &#43; C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。
+程序演示 #include &lt;stdio.h&gt; #include &lt;unistd.h&gt; #include &lt;stdlib.h&gt; #include &lt;signal.h&gt; // 这是我们自定义的函数表示对信号的行为，自定义的行为会覆盖掉缺省行为 void fun(int sig) { printf(&#34;收到了信号: %d\n&#34;, sig); } int main() { // 指定信号对应的行为, 同时覆盖掉其缺省的 使程序终止 的行为 // SIGINT和SIGTERM是宏定义，表示信号值 signal(SIGINT, fun); // 键盘中断Ctrl &#43; C signal(SIGTERM, fun); // killall或kill while(1) { } return 0; }   现在程序收到Ctrl &#43; C的信号时已经不会终止，反而会执行我们指定的fun()函数。为了能跳出程序，方便之后的程序演示，我们按Ctrl &#43; Z暂时挂起程序,挂起的程序还会留在进程中，并暂停运行。   如我们之前所说，killall和kill也不能终止程序了。那这时候我们要怎么终止程序呢？从之前给的链接我们学到，可以添加参数 -9 来强制杀死进程。
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-09</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/linux/" class="hover:text-eureka">Linux</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+</div>
+</div>
+
+<div class="mb-6">
+  <div class="bg-secondary-bg rounded border hover:shadow-lg transition ease-in-out duration-200 px-6 pt-6 pb-4">
+  <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
   <a href="https://fuwanbin.github.io/posts/cf-7/" class="font-bold text-xl hover:text-eureka">Codeforces#658</a>
 </div>
 <div class="content">
@@ -492,51 +538,6 @@ A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0�
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
         <span>4 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-</div>
-</div>
-
-<div class="mb-6">
-  <div class="bg-secondary-bg rounded border hover:shadow-lg transition ease-in-out duration-200 px-6 pt-6 pb-4">
-  <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-3/" class="font-bold text-xl hover:text-eureka">Codeforces#646</a>
-</div>
-<div class="content">
-  
-    传送门
-A.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可
-int n, m, k, x;void solve(){cin &gt;&gt; n &gt;&gt; x;int odd = 0, ev = 0;for (int i = 1; i &lt;= n; i&#43;&#43;){cin &gt;&gt; k;if (k % 2 == 1)odd&#43;&#43;;else ev&#43;&#43;;}bool f = 0;for (int i = 0; i &lt;= odd; i&#43;&#43;)if (i % 2 == 1 &amp;&amp; i &lt;= x &amp;&amp; x - i &lt;= ev)f = 1;if (f)cout &lt;&lt; &#34;YES\n&#34;;else cout &lt;&lt; &#34;NO\n&#34;;} B.
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-06-01</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
     </div>
     
     

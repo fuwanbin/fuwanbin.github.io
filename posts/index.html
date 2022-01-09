@@ -70,33 +70,33 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
+            "name": "Linux信号",
+            "description": "一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl + C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“\u0026amp;”符号。\n./main \u0026amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl + C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 \nkillall main #或 kill \u0026lt;进程id\u0026gt;   二、signal信号  在程序运行时，Ctrl + C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。\n程序演示 #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;signal.h\u0026gt; // 这是我们自定义的函数表示对信号的行为，自定义的行为会覆盖掉缺省行为 void fun(int sig) { printf(\u0026quot;收到了信号: %d\\n\u0026quot;, sig); } int main() { // 指定信号对应的行为, 同时覆盖掉其缺省的 使程序终止 的行为 // SIGINT和SIGTERM是宏定义，表示信号值 signal(SIGINT, fun); // 键盘中断Ctrl + C signal(SIGTERM, fun); // killall或kill while(1) { } return 0; }   现在程序收到Ctrl + C的信号时已经不会终止，反而会执行我们指定的fun()函数。为了能跳出程序，方便之后的程序演示，我们按Ctrl + Z暂时挂起程序,挂起的程序还会留在进程中，并暂停运行。   如我们之前所说，killall和kill也不能终止程序了。那这时候我们要怎么终止程序呢？从之前给的链接我们学到，可以添加参数 -9 来强制杀死进程。",
+            "url": "https://fuwanbin.github.io/posts/linux_signal/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
             "name": "Codeforces#658",
             "description": "传送门\nA.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。\nint num[1005];\rvoid solve(int T)\r{\rint a, b;\rmemset(num, 0, sizeof(num));\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; a;\rnum[a] = 1;\r}\rfor (int i = 1; i \u0026lt;= m; i++)\r{\rcin \u0026gt;\u0026gt; b;\rif (num[b] == 1)num[b] = 2;\r}\rfor (int i = 1; i \u0026lt;= 1000; i++)\rif (num[i] == 2)\r{\rcout \u0026lt;\u0026lt; \u0026quot;YES\\n1 \u0026quot;;\rcout \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl;\rreturn;\r}\rcout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/cf-7/"
         },{
             "@type":"ListItem",
-            "position":  2 ,
+            "position":  3 ,
             "name": "Codeforces-Global#9",
             "description": "传送门\nA.Sign Flipping  题意：给一个包含$n$个整数的数组，可以随意改变他们的正负号使得至少有$\\frac{n-1}{2}$个相邻数字的差$\\ge0$，且至少有$\\frac{n-1}{2}$个相邻数字的差$\\leq0$。 对于任意的三个数字$a$,$-b$,$c$，其中$a$,$b$,$c$ \u0026gt; $0$，一定符合以上我们所说的要求。我们再延申至任意长度的数组。\nint n, k;\rint a[105];\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n;\rbool f = 1;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; a[i];\ra[i] = abs(a[i]);\r}\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rif (f)cout \u0026lt;\u0026lt; a[i] \u0026lt;\u0026lt; \u0026quot; \u0026quot;;\relse cout \u0026lt;\u0026lt; -a[i] \u0026lt;\u0026lt; \u0026quot; \u0026quot;;\rf ^= 1;\r}\rcout \u0026lt;\u0026lt; endl;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/cf-6/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  4 ,
             "name": "Codeforces#650",
             "description": "传送门\nA.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。\nvoid solve()\r{\rstring s;\rcin \u0026gt;\u0026gt; s;\rcout \u0026lt;\u0026lt; s[0];\rfor (int i = 1; i \u0026lt; s.size() - 1; i += 2)cout \u0026lt;\u0026lt; s[i];\rcout \u0026lt;\u0026lt; s[s.size() - 1] \u0026lt;\u0026lt; endl;\r}\r B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。",
             "url": "https://fuwanbin.github.io/posts/cf-5/"
         },{
             "@type":"ListItem",
-            "position":  4 ,
+            "position":  5 ,
             "name": "Codeforces#648",
             "description": "传送门\nA.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可\n#define clr(a, b) memset((a), (b), sizeof(a))\rint n, m, a;\rint l[55], r[55];\rvoid solve()\r{\rclr(l, 0);//有t个case，记得初始化\rclr(r, 0);\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rint L = n, R = m;//记录还有几行几列是没有1的\rfor (int i = 1; i \u0026lt;= n; i++)\rfor (int j = 1; j \u0026lt;= m; j++)\r{\rcin \u0026gt;\u0026gt; a;\rif (a == 1)\r{\rif (l[i] == 0)L--;\rif (r[j] == 0)R--;\rl[i] = r[j] = 1;\r}\r}\rif (min(L, R) % 2 == 1)cout \u0026lt;\u0026lt; \u0026quot;Ashish\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;Vivek\\n\u0026quot;;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/cf-4/"
-        },{
-            "@type":"ListItem",
-            "position":  5 ,
-            "name": "Codeforces#646",
-            "description": "传送门\nA.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可\nint n, m, k, x;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; x;\rint odd = 0, ev = 0;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; k;\rif (k % 2 == 1)odd++;\relse ev++;\r}\rbool f = 0;\rfor (int i = 0; i \u0026lt;= odd; i++)\rif (i % 2 == 1 \u0026amp;\u0026amp; i \u0026lt;= x \u0026amp;\u0026amp; x - i \u0026lt;= ev)f = 1;\rif (f)cout \u0026lt;\u0026lt; \u0026quot;YES\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-3/"
         }
     ]
 }
@@ -131,7 +131,7 @@
 
 
 
-<meta property="og:updated_time" content="2020-07-22T12:13:57&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-09T00:58:30&#43;08:00" />
 
 
 
@@ -215,6 +215,50 @@
 </article>
 <div class="bg-secondary-bg rounded px-6">
     <div class="overflow-hidden divide-y">
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/linux_signal/" class="font-bold text-xl hover:text-eureka">Linux信号</a>
+</div>
+<div class="content">
+  
+    一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl &#43; C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“&amp;”符号。
+./main &amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl &#43; C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 
+killall main #或 kill &lt;进程id&gt;   二、signal信号  在程序运行时，Ctrl &#43; C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。
+程序演示 #include &lt;stdio.h&gt; #include &lt;unistd.h&gt; #include &lt;stdlib.h&gt; #include &lt;signal.h&gt; // 这是我们自定义的函数表示对信号的行为，自定义的行为会覆盖掉缺省行为 void fun(int sig) { printf(&#34;收到了信号: %d\n&#34;, sig); } int main() { // 指定信号对应的行为, 同时覆盖掉其缺省的 使程序终止 的行为 // SIGINT和SIGTERM是宏定义，表示信号值 signal(SIGINT, fun); // 键盘中断Ctrl &#43; C signal(SIGTERM, fun); // killall或kill while(1) { } return 0; }   现在程序收到Ctrl &#43; C的信号时已经不会终止，反而会执行我们指定的fun()函数。为了能跳出程序，方便之后的程序演示，我们按Ctrl &#43; Z暂时挂起程序,挂起的程序还会留在进程中，并暂停运行。   如我们之前所说，killall和kill也不能终止程序了。那这时候我们要怎么终止程序呢？从之前给的链接我们学到，可以添加参数 -9 来强制杀死进程。
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-09</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/linux/" class="hover:text-eureka">Linux</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
   
   <div class="py-6">
     <div class="flex flex-col-reverse lg:flex-row justify-between">
@@ -368,49 +412,6 @@ A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0�
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
         <span>4 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-3/" class="font-bold text-xl hover:text-eureka">Codeforces#646</a>
-</div>
-<div class="content">
-  
-    传送门
-A.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可
-int n, m, k, x;void solve(){cin &gt;&gt; n &gt;&gt; x;int odd = 0, ev = 0;for (int i = 1; i &lt;= n; i&#43;&#43;){cin &gt;&gt; k;if (k % 2 == 1)odd&#43;&#43;;else ev&#43;&#43;;}bool f = 0;for (int i = 0; i &lt;= odd; i&#43;&#43;)if (i % 2 == 1 &amp;&amp; i &lt;= x &amp;&amp; x - i &lt;= ev)f = 1;if (f)cout &lt;&lt; &#34;YES\n&#34;;else cout &lt;&lt; &#34;NO\n&#34;;} B.
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-06-01</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
     </div>
     
     
