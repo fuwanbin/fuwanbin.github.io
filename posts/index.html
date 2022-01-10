@@ -70,33 +70,33 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
-            "name": "C++11并发与多线程(二)",
+            "name": "对象创建的线程安全",
+            "description": "参考资料 陈硕. Linux多线程服务端编程 使用muduo C++网络库[M]. 1. 电子工业出版社, 2013-1-15.",
+            "url": "https://fuwanbin.github.io/posts/createobjthread/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
+            "name": "C++11并发与多线程(三)——多个线程间的数据保护|mutex",
+            "description": "一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 100000; i++) { cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i \u0026lt; 100000; i++) { if (!",
+            "url": "https://fuwanbin.github.io/posts/multithreading_concurrent_3/"
+        },{
+            "@type":"ListItem",
+            "position":  3 ,
+            "name": "C++11并发与多线程(二)——子线程传参",
             "description": "一、在创建线程时传递参数 代码演示  在初始化子线程时，第一个参数为 可调用对象，之后依次填入函数需要的参数。\nclass A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; x \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main(void) { int x = 5; //函数 thread myt1(fun, x); myt1.",
             "url": "https://fuwanbin.github.io/posts/multithreading_concurrent_2/"
         },{
             "@type":"ListItem",
-            "position":  2 ,
-            "name": "C++11并发与多线程(一)",
+            "position":  4 ,
+            "name": "C++11并发与多线程(一)——创建一个子线程",
             "description": "看这篇文章默认你已经学会多线程，并发等相关基础概念。\n一、引言  在之前，Windows和Linux下创建线程的函数是不同的，不能跨平台。从C++11新标准开始，C++语言本身增加对多线程的支持，意味着可移植性（跨平台），大大减少开发人员的工作量。\n 为了引入C++11的多线程函数库，我们要包含一个头文件：thread。\n二、创建一个子线程 程序演示  以下程序包含两个线程，对应两条程序执行线路。主线程执行main()函数，在main()函数中会创建一个子线程，这个子线程会执行fun()。\n#include \u0026lt;iostream\u0026gt; #include \u0026lt;thread\u0026gt; using namespace std; // 创建一个函数作为线程的入口。 void fun() { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main() { // 创建一个thread实例,用我们写的函数fun初始化，创建完毕该线程会自动执行我们给定的函数。 // 可用其他的 可调用对象 初始化，下面会讲 thread myt(fun); cout \u0026lt;\u0026lt; myt.",
             "url": "https://fuwanbin.github.io/posts/multithreading_concurrent_1/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  5 ,
             "name": "Linux信号",
             "description": "一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl + C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“\u0026amp;”符号。\n./main \u0026amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl + C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 \nkillall main #或 kill \u0026lt;进程id\u0026gt;   二、signal信号  在程序运行时，Ctrl + C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。\n程序演示 #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;signal.h\u0026gt; // 这是我们自定义的函数表示对信号的行为，自定义的行为会覆盖掉缺省行为 void fun(int sig) { printf(\u0026quot;收到了信号: %d\\n\u0026quot;, sig); } int main() { // 指定信号对应的行为, 同时覆盖掉其缺省的 使程序终止 的行为 // SIGINT和SIGTERM是宏定义，表示信号值 signal(SIGINT, fun); // 键盘中断Ctrl + C signal(SIGTERM, fun); // killall或kill while(1) { } return 0; }   现在程序收到Ctrl + C的信号时已经不会终止，反而会执行我们指定的fun()函数。为了能跳出程序，方便之后的程序演示，我们按Ctrl + Z暂时挂起程序,挂起的程序还会留在进程中，并暂停运行。   如我们之前所说，killall和kill也不能终止程序了。那这时候我们要怎么终止程序呢？从之前给的链接我们学到，可以添加参数 -9 来强制杀死进程。",
             "url": "https://fuwanbin.github.io/posts/linux_signal/"
-        },{
-            "@type":"ListItem",
-            "position":  4 ,
-            "name": "Codeforces#658",
-            "description": "传送门\nA.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。\nint num[1005];\rvoid solve(int T)\r{\rint a, b;\rmemset(num, 0, sizeof(num));\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; a;\rnum[a] = 1;\r}\rfor (int i = 1; i \u0026lt;= m; i++)\r{\rcin \u0026gt;\u0026gt; b;\rif (num[b] == 1)num[b] = 2;\r}\rfor (int i = 1; i \u0026lt;= 1000; i++)\rif (num[i] == 2)\r{\rcout \u0026lt;\u0026lt; \u0026quot;YES\\n1 \u0026quot;;\rcout \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl;\rreturn;\r}\rcout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-7/"
-        },{
-            "@type":"ListItem",
-            "position":  5 ,
-            "name": "Codeforces-Global#9",
-            "description": "传送门\nA.Sign Flipping  题意：给一个包含$n$个整数的数组，可以随意改变他们的正负号使得至少有$\\frac{n-1}{2}$个相邻数字的差$\\ge0$，且至少有$\\frac{n-1}{2}$个相邻数字的差$\\leq0$。 对于任意的三个数字$a$,$-b$,$c$，其中$a$,$b$,$c$ \u0026gt; $0$，一定符合以上我们所说的要求。我们再延申至任意长度的数组。\nint n, k;\rint a[105];\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n;\rbool f = 1;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; a[i];\ra[i] = abs(a[i]);\r}\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rif (f)cout \u0026lt;\u0026lt; a[i] \u0026lt;\u0026lt; \u0026quot; \u0026quot;;\relse cout \u0026lt;\u0026lt; -a[i] \u0026lt;\u0026lt; \u0026quot; \u0026quot;;\rf ^= 1;\r}\rcout \u0026lt;\u0026lt; endl;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-6/"
         }
     ]
 }
@@ -131,7 +131,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-09T21:18:54&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-10T23:00:30&#43;08:00" />
 
 
 
@@ -221,7 +221,89 @@
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(二)</a>
+  <a href="https://fuwanbin.github.io/posts/createobjthread/" class="font-bold text-xl hover:text-eureka">对象创建的线程安全</a>
+</div>
+<div class="content">
+  
+    参考资料 陈硕. Linux多线程服务端编程 使用muduo C&#43;&#43;网络库[M]. 1. 电子工业出版社, 2013-1-15.
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-10</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</a>
+</div>
+<div class="content">
+  
+    一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &#34;inQ执行，插入&#34; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { if (!
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-10</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
 </div>
 <div class="content">
   
@@ -263,7 +345,7 @@ class A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout &
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_1/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(一)</a>
+  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_1/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(一)——创建一个子线程</a>
 </div>
 <div class="content">
   
@@ -347,92 +429,6 @@ killall main #或 kill &lt;进程id&gt;   二、signal信号  在程序运行�
 </div>
   </div>
   
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-7/" class="font-bold text-xl hover:text-eureka">Codeforces#658</a>
-</div>
-<div class="content">
-  
-    传送门
-A.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。
-int num[1005];void solve(int T){int a, b;memset(num, 0, sizeof(num));cin &gt;&gt; n &gt;&gt; m;for (int i = 1; i &lt;= n; i&#43;&#43;){cin &gt;&gt; a;num[a] = 1;}for (int i = 1; i &lt;= m; i&#43;&#43;){cin &gt;&gt; b;if (num[b] == 1)num[b] = 2;}for (int i = 1; i &lt;= 1000; i&#43;&#43;)if (num[i] == 2){cout &lt;&lt; &#34;YES\n1 &#34;;cout &lt;&lt; i &lt;&lt; endl;return;}cout &lt;&lt; &#34;NO\n&#34;;} B.
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-07-22</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-6/" class="font-bold text-xl hover:text-eureka">Codeforces-Global#9</a>
-</div>
-<div class="content">
-  
-    传送门
-A.Sign Flipping  题意：给一个包含$n$个整数的数组，可以随意改变他们的正负号使得至少有$\frac{n-1}{2}$个相邻数字的差$\ge0$，且至少有$\frac{n-1}{2}$个相邻数字的差$\leq0$。 对于任意的三个数字$a$,$-b$,$c$，其中$a$,$b$,$c$ &gt; $0$，一定符合以上我们所说的要求。我们再延申至任意长度的数组。
-int n, k;int a[105];void solve(){cin &gt;&gt; n;bool f = 1;for (int i = 1; i &lt;= n; i&#43;&#43;){cin &gt;&gt; a[i];a[i] = abs(a[i]);}for (int i = 1; i &lt;= n; i&#43;&#43;){if (f)cout &lt;&lt; a[i] &lt;&lt; &#34; &#34;;else cout &lt;&lt; -a[i] &lt;&lt; &#34; &#34;;f ^= 1;}cout &lt;&lt; endl;} B.
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-07-05</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>3 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
 </div>
 
 
@@ -452,10 +448,13 @@ int n, k;int a[105];void solve(){cin &gt;&gt; n;bool f = 1;for (int i = 1;
         <a href="/posts/page/2/" aria-label="Page 2" class="page-link" role="button">2</a>
       </li>
       <li class="page-item">
+        <a href="/posts/page/3/" aria-label="Page 3" class="page-link" role="button">3</a>
+      </li>
+      <li class="page-item">
         <a href="/posts/page/2/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
       </li>
       <li class="page-item">
-        <a href="/posts/page/2/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+        <a href="/posts/page/3/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
 

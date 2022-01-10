@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>C&#43;&#43;11并发与多线程(一) | 傅万斌的个人网站</title>
+<title>C&#43;&#43;11并发与多线程(一)——创建一个子线程 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -74,7 +74,7 @@
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"C++11并发与多线程(一)",
+      "name":"C++11并发与多线程(一)——创建一个子线程",
       "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_1/"}]
 }
 </script>
@@ -89,7 +89,7 @@
         "@type": "WebPage",
         "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_1/"
     },
-    "headline": "C\u002b\u002b11并发与多线程(一) | 傅万斌的个人网站","datePublished": "2022-01-09T16:40:28+08:00",
+    "headline": "C\u002b\u002b11并发与多线程(一)——创建一个子线程 | 傅万斌的个人网站","datePublished": "2022-01-09T16:40:28+08:00",
     "dateModified": "2022-01-09T16:40:28+08:00",
     "wordCount":  215 ,
     "publisher": {
@@ -102,7 +102,7 @@
         },
     "description": "看这篇文章默认你已经学会多线程，并发等相关基础概念。\n一、引言  在之前，Windows和Linux下创建线程的函数是不同的，不能跨平台。从C\u002b\u002b11新标准开始，C\u002b\u002b语言本身增加对多线程的支持，意味着可移植性（跨平台），大大减少开发人员的工作量。\n 为了引入C\u002b\u002b11的多线程函数库，我们要包含一个头文件：thread。\n二、创建一个子线程 程序演示  以下程序包含两个线程，对应两条程序执行线路。主线程执行main()函数，在main()函数中会创建一个子线程，这个子线程会执行fun()。\n#include \u0026lt;iostream\u0026gt; #include \u0026lt;thread\u0026gt; using namespace std; \/\/ 创建一个函数作为线程的入口。 void fun() { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main() { \/\/ 创建一个thread实例,用我们写的函数fun初始化，创建完毕该线程会自动执行我们给定的函数。 \/\/ 可用其他的 可调用对象 初始化，下面会讲 thread myt(fun); cout \u0026lt;\u0026lt; myt."
 }
-</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(一) | 傅万斌的个人网站" />
+</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(一)——创建一个子线程 | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
@@ -227,7 +227,7 @@
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(一)</h1>
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(一)——创建一个子线程</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
@@ -396,7 +396,7 @@ int main()
     <div>
         
         <span class="block font-bold">Previous</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" class="block">C&#43;&#43;11并发与多线程(二)</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" class="block">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
         
     </div>
     <div class="md:text-right mt-4 md:mt-0">

@@ -8,9 +8,27 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sun, 09 Jan 2022 21:18:54 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 10 Jan 2022 23:00:30 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>C&#43;&#43;11并发与多线程(二)</title>
+      <title>对象创建的线程安全</title>
+      <link>https://fuwanbin.github.io/posts/createobjthread/</link>
+      <pubDate>Mon, 10 Jan 2022 23:00:30 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/createobjthread/</guid>
+      <description>参考资料 陈硕. Linux多线程服务端编程 使用muduo C++网络库[M]. 1. 电子工业出版社, 2013-1-15.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</title>
+      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_3/</link>
+      <pubDate>Mon, 10 Jan 2022 00:25:09 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_3/</guid>
+      <description>一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &amp;lt; 100000; i++) { cout &amp;lt;&amp;lt; &amp;quot;inQ执行，插入&amp;quot; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &amp;lt; 100000; i++) { if (!</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11并发与多线程(二)——子线程传参</title>
       <link>https://fuwanbin.github.io/posts/multithreading_concurrent_2/</link>
       <pubDate>Sun, 09 Jan 2022 21:18:54 +0800</pubDate>
       
@@ -20,7 +38,7 @@ class A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout &
     </item>
     
     <item>
-      <title>C&#43;&#43;11并发与多线程(一)</title>
+      <title>C&#43;&#43;11并发与多线程(一)——创建一个子线程</title>
       <link>https://fuwanbin.github.io/posts/multithreading_concurrent_1/</link>
       <pubDate>Sun, 09 Jan 2022 16:40:28 +0800</pubDate>
       
