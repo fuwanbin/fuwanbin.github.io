@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex | 傅万斌的个人网站</title>
+<title>C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -58,7 +58,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
 
 <meta name="description"
-  content="一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { if (!">
+  content="一、概念  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。
+二、第二参数 std::adopt_lock  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。
+std::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。
+代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1, std::try_to_lock); if (my_guard1.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,8 +73,8 @@
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"C++11并发与多线程(三)——多个线程间的数据保护|mutex",
-      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_3/"}]
+      "name":"C++11并发与多线程(四)——unique_lock类模板详解",
+      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_4/"}]
 }
 </script>
 
@@ -83,11 +86,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_3/"
+        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_4/"
     },
-    "headline": "C\u002b\u002b11并发与多线程(三)——多个线程间的数据保护|mutex | 傅万斌的个人网站","datePublished": "2022-01-11T00:03:09+08:00",
-    "dateModified": "2022-01-11T00:03:09+08:00",
-    "wordCount":  326 ,
+    "headline": "C\u002b\u002b11并发与多线程(四)——unique_lock类模板详解 | 傅万斌的个人网站","datePublished": "2022-01-11T22:14:09+08:00",
+    "dateModified": "2022-01-11T22:14:09+08:00",
+    "wordCount":  97 ,
     "publisher": {
         "@type": "Person",
         "name": "傅万斌的个人网站",
@@ -96,21 +99,24 @@
             "url": "https://fuwanbin.github.io/images/icon.png"
         }
         },
-    "description": "一、没有任何保护措施的代码 class A { public: \/\/ 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 100000; i\u002b\u002b) { cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; q.push_back(i); \/\/ 假设i是我们收到的消息 } } \/\/ 把消息从消息队列取出 void outQ() { for (int i = 0; i \u0026lt; 100000; i\u002b\u002b) { if (!"
+    "description": "一、概念  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。\n二、第二参数 std::adopt_lock  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。\nstd::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。\n代码演示 class A { public: \/\/ 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 100000; i\u002b\u002b) { cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; std::unique_lock\u0026lt;std::mutex\u0026gt; my_guard1(my_mutex1, std::try_to_lock); if (my_guard1."
 }
-</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex | 傅万斌的个人网站" />
+</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解 | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" />
+<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" />
 
 
 
 
-<meta property="og:description" content="一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { if (!" />
+<meta property="og:description" content="一、概念  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。
+二、第二参数 std::adopt_lock  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。
+std::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。
+代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1, std::try_to_lock); if (my_guard1." />
 
 
 
@@ -127,10 +133,10 @@
 
 
 
-<meta property="article:published_time" content="2022-01-11T00:03:09&#43;08:00" />
+<meta property="article:published_time" content="2022-01-11T22:14:09&#43;08:00" />
 
 
-<meta property="article:modified_time" content="2022-01-11T00:03:09&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-11T22:14:09&#43;08:00" />
 
 
 
@@ -144,6 +150,8 @@
 
 
 
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" />
 
 <meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" />
 
@@ -227,7 +235,7 @@
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</h1>
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
@@ -235,7 +243,7 @@
     </div>
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
+        <span>1 min read</span>
     </div>
     
     
@@ -254,163 +262,60 @@
         
 
         <div class="content">
-            <h2 id="一没有任何保护措施的代码">一、没有任何保护措施的代码</h2>
+            <h2 id="一概念">一、概念</h2>
+<p>  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。</p>
+<h2 id="二第二参数">二、第二参数</h2>
+<h3 id="stdadopt_lock">std::adopt_lock</h3>
+<p>  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。</p>
+<h3 id="stdtry_to_lock">std::try_to_lock</h3>
+<h4 id="概念">概念</h4>
+<p>  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。</p>
+<h4 id="代码演示">代码演示</h4>
 <pre><code class="language-cpp">class A {
 public:
     // 把收到的消息push进消息队列
     void inQ() {
         for (int i = 0; i &lt; 100000; i++) {
             cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl;
-            q.push_back(i); // 假设i是我们收到的消息
-        }
-    }
-
-    // 把消息从消息队列取出
-    void outQ() {
-        for (int i = 0; i &lt; 100000; i++) {
-            if (!q.empty()) {
-                int cmd = q.front();
-                q.pop_front();
+            std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1, std::try_to_lock);
+            if (my_guard1.owns_lock()) {
+                q.push_back(i);
             }
             else {
-                cout &lt;&lt; &quot;outQ执行，但消息队列为空&quot; &lt;&lt; endl;
+                cout &lt;&lt; &quot;没拿到锁，干点其他事\n&quot;;
             }
         }
-        cout &lt;&lt; &quot;outQ end\n&quot;;
-    }
-private:
-    list&lt;int&gt; q;
-};
-int main(void)
-{
-
-    A a;
-    thread out(&amp;A::outQ, &amp;a); // 第二个参数是引用，才能保证线程里用的是同一个对象
-    thread in(&amp;A::inQ, &amp;a);
-
-    out.join();
-    in.join();
-
-    cout &lt;&lt; &quot;main执行完毕\n&quot;;
-    return 0;
-}
-</code></pre>
-<p>  运行以上代码，程序出现运行时报错。因为多个线程不能同时对一个数据进行修改。所以，在将要修改某个值时，我们要在代码里加个锁，以防止其他线程的读和写。我们引入mutex头文件。</p>
-<h2 id="二互斥量mutex">二、互斥量mutex</h2>
-<h3 id="概念">概念</h3>
-<p>  互斥量是一个类对象。多个线程尝试用成员函数lock()来上锁，但是只有一个线程可以成功上锁，其他的线程会在这一行一直尝试上锁，直到上锁成功。unlock()用来解锁，我们在处理完数据之后不能忘记解锁，否则其他线程将会一直卡在lock()。一对lock()和unlock()可以用来保护一个代码段，保护的代码段越大，程序效率就越低。<em><u>lock()和unlock()应该总是成对使用。</u></em></p>
-<h3 id="创建一个互斥量mutex">创建一个互斥量mutex</h3>
-<pre><code class="language-cpp">// 头文件
-#include &lt;mutex&gt;
-// 创建
-std::mutex my_mutex;
-</code></pre>
-<h3 id="改进本文开头的代码加入mutex">改进本文开头的代码，加入mutex</h3>
-<pre><code class="language-cpp">class A {
-public:
-    // 把收到的消息push进消息队列
-    void inQ() {
-        for (int i = 0; i &lt; 100000; i++) {
-            cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl;
-            my_mutex.lock(); // add
-            q.push_back(i);
-            my_mutex.unlock(); // add
-        }
     }
 
-    // add
     bool outDone(int&amp; cmd) {
-        my_mutex.lock(); 
+        std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1, std::try_to_lock);
+
+        // 让线程睡眠2000ms
+        std::chrono::milliseconds d(2000);
+        std::this_thread::sleep_for(d);
+
         if (!q.empty()) {
             cmd = q.front();
             q.pop_front();
-            my_mutex.unlock(); // flag
             return true;
         }
-        my_mutex.unlock();
         return false;
     }
 
     // 把消息从消息队列取出
     void outQ() {
-        int cmd = 0;
-        for (int i = 0; i &lt; 100000; i++) {
-            bool res = outDone(cmd);
-            if (res) {
-                cout &lt;&lt; &quot;outQ执行，取出&quot; &lt;&lt; cmd &lt;&lt; endl;
-            }
-            else {
-                cout &lt;&lt; &quot;outQ执行，但消息队列为空&quot; &lt;&lt; endl;
-            }
-        }
-        cout &lt;&lt; &quot;outQ end\n&quot;;
+        // 略
     }
 private:
     list&lt;int&gt; q;
-    mutex my_mutex; // add
+    std::mutex my_mutex1;
 };
 </code></pre>
-<p>  在程序flag标志处，很容易一不小心忘记把mutex解锁，导致程序出错，又难以排查。为了更方便使用mutex，我们引入std::lock_guard()类模板。</p>
-<h2 id="三stdlock_guard类模板">三、std::lock_guard()类模板</h2>
-<h3 id="概念-1">概念</h3>
-<p>  std::lock_guard()可以直接取代lock()和unlock()。因此，在使用了std::lock_guard()后，不能再调用lock()和unlock()。</p>
-<h3 id="代码演示">代码演示</h3>
-<pre><code class="language-cpp">    bool outDone(int&amp; cmd) {
-        std::lock_guard&lt;std::mutex&gt; my_guard(my_mutex);
-        // my_mutex.lock();
-        if (!q.empty()) {
-            cmd = q.front();
-            q.pop_front();
-            // my_mutex.unlock();
-            return true;
-        }
-        // my_mutex.unlock();
-        return false;
-    }
-</code></pre>
-<p>  my_guard的创建，会调用其构造函数，构造函数里会执行我们传入的my_mutex的lock()，又因为my_guard是局部变量，在走出作用域后自动调用析构函数，里面会执行unlock()。正因如此，显得lock_guard()不是很灵活，当数据处理完，后面还有很多和该共享数据无关的代码，lock_guard()却不能提前unlock()释放锁（在某些情况下可以把lock_guard()的初始化和数据处理放在一个“{ }”内，表示一个局部作用域，但outDone(int)函数显然不适用此方法）。</p>
-<h2 id="四stdlock函数模板">四、std::lock()函数模板</h2>
-<h3 id="死锁概念">死锁概念</h3>
-<p>  只有两个或以上的锁（即mutex）才会造成死锁。<br></p>
-<p>  只要保证这几个互斥量上锁的顺序一致就不会死锁。</p>
-<h3 id="原理">原理</h3>
-<p>  能一次锁住两个或以上的互斥量。要么两个互斥量都锁住（即调用mutex的lock()函数），要么两个互斥量都没锁住。如果只锁了一个，另外一个没锁成功，则它立即把已经锁住的解等所有互斥量都锁住，只有两个互斥量都锁住，它才能往下走(返回);</p>
-<h3 id="代码演示-1">代码演示</h3>
-<pre><code class="language-cpp">bool outDone(int&amp; cmd) {
-    // 多个互斥量依次传入
-    std::lock(my_mutex1, my_mutex2);
-    if (!q.empty()) {
-        cmd = q.front();
-        q.pop_front();
-
-        my_mutex1.unlock();
-        my_mutex2.unlock();
-        return true;
-    }
-    my_mutex1.unlock();
-    my_mutex2.unlock();
-    return false;
-}
-</code></pre>
-<p>  我们很快能发现std::lock()的缺陷，又回到了最初的问题，即我们需要自己添加互斥量的unlock()，而这又是一个很容易被忽略的一件事。那么我们在多个互斥量被使用的程序中，能不能结合std::lock()和std::lock_guard()使得程序更安全呢？</p>
-<h2 id="五stdlock_guard扩展">五、std::lock_guard()扩展</h2>
-<h3 id="1参数stdadpot_lock">1、参数std::adpot_lock</h3>
-<h4 id="作用">作用</h4>
-<p>  std::adopt_ lock是个结构体对象，起一个标记作用：作用就是表示这个互斥量已经lock()，不需要在std::lock_ guard&lt;std: :mutex&gt;构造函数里再面对mutex对象进行lock()了。</p>
-<h4 id="代码演示-2">代码演示</h4>
-<pre><code class="language-cpp">bool outDone(int&amp; cmd) {
-    // 需要注意的是，std::lock()要在std::lock_guard&lt;std::mutex&gt;之前
-    std::lock(my_mutex1, my_mutex2);
-    std::lock_guard&lt;std::mutex&gt; my_guard1(my_mutex1, std::adopt_lock);
-    std::lock_guard&lt;std::mutex&gt; my_guard2(my_mutex2, std::adopt_lock);
-    if (!q.empty()) {
-        cmd = q.front();
-        q.pop_front();
-        return true;
-    }
-    return false;
-}
-</code></pre>
+<h3 id="stddefer_lock">std::defer_lock</h3>
+<p>  用这个参数，在unique_lock初始化时不会给mutex加锁，需要自己加，同时自己也不能提前加锁。这个参数看似没用，实际上刚好体现出了unique_lock的灵活性，以下介绍四个unique_lock的成员函数。<br></p>
+<p>  前两个分别是他自己的lock()和unlock()，可以用于需要在中途处理非共享代码的情况。在处理非共享代码前，调用unlock()，处理完了再lock()，频繁对锁操作，效率上会差点，但是该共享代码的利用率却是达到了极致。另外，不用怕自己会在最后忘记unlock()，unique_lock的析构函数会调用他。<br></p>
+<p>  第三，try_lock()，返回true或false，作用是尝试上锁，并立即返回结果。用法和参数std::try_to_lock相同。 <br></p>
+<p>  第四，release()。返回他所管理的mutex指针，并释放所有权。释放之后，你应该自己在合适的地方unlock()。</p>
 <p><br><br><br></p>
 <h1 id="参考资料">参考资料</h1>
 <p><a href="https://www.bilibili.com/video/BV1Yb411L7ak">https://www.bilibili.com/video/BV1Yb411L7ak</a></p>
@@ -437,13 +342,13 @@ private:
     <div>
         
         <span class="block font-bold">Previous</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" class="block">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" class="block">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
         
     </div>
     <div class="md:text-right mt-4 md:mt-0">
         
         <span class="block font-bold">Next</span>
-        <a href="https://fuwanbin.github.io/posts/createobjthread/" class="block">对象创建的线程安全</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" class="block">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</a>
         
     </div>
 </div>
@@ -463,35 +368,17 @@ private:
 <div class="sticky-toc hidden lg:block px-6 pb-6 ">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一没有任何保护措施的代码">一、没有任何保护措施的代码</a></li>
-    <li><a href="#二互斥量mutex">二、互斥量mutex</a>
+    <li><a href="#一概念">一、概念</a></li>
+    <li><a href="#二第二参数">二、第二参数</a>
       <ul>
-        <li><a href="#概念">概念</a></li>
-        <li><a href="#创建一个互斥量mutex">创建一个互斥量mutex</a></li>
-        <li><a href="#改进本文开头的代码加入mutex">改进本文开头的代码，加入mutex</a></li>
-      </ul>
-    </li>
-    <li><a href="#三stdlock_guard类模板">三、std::lock_guard()类模板</a>
-      <ul>
-        <li><a href="#概念-1">概念</a></li>
-        <li><a href="#代码演示">代码演示</a></li>
-      </ul>
-    </li>
-    <li><a href="#四stdlock函数模板">四、std::lock()函数模板</a>
-      <ul>
-        <li><a href="#死锁概念">死锁概念</a></li>
-        <li><a href="#原理">原理</a></li>
-        <li><a href="#代码演示-1">代码演示</a></li>
-      </ul>
-    </li>
-    <li><a href="#五stdlock_guard扩展">五、std::lock_guard()扩展</a>
-      <ul>
-        <li><a href="#1参数stdadpot_lock">1、参数std::adpot_lock</a>
+        <li><a href="#stdadopt_lock">std::adopt_lock</a></li>
+        <li><a href="#stdtry_to_lock">std::try_to_lock</a>
           <ul>
-            <li><a href="#作用">作用</a></li>
-            <li><a href="#代码演示-2">代码演示</a></li>
+            <li><a href="#概念">概念</a></li>
+            <li><a href="#代码演示">代码演示</a></li>
           </ul>
         </li>
+        <li><a href="#stddefer_lock">std::defer_lock</a></li>
       </ul>
     </li>
   </ul>
@@ -512,6 +399,9 @@ private:
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded p-6">
         <h2 class="text-lg font-semibold mb-4">See Also</h2>
         <div class="content">
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_3/">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</a>
+            <br />
             
             <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
             <br />

@@ -8,7 +8,28 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Tue, 11 Jan 2022 00:03:09 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 11 Jan 2022 23:36:08 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</title>
+      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</link>
+      <pubDate>Tue, 11 Jan 2022 23:36:08 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</guid>
+      <description>一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</title>
+      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_4/</link>
+      <pubDate>Tue, 11 Jan 2022 22:14:09 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_4/</guid>
+      <description>一、概念  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。
+二、第二参数 std::adopt_lock  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。
+std::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。
+代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &amp;lt; 100000; i++) { cout &amp;lt;&amp;lt; &amp;quot;inQ执行，插入&amp;quot; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl; std::unique_lock&amp;lt;std::mutex&amp;gt; my_guard1(my_mutex1, std::try_to_lock); if (my_guard1.</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</title>
       <link>https://fuwanbin.github.io/posts/multithreading_concurrent_3/</link>

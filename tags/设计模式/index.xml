@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>设计模式 on 傅万斌的个人网站</title>
+    <link>https://fuwanbin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link>
+    <description>Recent content in 设计模式 on 傅万斌的个人网站</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
+</copyright>
+    <lastBuildDate>Tue, 11 Jan 2022 23:36:08 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</title>
+      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</link>
+      <pubDate>Tue, 11 Jan 2022 23:36:08 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</guid>
+      <description>一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !</description>
+    </item>
+    
+  </channel>
+</rss>

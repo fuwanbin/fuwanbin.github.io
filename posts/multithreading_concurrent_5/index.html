@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex | 傅万斌的个人网站</title>
+<title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -58,7 +58,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
 
 <meta name="description"
-  content="一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { if (!">
+  content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,8 +70,8 @@
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"C++11并发与多线程(三)——多个线程间的数据保护|mutex",
-      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_3/"}]
+      "name":"C++11并发与多线程(五)——多线程下的单例模式",
+      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_5/"}]
 }
 </script>
 
@@ -83,11 +83,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_3/"
+        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_5/"
     },
-    "headline": "C\u002b\u002b11并发与多线程(三)——多个线程间的数据保护|mutex | 傅万斌的个人网站","datePublished": "2022-01-11T00:03:09+08:00",
-    "dateModified": "2022-01-11T00:03:09+08:00",
-    "wordCount":  326 ,
+    "headline": "C\u002b\u002b11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站","datePublished": "2022-01-11T23:36:08+08:00",
+    "dateModified": "2022-01-11T23:36:08+08:00",
+    "wordCount":  244 ,
     "publisher": {
         "@type": "Person",
         "name": "傅万斌的个人网站",
@@ -96,21 +96,21 @@
             "url": "https://fuwanbin.github.io/images/icon.png"
         }
         },
-    "description": "一、没有任何保护措施的代码 class A { public: \/\/ 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 100000; i\u002b\u002b) { cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; q.push_back(i); \/\/ 假设i是我们收到的消息 } } \/\/ 把消息从消息队列取出 void outQ() { for (int i = 0; i \u0026lt; 100000; i\u002b\u002b) { if (!"
+    "description": "一、单线程下的单例模式实现 class A { private: A() {} \/\/私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); \/\/ 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } \/\/ 内部类，用来释放对象 class GC { public: \/\/ 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !"
 }
-</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex | 傅万斌的个人网站" />
+</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" />
+<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" />
 
 
 
 
-<meta property="og:description" content="一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &lt; 100000; i&#43;&#43;) { if (!" />
+<meta property="og:description" content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !" />
 
 
 
@@ -127,10 +127,10 @@
 
 
 
-<meta property="article:published_time" content="2022-01-11T00:03:09&#43;08:00" />
+<meta property="article:published_time" content="2022-01-11T23:36:08&#43;08:00" />
 
 
-<meta property="article:modified_time" content="2022-01-11T00:03:09&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-11T23:36:08&#43;08:00" />
 
 
 
@@ -141,9 +141,15 @@
 
 <meta property="article:tag" content="C&#43;&#43;11" />
 
+<meta property="article:tag" content="设计模式" />
 
 
 
+
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" />
 
 <meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" />
 
@@ -227,7 +233,7 @@
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</h1>
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
@@ -254,161 +260,120 @@
         
 
         <div class="content">
-            <h2 id="一没有任何保护措施的代码">一、没有任何保护措施的代码</h2>
+            <h2 id="一单线程下的单例模式实现">一、单线程下的单例模式实现</h2>
 <pre><code class="language-cpp">class A {
-public:
-    // 把收到的消息push进消息队列
-    void inQ() {
-        for (int i = 0; i &lt; 100000; i++) {
-            cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl;
-            q.push_back(i); // 假设i是我们收到的消息
-        }
-    }
-
-    // 把消息从消息队列取出
-    void outQ() {
-        for (int i = 0; i &lt; 100000; i++) {
-            if (!q.empty()) {
-                int cmd = q.front();
-                q.pop_front();
-            }
-            else {
-                cout &lt;&lt; &quot;outQ执行，但消息队列为空&quot; &lt;&lt; endl;
-            }
-        }
-        cout &lt;&lt; &quot;outQ end\n&quot;;
-    }
 private:
-    list&lt;int&gt; q;
+    A() {} //私有化构造函数
+
+private:
+    static A* instance;
+
+public:
+    static A* getInstance() {
+        if (instance == nullptr) {
+            instance = new A();
+            //  由于gc是static的，所以能用于在整个程序结束时回收instance。
+            static GC gc; 
+        }
+        return instance;
+    }
+    // 内部类，用来释放对象
+    class GC {
+    public:
+        // 整个程序退出时调用，释放内存，instance置空防止悬空指针
+        ~GC() {
+            if (instance != nullptr) {
+                delete instance;
+                instance = nullptr;
+            }
+        }
+    };
 };
+// static成员的初始化
+A* A::instance = nullptr;
 int main(void)
 {
-
-    A a;
-    thread out(&amp;A::outQ, &amp;a); // 第二个参数是引用，才能保证线程里用的是同一个对象
-    thread in(&amp;A::inQ, &amp;a);
-
-    out.join();
-    in.join();
-
-    cout &lt;&lt; &quot;main执行完毕\n&quot;;
+    A* a = A::getInstance(); 
+    A* b = A::getInstance();
     return 0;
 }
 </code></pre>
-<p>  运行以上代码，程序出现运行时报错。因为多个线程不能同时对一个数据进行修改。所以，在将要修改某个值时，我们要在代码里加个锁，以防止其他线程的读和写。我们引入mutex头文件。</p>
-<h2 id="二互斥量mutex">二、互斥量mutex</h2>
-<h3 id="概念">概念</h3>
-<p>  互斥量是一个类对象。多个线程尝试用成员函数lock()来上锁，但是只有一个线程可以成功上锁，其他的线程会在这一行一直尝试上锁，直到上锁成功。unlock()用来解锁，我们在处理完数据之后不能忘记解锁，否则其他线程将会一直卡在lock()。一对lock()和unlock()可以用来保护一个代码段，保护的代码段越大，程序效率就越低。<em><u>lock()和unlock()应该总是成对使用。</u></em></p>
-<h3 id="创建一个互斥量mutex">创建一个互斥量mutex</h3>
-<pre><code class="language-cpp">// 头文件
-#include &lt;mutex&gt;
-// 创建
-std::mutex my_mutex;
-</code></pre>
-<h3 id="改进本文开头的代码加入mutex">改进本文开头的代码，加入mutex</h3>
-<pre><code class="language-cpp">class A {
-public:
-    // 把收到的消息push进消息队列
-    void inQ() {
-        for (int i = 0; i &lt; 100000; i++) {
-            cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl;
-            my_mutex.lock(); // add
-            q.push_back(i);
-            my_mutex.unlock(); // add
-        }
-    }
-
-    // add
-    bool outDone(int&amp; cmd) {
-        my_mutex.lock(); 
-        if (!q.empty()) {
-            cmd = q.front();
-            q.pop_front();
-            my_mutex.unlock(); // flag
-            return true;
-        }
-        my_mutex.unlock();
-        return false;
-    }
-
-    // 把消息从消息队列取出
-    void outQ() {
-        int cmd = 0;
-        for (int i = 0; i &lt; 100000; i++) {
-            bool res = outDone(cmd);
-            if (res) {
-                cout &lt;&lt; &quot;outQ执行，取出&quot; &lt;&lt; cmd &lt;&lt; endl;
-            }
-            else {
-                cout &lt;&lt; &quot;outQ执行，但消息队列为空&quot; &lt;&lt; endl;
-            }
-        }
-        cout &lt;&lt; &quot;outQ end\n&quot;;
-    }
-private:
-    list&lt;int&gt; q;
-    mutex my_mutex; // add
-};
-</code></pre>
-<p>  在程序flag标志处，很容易一不小心忘记把mutex解锁，导致程序出错，又难以排查。为了更方便使用mutex，我们引入std::lock_guard()类模板。</p>
-<h2 id="三stdlock_guard类模板">三、std::lock_guard()类模板</h2>
-<h3 id="概念-1">概念</h3>
-<p>  std::lock_guard()可以直接取代lock()和unlock()。因此，在使用了std::lock_guard()后，不能再调用lock()和unlock()。</p>
-<h3 id="代码演示">代码演示</h3>
-<pre><code class="language-cpp">    bool outDone(int&amp; cmd) {
-        std::lock_guard&lt;std::mutex&gt; my_guard(my_mutex);
-        // my_mutex.lock();
-        if (!q.empty()) {
-            cmd = q.front();
-            q.pop_front();
-            // my_mutex.unlock();
-            return true;
-        }
-        // my_mutex.unlock();
-        return false;
-    }
-</code></pre>
-<p>  my_guard的创建，会调用其构造函数，构造函数里会执行我们传入的my_mutex的lock()，又因为my_guard是局部变量，在走出作用域后自动调用析构函数，里面会执行unlock()。正因如此，显得lock_guard()不是很灵活，当数据处理完，后面还有很多和该共享数据无关的代码，lock_guard()却不能提前unlock()释放锁（在某些情况下可以把lock_guard()的初始化和数据处理放在一个“{ }”内，表示一个局部作用域，但outDone(int)函数显然不适用此方法）。</p>
-<h2 id="四stdlock函数模板">四、std::lock()函数模板</h2>
-<h3 id="死锁概念">死锁概念</h3>
-<p>  只有两个或以上的锁（即mutex）才会造成死锁。<br></p>
-<p>  只要保证这几个互斥量上锁的顺序一致就不会死锁。</p>
-<h3 id="原理">原理</h3>
-<p>  能一次锁住两个或以上的互斥量。要么两个互斥量都锁住（即调用mutex的lock()函数），要么两个互斥量都没锁住。如果只锁了一个，另外一个没锁成功，则它立即把已经锁住的解等所有互斥量都锁住，只有两个互斥量都锁住，它才能往下走(返回);</p>
-<h3 id="代码演示-1">代码演示</h3>
-<pre><code class="language-cpp">bool outDone(int&amp; cmd) {
-    // 多个互斥量依次传入
-    std::lock(my_mutex1, my_mutex2);
-    if (!q.empty()) {
-        cmd = q.front();
-        q.pop_front();
-
-        my_mutex1.unlock();
-        my_mutex2.unlock();
-        return true;
-    }
-    my_mutex1.unlock();
-    my_mutex2.unlock();
-    return false;
+<h2 id="二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</h2>
+<p>  我们给以上代码加点东西。</p>
+<pre><code class="language-cpp">void mythread() {
+    cout &lt;&lt; &quot;线程开始\n&quot;;
+    A* a = A::getInstance();
+    cout &lt;&lt; &quot;线程结束\n&quot;;
+}
+int main() {
+    thread myt1(mythread);
+    thread myt2(mythread);
+    myt1.join();
+    myt2.join();
 }
 </code></pre>
-<p>  我们很快能发现std::lock()的缺陷，又回到了最初的问题，即我们需要自己添加互斥量的unlock()，而这又是一个很容易被忽略的一件事。那么我们在多个互斥量被使用的程序中，能不能结合std::lock()和std::lock_guard()使得程序更安全呢？</p>
-<h2 id="五stdlock_guard扩展">五、std::lock_guard()扩展</h2>
-<h3 id="1参数stdadpot_lock">1、参数std::adpot_lock</h3>
-<h4 id="作用">作用</h4>
-<p>  std::adopt_ lock是个结构体对象，起一个标记作用：作用就是表示这个互斥量已经lock()，不需要在std::lock_ guard&lt;std: :mutex&gt;构造函数里再面对mutex对象进行lock()了。</p>
-<h4 id="代码演示-2">代码演示</h4>
-<pre><code class="language-cpp">bool outDone(int&amp; cmd) {
-    // 需要注意的是，std::lock()要在std::lock_guard&lt;std::mutex&gt;之前
-    std::lock(my_mutex1, my_mutex2);
-    std::lock_guard&lt;std::mutex&gt; my_guard1(my_mutex1, std::adopt_lock);
-    std::lock_guard&lt;std::mutex&gt; my_guard2(my_mutex2, std::adopt_lock);
-    if (!q.empty()) {
-        cmd = q.front();
-        q.pop_front();
-        return true;
+<p>  代码中存在一个问题，就是当两个线程同时走进getInstance()函数，同时判断instance是否为nullptr，得到的结果是，两个线程都能走进if里面，先后生成了2个A类对象。因此在判断instance是否为空之前，我们要用互斥量上锁。<br></p>
+<pre><code class="language-cpp">std::mutex mymutex;
+class A{
+    // 略
+public:
+    static A* getInstance() {
+        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
+        if (instance == nullptr) {
+            instance = new A();
+            static GC gc;
+        }
+        return instance;
     }
-    return false;
+    // 略
+}
+</code></pre>
+<p>  这次，我们加入了互斥量，解决了会重复创建A类对象的问题，但是这还不够。我们知道，instance的初始化，在程序中只会发生一次，之后调用getInstance()返回new过的instance即可，其实根本不需要用到互斥量。而以上代码，为了第一次的初始化，牺牲了整个程序之后的效率，不是个很好的处理方式。我们使用双重检查改进代码。</p>
+<pre><code class="language-cpp">static A* getInstance() {
+    // 只有在第一次初始化会进入第一个if，只后会直接返回instance
+    if (instance == nullptr) { // 双重检查
+        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
+        if (instance == nullptr) {  
+            instance = new A();
+            static GC gc;
+        }
+    }
+    return instance;
+}
+</code></pre>
+<p>  现在应该是没有其他的问题了。为了方便，C++11已经实现了一个函数来保证一个函数只会调用一次：std::call_once()。</p>
+<h2 id="三stdcall_once">三、std::call_once()</h2>
+<pre><code class="language-cpp">std::once_flag f; // 系统定义的标记
+class A {
+private:
+    A() {} //私有化构造函数
+    static void createInstance() { 
+        // 执行程序，发现只会输出一次
+        cout &lt;&lt; &quot;instance被创建&quot;;
+        instance = new A();
+        static GC gc;
+    }
+private:
+    static A* instance;
+
+public:
+    static A* getInstance() {
+        std::call_once(f, createInstance); //第二个参数写入只执行一次的函数名
+        return instance;
+    }
+    //略
+};
+void mythread() {
+    A* a = A::getInstance();
+}
+A* A::instance = nullptr;
+int main(void)
+{
+    thread myt1(mythread);
+    thread myt2(mythread);
+    myt1.join();
+    myt2.join();
+    return 0;
 }
 </code></pre>
 <p><br><br><br></p>
@@ -423,6 +388,8 @@ private:
     
     <a href="https://fuwanbin.github.io/tags/c&#43;&#43;11/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#C&#43;&#43;11</a>
     
+    <a href="https://fuwanbin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#设计模式</a>
+    
 </div>
         
         
@@ -436,14 +403,11 @@ private:
 <div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
     <div>
         
-        <span class="block font-bold">Previous</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" class="block">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
-        
     </div>
     <div class="md:text-right mt-4 md:mt-0">
         
         <span class="block font-bold">Next</span>
-        <a href="https://fuwanbin.github.io/posts/createobjthread/" class="block">对象创建的线程安全</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" class="block">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
         
     </div>
 </div>
@@ -463,37 +427,9 @@ private:
 <div class="sticky-toc hidden lg:block px-6 pb-6 ">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一没有任何保护措施的代码">一、没有任何保护措施的代码</a></li>
-    <li><a href="#二互斥量mutex">二、互斥量mutex</a>
-      <ul>
-        <li><a href="#概念">概念</a></li>
-        <li><a href="#创建一个互斥量mutex">创建一个互斥量mutex</a></li>
-        <li><a href="#改进本文开头的代码加入mutex">改进本文开头的代码，加入mutex</a></li>
-      </ul>
-    </li>
-    <li><a href="#三stdlock_guard类模板">三、std::lock_guard()类模板</a>
-      <ul>
-        <li><a href="#概念-1">概念</a></li>
-        <li><a href="#代码演示">代码演示</a></li>
-      </ul>
-    </li>
-    <li><a href="#四stdlock函数模板">四、std::lock()函数模板</a>
-      <ul>
-        <li><a href="#死锁概念">死锁概念</a></li>
-        <li><a href="#原理">原理</a></li>
-        <li><a href="#代码演示-1">代码演示</a></li>
-      </ul>
-    </li>
-    <li><a href="#五stdlock_guard扩展">五、std::lock_guard()扩展</a>
-      <ul>
-        <li><a href="#1参数stdadpot_lock">1、参数std::adpot_lock</a>
-          <ul>
-            <li><a href="#作用">作用</a></li>
-            <li><a href="#代码演示-2">代码演示</a></li>
-          </ul>
-        </li>
-      </ul>
-    </li>
+    <li><a href="#一单线程下的单例模式实现">一、单线程下的单例模式实现</a></li>
+    <li><a href="#二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</a></li>
+    <li><a href="#三stdcall_once">三、std::call_once()</a></li>
   </ul>
 </nav>
 </div>
@@ -512,6 +448,12 @@ private:
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded p-6">
         <h2 class="text-lg font-semibold mb-4">See Also</h2>
         <div class="content">
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_3/">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</a>
+            <br />
             
             <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
             <br />
