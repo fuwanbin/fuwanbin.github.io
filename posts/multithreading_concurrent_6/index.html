@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站</title>
+<title>C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -58,7 +58,8 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
 
 <meta name="description"
-  content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !">
+  content="一、引言  在之前的文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？
+二、代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 10000; i&#43;&#43;) { std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1); cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 唤醒另一个线程的wait() // 只有另一个线程卡在wait()里时，该函数才有作用 my_cond.notify_one(); } } // 把消息从消息队列取出 void outQ() { int cmd = 0; while (1) { std::unique_lock&lt;std::mutex&gt; my_lock(my_mutex1); // 当其他线程用notify_one()将本线程从阻塞状态唤醒 my_cond.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,8 +71,8 @@
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"C++11并发与多线程(五)——多线程下的单例模式",
-      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_5/"}]
+      "name":"C++11并发与多线程(六)——std::condition_variable介绍",
+      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_6/"}]
 }
 </script>
 
@@ -83,11 +84,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_5/"
+        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_6/"
     },
-    "headline": "C\u002b\u002b11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站","datePublished": "2022-01-11T23:36:08+08:00",
-    "dateModified": "2022-01-11T23:36:08+08:00",
-    "wordCount":  244 ,
+    "headline": "C\u002b\u002b11并发与多线程(六)——std::condition_variable介绍 | 傅万斌的个人网站","datePublished": "2022-01-12T21:43:00+08:00",
+    "dateModified": "2022-01-12T21:43:00+08:00",
+    "wordCount":  114 ,
     "publisher": {
         "@type": "Person",
         "name": "傅万斌的个人网站",
@@ -96,21 +97,22 @@
             "url": "https://fuwanbin.github.io/images/icon.png"
         }
         },
-    "description": "一、单线程下的单例模式实现 class A { private: A() {} \/\/私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); \/\/ 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } \/\/ 内部类，用来释放对象 class GC { public: \/\/ 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !"
+    "description": "一、引言  在之前的文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？\n二、代码演示 class A { public: \/\/ 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 10000; i\u002b\u002b) { std::unique_lock\u0026lt;std::mutex\u0026gt; my_guard1(my_mutex1); cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; q.push_back(i); \/\/ 唤醒另一个线程的wait() \/\/ 只有另一个线程卡在wait()里时，该函数才有作用 my_cond.notify_one(); } } \/\/ 把消息从消息队列取出 void outQ() { int cmd = 0; while (1) { std::unique_lock\u0026lt;std::mutex\u0026gt; my_lock(my_mutex1); \/\/ 当其他线程用notify_one()将本线程从阻塞状态唤醒 my_cond."
 }
-</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站" />
+</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍 | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" />
+<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_6/" />
 
 
 
 
-<meta property="og:description" content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !" />
+<meta property="og:description" content="一、引言  在之前的文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？
+二、代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &lt; 10000; i&#43;&#43;) { std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1); cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl; q.push_back(i); // 唤醒另一个线程的wait() // 只有另一个线程卡在wait()里时，该函数才有作用 my_cond.notify_one(); } } // 把消息从消息队列取出 void outQ() { int cmd = 0; while (1) { std::unique_lock&lt;std::mutex&gt; my_lock(my_mutex1); // 当其他线程用notify_one()将本线程从阻塞状态唤醒 my_cond." />
 
 
 
@@ -127,10 +129,10 @@
 
 
 
-<meta property="article:published_time" content="2022-01-11T23:36:08&#43;08:00" />
+<meta property="article:published_time" content="2022-01-12T21:43:00&#43;08:00" />
 
 
-<meta property="article:modified_time" content="2022-01-11T23:36:08&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-12T21:43:00&#43;08:00" />
 
 
 
@@ -141,11 +143,11 @@
 
 <meta property="article:tag" content="C&#43;&#43;11" />
 
-<meta property="article:tag" content="设计模式" />
 
 
 
 
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" />
 
 <meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" />
 
@@ -233,15 +235,15 @@
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</h1>
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-11</span>
+        <span>2022-01-12</span>
     </div>
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
+        <span>1 min read</span>
     </div>
     
     
@@ -260,122 +262,64 @@
         
 
         <div class="content">
-            <h2 id="一单线程下的单例模式实现">一、单线程下的单例模式实现</h2>
+            <h2 id="一引言">一、引言</h2>
+<p>  在<a href="https://fuwanbin.github.io/posts/multithreading_concurrent_3/#%E6%94%B9%E8%BF%9B%E6%9C%AC%E6%96%87%E5%BC%80%E5%A4%B4%E7%9A%84%E4%BB%A3%E7%A0%81%E5%8A%A0%E5%85%A5mutex" target="_blank">之前的</a>文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？</p>
+<h2 id="二代码演示">二、代码演示</h2>
 <pre><code class="language-cpp">class A {
-private:
-    A() {} //私有化构造函数
-
-private:
-    static A* instance;
-
 public:
-    static A* getInstance() {
-        if (instance == nullptr) {
-            instance = new A();
-            //  由于gc是static的，所以能用于在整个程序结束时回收instance。
-            static GC gc; 
+    // 把收到的消息push进消息队列
+    void inQ() {
+        for (int i = 0; i &lt; 10000; i++) {
+            std::unique_lock&lt;std::mutex&gt; my_guard1(my_mutex1);
+            cout &lt;&lt; &quot;inQ执行，插入&quot; &lt;&lt; i &lt;&lt; endl;
+            q.push_back(i);
+
+            // 唤醒另一个线程的wait()
+            // 只有另一个线程卡在wait()里时，该函数才有作用
+            my_cond.notify_one();
         }
-        return instance;
     }
-    // 内部类，用来释放对象
-    class GC {
-    public:
-        // 整个程序退出时调用，释放内存，instance置空防止悬空指针
-        ~GC() {
-            if (instance != nullptr) {
-                delete instance;
-                instance = nullptr;
-            }
+
+    // 把消息从消息队列取出
+    void outQ() {
+        int cmd = 0;
+        while (1) {
+            std::unique_lock&lt;std::mutex&gt; my_lock(my_mutex1);
+            
+            // 当其他线程用notify_one()将本线程从阻塞状态唤醒
+            my_cond.wait(my_lock, [this] {
+                if (!q.empty())
+                    return true;
+                return false;
+                });
+            cmd = q.front();
+            q.pop_front();
+            my_lock.unlock(); //处理完数据可以提前解锁
+            cout &lt;&lt; &quot;outQ执行，取出&quot; &lt;&lt; cmd &lt;&lt; endl;
         }
-    };
+    }
+private:
+    list&lt;int&gt; q;
+    std::mutex my_mutex1;
+    std::condition_variable my_cond;
 };
-// static成员的初始化
-A* A::instance = nullptr;
-int main(void)
-{
-    A* a = A::getInstance(); 
-    A* b = A::getInstance();
-    return 0;
-}
-</code></pre>
-<h2 id="二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</h2>
-<p>  我们给以上代码加点东西。</p>
-<pre><code class="language-cpp">void mythread() {
-    cout &lt;&lt; &quot;线程开始\n&quot;;
-    A* a = A::getInstance();
-    cout &lt;&lt; &quot;线程结束\n&quot;;
-}
-int main() {
-    thread myt1(mythread);
-    thread myt2(mythread);
-    myt1.join();
-    myt2.join();
-}
-</code></pre>
-<p>  代码中存在一个问题，就是当两个线程同时走进getInstance()函数，同时判断instance是否为nullptr，得到的结果是，两个线程都能走进if里面，先后生成了2个A类对象。因此在判断instance是否为空之前，我们要用互斥量上锁。<br></p>
-<pre><code class="language-cpp">std::mutex mymutex;
-class A{
-    // 略
-public:
-    static A* getInstance() {
-        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
-        if (instance == nullptr) {
-            instance = new A();
-            static GC gc;
-        }
-        return instance;
-    }
-    // 略
-}
-</code></pre>
-<p>  这次，我们加入了互斥量，解决了会重复创建A类对象的问题，但是这还不够。我们知道，instance的初始化，在程序中只会发生一次，之后调用getInstance()返回new过的instance即可，其实根本不需要用到互斥量。而以上代码，为了第一次的初始化，牺牲了整个程序之后的效率，不是个很好的处理方式。我们使用双重检查改进代码。</p>
-<pre><code class="language-cpp">static A* getInstance() {
-    // 只有在第一次初始化会进入第一个if，只后会直接返回instance
-    if (instance == nullptr) { // 双重检查
-        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
-        if (instance == nullptr) {  
-            instance = new A();
-            static GC gc;
-        }
-    }
-    return instance;
-}
-</code></pre>
-<p>  现在应该是没有其他的问题了。为了方便，C++11已经实现了一个函数来保证一个函数只会调用一次：std::call_once()。</p>
-<h2 id="三stdcall_once">三、std::call_once()</h2>
-<pre><code class="language-cpp">std::once_flag f; // 系统定义的标记
-class A {
-private:
-    A() {} //私有化构造函数
-    static void createInstance() { 
-        // 执行程序，发现只会输出一次
-        cout &lt;&lt; &quot;instance被创建&quot;;
-        instance = new A();
-        static GC gc;
-    }
-private:
-    static A* instance;
 
-public:
-    static A* getInstance() {
-        std::call_once(f, createInstance); //第二个参数写入只执行一次的函数名
-        return instance;
-    }
-    //略
-};
-void mythread() {
-    A* a = A::getInstance();
-}
-A* A::instance = nullptr;
-int main(void)
+int main()
 {
-    thread myt1(mythread);
-    thread myt2(mythread);
+    A a;
+    thread myt1(&amp;A::inQ, &amp;a);  //引用，保证是同一个A类对象
+    thread myt2(&amp;A::outQ, &amp;a);
     myt1.join();
     myt2.join();
     return 0;
 }
 </code></pre>
+<h2 id="三wait详解">三、wait()详解</h2>
+<p>  第一个参数需要传入unique_lock，我们必须确保在调用wait()之前，互斥量已经被我们锁上<br></p>
+<p>  第二个参数可以选择传不传入，第二个参数为可调用对象。如果选择传入，且第二个参数返回值是true,那wait()直接返回。否则，wait()将解锁互斥量，并阻塞所在线程，
+直到其他某个线程调用notify_ one()成员函数为止。<br></p>
+<p>  如果wait()没有第二个参数，则视为false。此时wait()将解锁互斥量，并阻塞所在线程，直到其他某个线程调用notify_one()成员函数为止。<br></p>
+<p>  当某个其他线程调用了notify_one()，wait()所在线程被唤醒。首先，wait()会一直尝试获取之前已经释放掉的锁，直到获取到锁之后，再次判断第二参数的返回值，如果返回值为true，或者没有第二参数，则wait()函数会成功返回，否则，wait()会再次释放锁，阻塞所在线程，再次回到等待其他线程调用notify_one()的无线循环中，直到第二参数返回true。</p>
 <p><br><br><br></p>
 <h1 id="参考资料">参考资料</h1>
 <p><a href="https://www.bilibili.com/video/BV1Yb411L7ak">https://www.bilibili.com/video/BV1Yb411L7ak</a></p>
@@ -387,8 +331,6 @@ int main(void)
     <a href="https://fuwanbin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#多线程</a>
     
     <a href="https://fuwanbin.github.io/tags/c&#43;&#43;11/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#C&#43;&#43;11</a>
-    
-    <a href="https://fuwanbin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#设计模式</a>
     
 </div>
         
@@ -404,13 +346,13 @@ int main(void)
     <div>
         
         <span class="block font-bold">Previous</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_6/" class="block">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_7/" class="block">C&#43;&#43;11并发与多线程(七)——std::async和std::future</a>
         
     </div>
     <div class="md:text-right mt-4 md:mt-0">
         
         <span class="block font-bold">Next</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" class="block">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" class="block">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
         
     </div>
 </div>
@@ -430,9 +372,9 @@ int main(void)
 <div class="sticky-toc hidden lg:block px-6 pb-6 ">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一单线程下的单例模式实现">一、单线程下的单例模式实现</a></li>
-    <li><a href="#二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</a></li>
-    <li><a href="#三stdcall_once">三、std::call_once()</a></li>
+    <li><a href="#一引言">一、引言</a></li>
+    <li><a href="#二代码演示">二、代码演示</a></li>
+    <li><a href="#三wait详解">三、wait()详解</a></li>
   </ul>
 </nav>
 </div>
@@ -451,6 +393,9 @@ int main(void)
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded p-6">
         <h2 class="text-lg font-semibold mb-4">See Also</h2>
         <div class="content">
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_5/">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
+            <br />
             
             <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
             <br />

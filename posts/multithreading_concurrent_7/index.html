@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站</title>
+<title>C&#43;&#43;11并发与多线程(七)——std::async和std::future | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -58,7 +58,10 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
 
 <meta name="description"
-  content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !">
+  content="一、概念  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。
+ 异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。
+ std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。
+二、用法 头文件 #include &lt;future&gt;  初始化 int fun() { return 123; } // ... // 用一个可调用对象创建一个线程并开始执行，流程不会卡到这 // 尖括号里的类型就是函数的返回类型 std::future&lt;int&gt; res = std::async(fun);  get() （只能调用一次） // 如果运行到了get()而还没得到结果（fun()还没有return），就会阻塞到这一行直到拿到了结果 cout &lt;&lt; res.get() &lt;&lt; endl; // 123  wait() // 进入阻塞状态直到之前创建的线程走完 res.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -70,8 +73,8 @@
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"C++11并发与多线程(五)——多线程下的单例模式",
-      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_5/"}]
+      "name":"C++11并发与多线程(七)——std::async和std::future",
+      "item":"https://fuwanbin.github.io/posts/multithreading_concurrent_7/"}]
 }
 </script>
 
@@ -83,11 +86,11 @@
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_5/"
+        "@id": "https://fuwanbin.github.io/posts/multithreading_concurrent_7/"
     },
-    "headline": "C\u002b\u002b11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站","datePublished": "2022-01-11T23:36:08+08:00",
-    "dateModified": "2022-01-11T23:36:08+08:00",
-    "wordCount":  244 ,
+    "headline": "C\u002b\u002b11并发与多线程(七)——std::async和std::future | 傅万斌的个人网站","datePublished": "2022-01-12T23:33:13+08:00",
+    "dateModified": "2022-01-12T23:33:13+08:00",
+    "wordCount":  57 ,
     "publisher": {
         "@type": "Person",
         "name": "傅万斌的个人网站",
@@ -96,21 +99,24 @@
             "url": "https://fuwanbin.github.io/images/icon.png"
         }
         },
-    "description": "一、单线程下的单例模式实现 class A { private: A() {} \/\/私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); \/\/ 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } \/\/ 内部类，用来释放对象 class GC { public: \/\/ 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !"
+    "description": "一、概念  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。\n 异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。\n std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。\n二、用法 头文件 #include \u0026lt;future\u0026gt;  初始化 int fun() { return 123; } \/\/ ... \/\/ 用一个可调用对象创建一个线程并开始执行，流程不会卡到这 \/\/ 尖括号里的类型就是函数的返回类型 std::future\u0026lt;int\u0026gt; res = std::async(fun);  get() （只能调用一次） \/\/ 如果运行到了get()而还没得到结果（fun()还没有return），就会阻塞到这一行直到拿到了结果 cout \u0026lt;\u0026lt; res.get() \u0026lt;\u0026lt; endl; \/\/ 123  wait() \/\/ 进入阻塞状态直到之前创建的线程走完 res."
 }
-</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站" />
+</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(七)——std::async和std::future | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" />
+<meta property="og:url" content="https://fuwanbin.github.io/posts/multithreading_concurrent_7/" />
 
 
 
 
-<meta property="og:description" content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !" />
+<meta property="og:description" content="一、概念  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。
+ 异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。
+ std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。
+二、用法 头文件 #include &lt;future&gt;  初始化 int fun() { return 123; } // ... // 用一个可调用对象创建一个线程并开始执行，流程不会卡到这 // 尖括号里的类型就是函数的返回类型 std::future&lt;int&gt; res = std::async(fun);  get() （只能调用一次） // 如果运行到了get()而还没得到结果（fun()还没有return），就会阻塞到这一行直到拿到了结果 cout &lt;&lt; res.get() &lt;&lt; endl; // 123  wait() // 进入阻塞状态直到之前创建的线程走完 res." />
 
 
 
@@ -127,10 +133,10 @@
 
 
 
-<meta property="article:published_time" content="2022-01-11T23:36:08&#43;08:00" />
+<meta property="article:published_time" content="2022-01-12T23:33:13&#43;08:00" />
 
 
-<meta property="article:modified_time" content="2022-01-11T23:36:08&#43;08:00" />
+<meta property="article:modified_time" content="2022-01-12T23:33:13&#43;08:00" />
 
 
 
@@ -141,11 +147,13 @@
 
 <meta property="article:tag" content="C&#43;&#43;11" />
 
-<meta property="article:tag" content="设计模式" />
 
 
 
 
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_6/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" />
 
 <meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" />
 
@@ -154,8 +162,6 @@
 <meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" />
 
 <meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_1/" />
-
-<meta property="og:see_also" content="https://fuwanbin.github.io/posts/createobjthread/" />
 
 
 
@@ -233,15 +239,15 @@
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</h1>
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(七)——std::async和std::future</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-11</span>
+        <span>2022-01-12</span>
     </div>
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
+        <span>1 min read</span>
     </div>
     
     
@@ -260,121 +266,39 @@
         
 
         <div class="content">
-            <h2 id="一单线程下的单例模式实现">一、单线程下的单例模式实现</h2>
-<pre><code class="language-cpp">class A {
-private:
-    A() {} //私有化构造函数
-
-private:
-    static A* instance;
-
-public:
-    static A* getInstance() {
-        if (instance == nullptr) {
-            instance = new A();
-            //  由于gc是static的，所以能用于在整个程序结束时回收instance。
-            static GC gc; 
-        }
-        return instance;
-    }
-    // 内部类，用来释放对象
-    class GC {
-    public:
-        // 整个程序退出时调用，释放内存，instance置空防止悬空指针
-        ~GC() {
-            if (instance != nullptr) {
-                delete instance;
-                instance = nullptr;
-            }
-        }
-    };
-};
-// static成员的初始化
-A* A::instance = nullptr;
-int main(void)
-{
-    A* a = A::getInstance(); 
-    A* b = A::getInstance();
-    return 0;
-}
+            <h2 id="一概念">一、概念</h2>
+<p>  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。<br></p>
+<p>  异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。<br></p>
+<p>  std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。</p>
+<h2 id="二用法">二、用法</h2>
+<h3 id="头文件">头文件</h3>
+<pre><code class="language-cpp">#include &lt;future&gt; 
 </code></pre>
-<h2 id="二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</h2>
-<p>  我们给以上代码加点东西。</p>
-<pre><code class="language-cpp">void mythread() {
-    cout &lt;&lt; &quot;线程开始\n&quot;;
-    A* a = A::getInstance();
-    cout &lt;&lt; &quot;线程结束\n&quot;;
+<h3 id="初始化">初始化</h3>
+<pre><code class="language-cpp">int fun() {
+    return 123;
 }
-int main() {
-    thread myt1(mythread);
-    thread myt2(mythread);
-    myt1.join();
-    myt2.join();
-}
+// ...
+// 用一个可调用对象创建一个线程并开始执行，流程不会卡到这
+// 尖括号里的类型就是函数的返回类型
+std::future&lt;int&gt; res = std::async(fun); 
 </code></pre>
-<p>  代码中存在一个问题，就是当两个线程同时走进getInstance()函数，同时判断instance是否为nullptr，得到的结果是，两个线程都能走进if里面，先后生成了2个A类对象。因此在判断instance是否为空之前，我们要用互斥量上锁。<br></p>
-<pre><code class="language-cpp">std::mutex mymutex;
-class A{
-    // 略
-public:
-    static A* getInstance() {
-        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
-        if (instance == nullptr) {
-            instance = new A();
-            static GC gc;
-        }
-        return instance;
-    }
-    // 略
-}
+<h3 id="get-只能调用一次">get() （只能调用一次）</h3>
+<pre><code class="language-cpp"> // 如果运行到了get()而还没得到结果（fun()还没有return），就会阻塞到这一行直到拿到了结果
+cout &lt;&lt; res.get() &lt;&lt; endl; // 123
 </code></pre>
-<p>  这次，我们加入了互斥量，解决了会重复创建A类对象的问题，但是这还不够。我们知道，instance的初始化，在程序中只会发生一次，之后调用getInstance()返回new过的instance即可，其实根本不需要用到互斥量。而以上代码，为了第一次的初始化，牺牲了整个程序之后的效率，不是个很好的处理方式。我们使用双重检查改进代码。</p>
-<pre><code class="language-cpp">static A* getInstance() {
-    // 只有在第一次初始化会进入第一个if，只后会直接返回instance
-    if (instance == nullptr) { // 双重检查
-        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
-        if (instance == nullptr) {  
-            instance = new A();
-            static GC gc;
-        }
-    }
-    return instance;
-}
+<h3 id="wait">wait()</h3>
+<pre><code class="language-cpp"> // 进入阻塞状态直到之前创建的线程走完
+res.wait();
 </code></pre>
-<p>  现在应该是没有其他的问题了。为了方便，C++11已经实现了一个函数来保证一个函数只会调用一次：std::call_once()。</p>
-<h2 id="三stdcall_once">三、std::call_once()</h2>
-<pre><code class="language-cpp">std::once_flag f; // 系统定义的标记
-class A {
-private:
-    A() {} //私有化构造函数
-    static void createInstance() { 
-        // 执行程序，发现只会输出一次
-        cout &lt;&lt; &quot;instance被创建&quot;;
-        instance = new A();
-        static GC gc;
-    }
-private:
-    static A* instance;
-
-public:
-    static A* getInstance() {
-        std::call_once(f, createInstance); //第二个参数写入只执行一次的函数名
-        return instance;
-    }
-    //略
-};
-void mythread() {
-    A* a = A::getInstance();
-}
-A* A::instance = nullptr;
-int main(void)
-{
-    thread myt1(mythread);
-    thread myt2(mythread);
-    myt1.join();
-    myt2.join();
-    return 0;
-}
+<h2 id="三可选择传入的参数">三、可选择传入的参数</h2>
+<h3 id="stdlaunchdeferred">std::launch::deferred</h3>
+<p>  表示线程入口函数调用被延迟到std::future的wait())或者get()函数调用时才执行。如果一直不调用，则不会创建线程。如果调用了，也不会创建子线程，线程入口函数会直接在主线程执行。</p>
+<pre><code class="language-cpp">std::future&lt;int&gt; res = std::async(std::launch::deferred, fun); 
+</code></pre>
+<h3 id="stdlaunchasync">std::launch::async</h3>
+<p>  表示线程会在调用async()函数时就创建（与不传入参数效果一致）。</p>
+<pre><code class="language-cpp">std::future&lt;int&gt; res = std::async(std::launch::async, fun); 
 </code></pre>
 <p><br><br><br></p>
 <h1 id="参考资料">参考资料</h1>
@@ -387,8 +311,6 @@ int main(void)
     <a href="https://fuwanbin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#多线程</a>
     
     <a href="https://fuwanbin.github.io/tags/c&#43;&#43;11/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#C&#43;&#43;11</a>
-    
-    <a href="https://fuwanbin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#设计模式</a>
     
 </div>
         
@@ -404,13 +326,13 @@ int main(void)
     <div>
         
         <span class="block font-bold">Previous</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_6/" class="block">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</a>
+        <a href="https://fuwanbin.github.io/posts/lvalue_rvalue/" class="block">左值，右值，右值引用，std::move，std::forward介绍</a>
         
     </div>
     <div class="md:text-right mt-4 md:mt-0">
         
         <span class="block font-bold">Next</span>
-        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" class="block">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_6/" class="block">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</a>
         
     </div>
 </div>
@@ -430,9 +352,21 @@ int main(void)
 <div class="sticky-toc hidden lg:block px-6 pb-6 ">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#一单线程下的单例模式实现">一、单线程下的单例模式实现</a></li>
-    <li><a href="#二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</a></li>
-    <li><a href="#三stdcall_once">三、std::call_once()</a></li>
+    <li><a href="#一概念">一、概念</a></li>
+    <li><a href="#二用法">二、用法</a>
+      <ul>
+        <li><a href="#头文件">头文件</a></li>
+        <li><a href="#初始化">初始化</a></li>
+        <li><a href="#get-只能调用一次">get() （只能调用一次）</a></li>
+        <li><a href="#wait">wait()</a></li>
+      </ul>
+    </li>
+    <li><a href="#三可选择传入的参数">三、可选择传入的参数</a>
+      <ul>
+        <li><a href="#stdlaunchdeferred">std::launch::deferred</a></li>
+        <li><a href="#stdlaunchasync">std::launch::async</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 </div>
@@ -452,6 +386,12 @@ int main(void)
         <h2 class="text-lg font-semibold mb-4">See Also</h2>
         <div class="content">
             
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_6/">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_5/">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
+            <br />
+            
             <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
             <br />
             
@@ -462,9 +402,6 @@ int main(void)
             <br />
             
             <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_1/">C&#43;&#43;11并发与多线程(一)——创建一个子线程</a>
-            <br />
-            
-            <a href="https://fuwanbin.github.io/posts/createobjthread/">对象创建的线程安全</a>
             <br />
             
         </div>

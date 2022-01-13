@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>傅万斌的个人网站</title>
+<title>左值，右值，右值引用，std::move，std::forward介绍 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -59,24 +59,57 @@
 
 <meta name="description"
   content="Eureka is a elegant and powerful theme for Hugo.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://fuwanbin.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"左值，右值，右值引用，std::move，std::forward介绍",
+      "item":"https://fuwanbin.github.io/posts/lvalue_rvalue/"}]
+}
+</script>
 
 
 
-<meta property="og:title" content="傅万斌的个人网站" />
-<meta property="og:type" content="website" />
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://fuwanbin.github.io/posts/lvalue_rvalue/"
+    },
+    "headline": "左值，右值，右值引用，std::move，std::forward介绍 | 傅万斌的个人网站","datePublished": "2022-01-13T23:39:31+08:00",
+    "dateModified": "2022-01-13T23:39:31+08:00",
+    "publisher": {
+        "@type": "Person",
+        "name": "傅万斌的个人网站",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuwanbin.github.io/images/icon.png"
+        }
+        },
+    "description": "Eureka is a elegant and powerful theme for Hugo."
+}
+</script><meta property="og:title" content="左值，右值，右值引用，std::move，std::forward介绍 | 傅万斌的个人网站" />
+<meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/categories/" />
+<meta property="og:url" content="https://fuwanbin.github.io/posts/lvalue_rvalue/" />
 
 
 
 
-
-<meta property="og:description" content="Eureka is a elegant and powerful theme for Hugo." />
-
+<meta property="og:description" content="" />
 
 
 
@@ -93,14 +126,35 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-13T23:39:31&#43;08:00" />
+<meta property="article:published_time" content="2022-01-13T23:39:31&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2022-01-13T23:39:31&#43;08:00" />
 
 
 
-<meta property="article:section" content="categories" />
+<meta property="article:section" content="posts" />
 
 
-<link rel="alternate" type="application/rss+xml" href="https://fuwanbin.github.io/categories/index.xml" title="傅万斌的个人网站" />
+<meta property="article:tag" content="C&#43;&#43;11" />
+
+
+
+
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_7/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_6/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_5/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_4/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_3/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" />
+
+
 
 <body class="flex flex-col min-h-screen">
   <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
@@ -120,8 +174,8 @@
         class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
         <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
             <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
-            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Posts</a>
-            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Categories</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Posts</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
         </div>
 
         <div class="flex">
@@ -171,25 +225,108 @@
   <main class="flex-grow pt-16">
     <div class="pl-scrollbar">
       <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
-<article class="mx-6 my-8">
-    <h1 class="font-bold text-3xl text-primary-text">Categories</h1>
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">左值，右值，右值引用，std::move，std::forward介绍</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-13</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>0 min read</span>
+    </div>
     
-</article>
-<div class="bg-secondary-bg rounded px-6 py-8">
     
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="text-eureka hover:underline">C&#43;&#43;</a>
-    </h2>
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
     
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/linux/" class="text-eureka hover:underline">Linux</a>
-    </h2>
-    
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="text-eureka hover:underline">CF题解</a>
-    </h2>
+
     
 </div>
+        
+        
+        
+
+        <div class="content">
+            
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="https://fuwanbin.github.io/tags/c&#43;&#43;11/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#C&#43;&#43;11</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">Next</span>
+        <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_7/" class="block">C&#43;&#43;11并发与多线程(七)——std::async和std::future</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">See Also</h2>
+        <div class="content">
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_7/">C&#43;&#43;11并发与多线程(七)——std::async和std::future</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_6/">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_5/">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_4/">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_3/">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
 
       </div>
     </div>

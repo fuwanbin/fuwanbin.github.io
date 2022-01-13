@@ -8,7 +8,38 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Tue, 11 Jan 2022 23:36:08 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 13 Jan 2022 23:39:31 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>左值，右值，右值引用，std::move，std::forward介绍</title>
+      <link>https://fuwanbin.github.io/posts/lvalue_rvalue/</link>
+      <pubDate>Thu, 13 Jan 2022 23:39:31 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/lvalue_rvalue/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11并发与多线程(七)——std::async和std::future</title>
+      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_7/</link>
+      <pubDate>Wed, 12 Jan 2022 23:33:13 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_7/</guid>
+      <description>一、概念  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。
+ 异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。
+ std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。
+二、用法 头文件 #include &amp;lt;future&amp;gt;  初始化 int fun() { return 123; } // ... // 用一个可调用对象创建一个线程并开始执行，流程不会卡到这 // 尖括号里的类型就是函数的返回类型 std::future&amp;lt;int&amp;gt; res = std::async(fun);  get() （只能调用一次） // 如果运行到了get()而还没得到结果（fun()还没有return），就会阻塞到这一行直到拿到了结果 cout &amp;lt;&amp;lt; res.get() &amp;lt;&amp;lt; endl; // 123  wait() // 进入阻塞状态直到之前创建的线程走完 res.</description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</title>
+      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_6/</link>
+      <pubDate>Wed, 12 Jan 2022 21:43:00 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_6/</guid>
+      <description>一、引言  在之前的文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？
+二、代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &amp;lt; 10000; i++) { std::unique_lock&amp;lt;std::mutex&amp;gt; my_guard1(my_mutex1); cout &amp;lt;&amp;lt; &amp;quot;inQ执行，插入&amp;quot; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl; q.push_back(i); // 唤醒另一个线程的wait() // 只有另一个线程卡在wait()里时，该函数才有作用 my_cond.notify_one(); } } // 把消息从消息队列取出 void outQ() { int cmd = 0; while (1) { std::unique_lock&amp;lt;std::mutex&amp;gt; my_lock(my_mutex1); // 当其他线程用notify_one()将本线程从阻塞状态唤醒 my_cond.</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</title>
       <link>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</link>
