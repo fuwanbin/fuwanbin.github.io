@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang='en' class="dark" ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Codeforces#650 | 傅万斌的个人网站</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.4" />
+<link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
+<script defer src="https://fuwanbin.github.io/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/languages/dart.min.js"
+     crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+   integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" 
+  integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+   integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js" 
+  integrity="sha256-Zmpaaj&#43;GXFsPF5WdPArSrnW3b30dovldeKsW00xBVwE="  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="传送门
+A.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。
+void solve(){string s;cin &gt;&gt; s;cout &lt;&lt; s[0];for (int i = 1; i &lt; s.size() - 1; i &#43;= 2)cout &lt;&lt; s[i];cout &lt;&lt; s[s.size() - 1] &lt;&lt; endl;} B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://fuwanbin.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Codeforces#650",
+      "item":"https://fuwanbin.github.io/posts/20200617/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://fuwanbin.github.io/posts/20200617/"
+    },
+    "headline": "Codeforces#650 | 傅万斌的个人网站","datePublished": "2020-06-17T01:19:52+08:00",
+    "dateModified": "2020-06-17T01:19:52+08:00",
+    "wordCount":  461 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "傅万斌的个人网站",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuwanbin.github.io/images/icon.png"
+        }
+        },
+    "description": "传送门\nA.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。\nvoid solve()\r{\rstring s;\rcin \u0026gt;\u0026gt; s;\rcout \u0026lt;\u0026lt; s[0];\rfor (int i = 1; i \u0026lt; s.size() - 1; i \u002b= 2)cout \u0026lt;\u0026lt; s[i];\rcout \u0026lt;\u0026lt; s[s.size() - 1] \u0026lt;\u0026lt; endl;\r}\r B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。"
+}
+</script><meta property="og:title" content="Codeforces#650 | 傅万斌的个人网站" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
+
+
+<meta property="og:url" content="https://fuwanbin.github.io/posts/20200617/" />
+
+
+
+
+<meta property="og:description" content="传送门
+A.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。
+void solve(){string s;cin &gt;&gt; s;cout &lt;&lt; s[0];for (int i = 1; i &lt; s.size() - 1; i &#43;= 2)cout &lt;&lt; s[i];cout &lt;&lt; s[s.size() - 1] &lt;&lt; endl;} B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。" />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="傅万斌的个人网站" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2020-06-17T01:19:52&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2020-06-17T01:19:52&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if ((storageColorScheme == 'Auto' && window.matchMedia("(prefers-color-scheme: light)").matches) || storageColorScheme == "Light") {
+        document.getElementsByTagName('html')[0].classList.remove('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">傅万斌的个人网站</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Posts</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == 'Auto') {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'adjust')
+        element.firstElementChild.classList.add('fa-adjust')
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Codeforces#650</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2020-06-17</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>3 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <p><a href="http://codeforces.com/contest/1367">传送门</a></p>
+<h2 id="ashort-substrings">A.Short Substrings</h2>
+<p>题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。</p>
+<pre><code class="language-cpp">void solve()
+{
+	string s;
+	cin &gt;&gt; s;
+	cout &lt;&lt; s[0];
+	for (int i = 1; i &lt; s.size() - 1; i += 2)cout &lt;&lt; s[i];
+	cout &lt;&lt; s[s.size() - 1] &lt;&lt; endl;
+}
+</code></pre>
+<h2 id="beven-array">B.Even Array</h2>
+<p>给你n个数，<strong>下标从0开始</strong>，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。</p>
+<pre><code class="language-cpp">int n;
+int a[55];
+void solve()
+{
+	int odd = 0, ev = 0;
+	cin &gt;&gt; n;
+	for (int i = 0; i &lt; n; i++)
+	{
+		cin &gt;&gt; a[i];
+		if (a[i] % 2 == 1 &amp;&amp; i % 2 == 0)odd++;
+		else if (a[i] % 2 == 0 &amp;&amp; i % 2 == 1)ev++;
+	}
+	if (odd == ev)cout &lt;&lt; odd &lt;&lt; endl;
+	else cout &lt;&lt; &quot;-1\n&quot;;
+}
+</code></pre>
+<h2 id="csocial-distance">C.Social Distance</h2>
+<p>题意：给一个长度为n的01串，保证每个1都相差至少$k$个位置，即$[i-k,i+k]$之间都没有其他的1。问01串内还有几个0在合法的前提下可以换成1。在这里$n$和$k$都是$2e5$级别的，所以纯暴力是不行的。我们枚举串的每一位，如果他是0，判断能不能变成1，如果能，计入答案。如果是1，直接跳到$i+x+1$。</p>
+<pre><code class="language-cpp">#define vint vector&lt;int&gt;
+#define pb push_back
+#define clr(a, b) memset((a), (b), sizeof(a))
+int n, x;
+void solve()
+{
+	clr(vis, 0);
+	cin &gt;&gt; n &gt;&gt; x;
+	string s; cin &gt;&gt; s;
+	vint V;
+	for (int i = 0; i &lt; s.size(); i++)
+	{
+		if (s[i] == '1')i += x;//直接跳过k个格子
+		else
+		{
+			bool f = 0;
+			int p = -1;//p记录右边最近的1
+			//我们是从左边枚举过来的，可以保证左边k位里是没有1的，否则一定会跳过现在这个点
+			for (int j = i + 1; j &lt; s.size() &amp;&amp; j &lt;= i + x; j++)
+			{
+				if (s[j] == '1')//有1就break
+				{
+					p = j;
+					f = 1;
+					break;
+				}
+			}
+			//这里说明现在这个0可以换成1，这个点变成1后，理所当然往后跳k个格子
+			if (!f)
+			{
+				V.pb(i);
+				s[i] = '1';
+				i += x;
+			}
+			else i = p + x;//直接跳到右边第一个1的再右边x位
+		}
+	}
+	cout &lt;&lt; V.size() &lt;&lt; endl;
+}
+</code></pre>
+<h2 id="dtask-on-the-board">D.Task On The Board</h2>
+<p>题意：给你一个字母串$s$，你需要构造一个长度为$m$的字符串$t$，$t$应为$s$在删掉任意位字母之后的任意一个排序。再给你一个含有$m$个数字的$b$数组，$b_i$是 在$t$中，所有比$t_i$大的字母和$t_i$的相对位置的和。
+我们以test4为例：
+ecoosdcefr  <br>
+10     <br>
+38 13 24 14 11 5 3 24 17 0
+我们首先可以看到，$b[10]=0$，说明这一位是字典序最大的一位，且仅有一位。接着我们假装他不存在，那么他给其他b[i]的贡献也没了，所以我们把其他的$b_i$都减去和$t_i$和$t[10]$的相对位置，但是要注意，这一个位置还是存在的，只是我们选择性忽视它给的贡献。那么$b_i$变为下面这个数组：
+29 5 17 8 6 1 0 22 16 _
+我们发现，又有新的0出现，这个位置就是字典序第二大的字母，同时我们保留上一轮的0的位置，继续重复上面的操作：
+23 0 13 5 4 0 _ 21 14 _
+这里是有两个0，所以剩下的每位置要删除两个贡献。
+为了看的更清楚，做了张图。
+<img src="https://img-blog.csdnimg.cn/2020061701070521.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L1NpdmFubm4=,size_16,color_FFFFFF,t_70" alt="在这里插入图片描述">
+我们就能凭借0出现的先后顺序，得到他们的字典序大小排序，再去$s$里找足够数量的字母。那么这里的顺序（下标）就是：10-&gt;7-&gt;2,6-&gt;5&gt;4,9-&gt;3&gt;1,8。</p>
+<pre><code class="language-cpp">#define vint vector&lt;int&gt;
+#define pb push_back
+#define clr(a, b) memset((a), (b), sizeof(a))
+int n;
+int a[55];
+bool vis[55];
+int num[55];
+void solve()
+{
+	clr(num, 0);
+	clr(vis, 0);
+	string s; cin &gt;&gt; s;
+	for (int i = 0; i &lt; s.size(); i++)num[s[i] - 'a']++;
+	cin &gt;&gt; n;
+	for (int i = 1; i &lt;= n; i++)cin &gt;&gt; a[i];
+	vint V, res[55];//V是这一轮新的0的下标，res是每一轮新出的0的下标，其实感觉可以合并成一个
+	int pos = 0, now = 0;//pos是记录当前的轮数，now是记录已经有几个0了，当有n个0时，就是while循环退出的时候
+	while (1)
+	{
+		V.clear();
+		for (int i = 1; i &lt;= n; i++)
+			if (!vis[i] &amp;&amp; a[i] == 0)
+			{
+				V.pb(i);
+				vis[i] = 1;
+				res[pos].pb(i);
+				now++;
+			}
+		pos++;
+		for (int i = 1; i &lt;= n; i++)
+			if (a[i] &gt; 0)
+				for (int p : V)a[i] -= abs(i - p);
+		if (now &gt;= n)break;
+	}
+	string ans;
+	ans.resize(n);
+	int j = 0;//j是当前选到的字母的位置，不会重置为0，因为我们是从最小的字母开始找，到后面要保证所选的字母的字典序要越来越大
+	//下面找数量够的字母
+	for (int i = pos - 1; i &gt;= 0; i--)
+	{
+		int sz = res[i].size();//表示现在我们要找的字母的数量一定要大于等于sz
+		for (j; j &lt; 26; j++)
+		{
+			if (num[j] &gt;= sz)
+			{
+				for (int p : res[i])ans[p] = (char)('a' + j);
+				j++;//因为这里break了，不会执行j++，这里要我们再写一遍
+				break;
+			}
+		}
+	}
+	for (int i = 1; i &lt;= n; i++)cout &lt;&lt; ans[i];
+	cout &lt;&lt; endl;
+}
+</code></pre>
+
+        </div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">Previous</span>
+        <a href="https://fuwanbin.github.io/posts/20200705/" class="block">Codeforces-Global#9</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">Next</span>
+        <a href="https://fuwanbin.github.io/posts/20200608/" class="block">Codeforces#648</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+    <div class="col-span-2">
+        
+        
+        <div class="sticky top-16 z-10 hidden lg:block px-6 py-4  bg-primary-bg ">
+    <span class="text-lg font-semibold">On This Page</span>
+</div>
+<div class="sticky-toc hidden lg:block px-6 pb-6 ">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#ashort-substrings">A.Short Substrings</a></li>
+    <li><a href="#beven-array">B.Even Array</a></li>
+    <li><a href="#csocial-distance">C.Social Distance</a></li>
+    <li><a href="#dtask-on-the-board">D.Task On The Board</a></li>
+  </ul>
+</nav>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        enableStickyToc();
+    });
+</script>
+        
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://fuwanbin.github.io/">Wanbin Fu</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

@@ -11,10 +11,10 @@
     <lastBuildDate>Sun, 09 Jan 2022 00:58:30 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux信号</title>
-      <link>https://fuwanbin.github.io/posts/linux_signal/</link>
+      <link>https://fuwanbin.github.io/posts/20220109_1/</link>
       <pubDate>Sun, 09 Jan 2022 00:58:30 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/linux_signal/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220109_1/</guid>
       <description>一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl + C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“&amp;amp;”符号。
 ./main &amp;amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl + C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 
 killall main #或 kill &amp;lt;进程id&amp;gt;   二、signal信号  在程序运行时，Ctrl + C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。

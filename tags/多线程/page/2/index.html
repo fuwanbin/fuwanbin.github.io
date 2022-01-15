@@ -87,19 +87,19 @@
             "position":  1 ,
             "name": "对象创建的线程安全",
             "description": "参考资料 陈硕. Linux多线程服务端编程 使用muduo C++网络库[M]. 1. 电子工业出版社, 2013-1-15.",
-            "url": "https://fuwanbin.github.io/posts/createobjthread/"
+            "url": "https://fuwanbin.github.io/posts/20220110/"
         },{
             "@type":"ListItem",
             "position":  2 ,
             "name": "C++11并发与多线程(二)——子线程传参",
             "description": "一、在创建线程时传递参数 代码演示  在初始化子线程时，第一个参数为 可调用对象，之后依次填入函数需要的参数。\nclass A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; x \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main(void) { int x = 5; //函数 thread myt1(fun, x); myt1.",
-            "url": "https://fuwanbin.github.io/posts/multithreading_concurrent_2/"
+            "url": "https://fuwanbin.github.io/posts/20220109_3/"
         },{
             "@type":"ListItem",
             "position":  3 ,
             "name": "C++11并发与多线程(一)——创建一个子线程",
             "description": "看这篇文章默认你已经学会多线程，并发等相关基础概念。\n一、引言  在之前，Windows和Linux下创建线程的函数是不同的，不能跨平台。从C++11新标准开始，C++语言本身增加对多线程的支持，意味着可移植性（跨平台），大大减少开发人员的工作量。\n 为了引入C++11的多线程函数库，我们要包含一个头文件：thread。\n二、创建一个子线程 程序演示  以下程序包含两个线程，对应两条程序执行线路。主线程执行main()函数，在main()函数中会创建一个子线程，这个子线程会执行fun()。\n#include \u0026lt;iostream\u0026gt; #include \u0026lt;thread\u0026gt; using namespace std; // 创建一个函数作为线程的入口。 void fun() { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main() { // 创建一个thread实例,用我们写的函数fun初始化，创建完毕该线程会自动执行我们给定的函数。 // 可用其他的 可调用对象 初始化，下面会讲 thread myt(fun); cout \u0026lt;\u0026lt; myt.",
-            "url": "https://fuwanbin.github.io/posts/multithreading_concurrent_1/"
+            "url": "https://fuwanbin.github.io/posts/20220109_2/"
         }
     ]
 }
@@ -224,7 +224,7 @@
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/createobjthread/" class="font-bold text-xl hover:text-eureka">对象创建的线程安全</a>
+  <a href="https://fuwanbin.github.io/posts/20220110/" class="font-bold text-xl hover:text-eureka">对象创建的线程安全</a>
 </div>
 <div class="content">
   
@@ -265,7 +265,7 @@
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
+  <a href="https://fuwanbin.github.io/posts/20220109_3/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
 </div>
 <div class="content">
   
@@ -307,7 +307,7 @@ class A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout &
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/multithreading_concurrent_1/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(一)——创建一个子线程</a>
+  <a href="https://fuwanbin.github.io/posts/20220109_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(一)——创建一个子线程</a>
 </div>
 <div class="content">
   

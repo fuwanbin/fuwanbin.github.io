@@ -87,31 +87,31 @@
             "position":  1 ,
             "name": "Codeforces#658",
             "description": "传送门\nA.Common Subsequence 题意：找出两个数组中一个相同的元素。 标记一下出现的数字即可。\nint num[1005];\rvoid solve(int T)\r{\rint a, b;\rmemset(num, 0, sizeof(num));\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; a;\rnum[a] = 1;\r}\rfor (int i = 1; i \u0026lt;= m; i++)\r{\rcin \u0026gt;\u0026gt; b;\rif (num[b] == 1)num[b] = 2;\r}\rfor (int i = 1; i \u0026lt;= 1000; i++)\rif (num[i] == 2)\r{\rcout \u0026lt;\u0026lt; \u0026quot;YES\\n1 \u0026quot;;\rcout \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl;\rreturn;\r}\rcout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-7/"
+            "url": "https://fuwanbin.github.io/posts/20200722/"
         },{
             "@type":"ListItem",
             "position":  2 ,
             "name": "Codeforces-Global#9",
             "description": "传送门\nA.Sign Flipping  题意：给一个包含$n$个整数的数组，可以随意改变他们的正负号使得至少有$\\frac{n-1}{2}$个相邻数字的差$\\ge0$，且至少有$\\frac{n-1}{2}$个相邻数字的差$\\leq0$。 对于任意的三个数字$a$,$-b$,$c$，其中$a$,$b$,$c$ \u0026gt; $0$，一定符合以上我们所说的要求。我们再延申至任意长度的数组。\nint n, k;\rint a[105];\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n;\rbool f = 1;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; a[i];\ra[i] = abs(a[i]);\r}\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rif (f)cout \u0026lt;\u0026lt; a[i] \u0026lt;\u0026lt; \u0026quot; \u0026quot;;\relse cout \u0026lt;\u0026lt; -a[i] \u0026lt;\u0026lt; \u0026quot; \u0026quot;;\rf ^= 1;\r}\rcout \u0026lt;\u0026lt; endl;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-6/"
+            "url": "https://fuwanbin.github.io/posts/20200705/"
         },{
             "@type":"ListItem",
             "position":  3 ,
             "name": "Codeforces#650",
             "description": "传送门\nA.Short Substrings 题意：有一个字符串，从左至右列出所有长度为2的子串，然后连起来，这就是题目给的串。要我们输出原来的串。输出开头，中间隔位输出，再输出结尾。\nvoid solve()\r{\rstring s;\rcin \u0026gt;\u0026gt; s;\rcout \u0026lt;\u0026lt; s[0];\rfor (int i = 1; i \u0026lt; s.size() - 1; i += 2)cout \u0026lt;\u0026lt; s[i];\rcout \u0026lt;\u0026lt; s[s.size() - 1] \u0026lt;\u0026lt; endl;\r}\r B.Even Array 给你n个数，下标从0开始，可以通过交换某两个数使得每位数字和他的下标奇偶性相同，求最小交换次数，不可能的情况输出-1。我们只让不符合要求的奇数数字和偶数数字交换，所以记录这两种数字的数量，只有奇数数字个数==偶数数字个数，才能交换完，因为奇数数字和奇数数字交换是没有意义的。最后的交换次数就是奇数或者偶数的数量。",
-            "url": "https://fuwanbin.github.io/posts/cf-5/"
+            "url": "https://fuwanbin.github.io/posts/20200617/"
         },{
             "@type":"ListItem",
             "position":  4 ,
             "name": "Codeforces#648",
             "description": "传送门\nA.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可\n#define clr(a, b) memset((a), (b), sizeof(a))\rint n, m, a;\rint l[55], r[55];\rvoid solve()\r{\rclr(l, 0);//有t个case，记得初始化\rclr(r, 0);\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rint L = n, R = m;//记录还有几行几列是没有1的\rfor (int i = 1; i \u0026lt;= n; i++)\rfor (int j = 1; j \u0026lt;= m; j++)\r{\rcin \u0026gt;\u0026gt; a;\rif (a == 1)\r{\rif (l[i] == 0)L--;\rif (r[j] == 0)R--;\rl[i] = r[j] = 1;\r}\r}\rif (min(L, R) % 2 == 1)cout \u0026lt;\u0026lt; \u0026quot;Ashish\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;Vivek\\n\u0026quot;;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-4/"
+            "url": "https://fuwanbin.github.io/posts/20200608/"
         },{
             "@type":"ListItem",
             "position":  5 ,
             "name": "Codeforces#646",
             "description": "传送门\nA.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可\nint n, m, k, x;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; x;\rint odd = 0, ev = 0;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; k;\rif (k % 2 == 1)odd++;\relse ev++;\r}\rbool f = 0;\rfor (int i = 0; i \u0026lt;= odd; i++)\rif (i % 2 == 1 \u0026amp;\u0026amp; i \u0026lt;= x \u0026amp;\u0026amp; x - i \u0026lt;= ev)f = 1;\rif (f)cout \u0026lt;\u0026lt; \u0026quot;YES\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/cf-3/"
+            "url": "https://fuwanbin.github.io/posts/20200601/"
         }
     ]
 }
@@ -236,7 +236,7 @@
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-7/" class="font-bold text-xl hover:text-eureka">Codeforces#658</a>
+  <a href="https://fuwanbin.github.io/posts/20200722/" class="font-bold text-xl hover:text-eureka">Codeforces#658</a>
 </div>
 <div class="content">
   
@@ -279,7 +279,7 @@ int num[1005];void solve(int T){int a, b;memset(num, 0, sizeof(num));cin &g
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-6/" class="font-bold text-xl hover:text-eureka">Codeforces-Global#9</a>
+  <a href="https://fuwanbin.github.io/posts/20200705/" class="font-bold text-xl hover:text-eureka">Codeforces-Global#9</a>
 </div>
 <div class="content">
   
@@ -322,7 +322,7 @@ int n, k;int a[105];void solve(){cin &gt;&gt; n;bool f = 1;for (int i = 1;
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-5/" class="font-bold text-xl hover:text-eureka">Codeforces#650</a>
+  <a href="https://fuwanbin.github.io/posts/20200617/" class="font-bold text-xl hover:text-eureka">Codeforces#650</a>
 </div>
 <div class="content">
   
@@ -365,7 +365,7 @@ void solve(){string s;cin &gt;&gt; s;cout &lt;&lt; s[0];for (int i = 1; i &
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-4/" class="font-bold text-xl hover:text-eureka">Codeforces#648</a>
+  <a href="https://fuwanbin.github.io/posts/20200608/" class="font-bold text-xl hover:text-eureka">Codeforces#648</a>
 </div>
 <div class="content">
   
@@ -408,7 +408,7 @@ A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0�
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/cf-3/" class="font-bold text-xl hover:text-eureka">Codeforces#646</a>
+  <a href="https://fuwanbin.github.io/posts/20200601/" class="font-bold text-xl hover:text-eureka">Codeforces#646</a>
 </div>
 <div class="content">
   

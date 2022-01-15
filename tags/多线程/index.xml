@@ -11,10 +11,10 @@
     <lastBuildDate>Wed, 12 Jan 2022 23:33:13 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;11并发与多线程(七)——std::async和std::future</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_7/</link>
+      <link>https://fuwanbin.github.io/posts/20220112_2/</link>
       <pubDate>Wed, 12 Jan 2022 23:33:13 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_7/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220112_2/</guid>
       <description>一、概念  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。
  异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。
  std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。
@@ -23,29 +23,29 @@
     
     <item>
       <title>C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_6/</link>
+      <link>https://fuwanbin.github.io/posts/20220112_1/</link>
       <pubDate>Wed, 12 Jan 2022 21:43:00 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_6/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220112_1/</guid>
       <description>一、引言  在之前的文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？
 二、代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &amp;lt; 10000; i++) { std::unique_lock&amp;lt;std::mutex&amp;gt; my_guard1(my_mutex1); cout &amp;lt;&amp;lt; &amp;quot;inQ执行，插入&amp;quot; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl; q.push_back(i); // 唤醒另一个线程的wait() // 只有另一个线程卡在wait()里时，该函数才有作用 my_cond.notify_one(); } } // 把消息从消息队列取出 void outQ() { int cmd = 0; while (1) { std::unique_lock&amp;lt;std::mutex&amp;gt; my_lock(my_mutex1); // 当其他线程用notify_one()将本线程从阻塞状态唤醒 my_cond.</description>
     </item>
     
     <item>
       <title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</link>
+      <link>https://fuwanbin.github.io/posts/20220111_3/</link>
       <pubDate>Tue, 11 Jan 2022 23:36:08 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_5/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220111_3/</guid>
       <description>一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !</description>
     </item>
     
     <item>
       <title>C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_4/</link>
+      <link>https://fuwanbin.github.io/posts/20220111_2/</link>
       <pubDate>Tue, 11 Jan 2022 22:14:09 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_4/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220111_2/</guid>
       <description>一、概念  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。
 二、第二参数 std::adopt_lock  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。
 std::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。
@@ -54,38 +54,38 @@ std::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中�
     
     <item>
       <title>C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_3/</link>
+      <link>https://fuwanbin.github.io/posts/20220111_1/</link>
       <pubDate>Tue, 11 Jan 2022 00:03:09 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_3/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220111_1/</guid>
       <description>一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i &amp;lt; 100000; i++) { cout &amp;lt;&amp;lt; &amp;quot;inQ执行，插入&amp;quot; &amp;lt;&amp;lt; i &amp;lt;&amp;lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i &amp;lt; 100000; i++) { if (!</description>
     </item>
     
     <item>
       <title>对象创建的线程安全</title>
-      <link>https://fuwanbin.github.io/posts/createobjthread/</link>
+      <link>https://fuwanbin.github.io/posts/20220110/</link>
       <pubDate>Mon, 10 Jan 2022 23:00:30 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/createobjthread/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220110/</guid>
       <description>参考资料 陈硕. Linux多线程服务端编程 使用muduo C++网络库[M]. 1. 电子工业出版社, 2013-1-15.</description>
     </item>
     
     <item>
       <title>C&#43;&#43;11并发与多线程(二)——子线程传参</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_2/</link>
+      <link>https://fuwanbin.github.io/posts/20220109_3/</link>
       <pubDate>Sun, 09 Jan 2022 21:18:54 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_2/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220109_3/</guid>
       <description>一、在创建线程时传递参数 代码演示  在初始化子线程时，第一个参数为 可调用对象，之后依次填入函数需要的参数。
 class A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout &amp;lt;&amp;lt; &amp;quot;线程开始执行\n&amp;quot;; cout &amp;lt;&amp;lt; x &amp;lt;&amp;lt; endl; cout &amp;lt;&amp;lt; &amp;quot;线程执行完毕\n&amp;quot;; } int main(void) { int x = 5; //函数 thread myt1(fun, x); myt1.</description>
     </item>
     
     <item>
       <title>C&#43;&#43;11并发与多线程(一)——创建一个子线程</title>
-      <link>https://fuwanbin.github.io/posts/multithreading_concurrent_1/</link>
+      <link>https://fuwanbin.github.io/posts/20220109_2/</link>
       <pubDate>Sun, 09 Jan 2022 16:40:28 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/multithreading_concurrent_1/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220109_2/</guid>
       <description>看这篇文章默认你已经学会多线程，并发等相关基础概念。
 一、引言  在之前，Windows和Linux下创建线程的函数是不同的，不能跨平台。从C++11新标准开始，C++语言本身增加对多线程的支持，意味着可移植性（跨平台），大大减少开发人员的工作量。
  为了引入C++11的多线程函数库，我们要包含一个头文件：thread。

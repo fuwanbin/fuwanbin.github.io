@@ -11,10 +11,10 @@
     <lastBuildDate>Mon, 10 Jan 2022 23:00:30 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/tags/%E9%9A%8F%E7%AC%94/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>对象创建的线程安全</title>
-      <link>https://fuwanbin.github.io/posts/createobjthread/</link>
+      <link>https://fuwanbin.github.io/posts/20220110/</link>
       <pubDate>Mon, 10 Jan 2022 23:00:30 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/createobjthread/</guid>
+      <guid>https://fuwanbin.github.io/posts/20220110/</guid>
       <description>参考资料 陈硕. Linux多线程服务端编程 使用muduo C++网络库[M]. 1. 电子工业出版社, 2013-1-15.</description>
     </item>
     

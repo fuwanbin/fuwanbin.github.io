@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang='en' class="dark" ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.4" />
+<link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
+<script defer src="https://fuwanbin.github.io/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/languages/dart.min.js"
+     crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+   integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" 
+  integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+   integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js" 
+  integrity="sha256-Zmpaaj&#43;GXFsPF5WdPArSrnW3b30dovldeKsW00xBVwE="  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://fuwanbin.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"C++11并发与多线程(五)——多线程下的单例模式",
+      "item":"https://fuwanbin.github.io/posts/20220111_3/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://fuwanbin.github.io/posts/20220111_3/"
+    },
+    "headline": "C\u002b\u002b11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站","datePublished": "2022-01-11T23:36:08+08:00",
+    "dateModified": "2022-01-11T23:36:08+08:00",
+    "wordCount":  244 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "傅万斌的个人网站",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuwanbin.github.io/images/icon.png"
+        }
+        },
+    "description": "一、单线程下的单例模式实现 class A { private: A() {} \/\/私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); \/\/ 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } \/\/ 内部类，用来释放对象 class GC { public: \/\/ 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !"
+}
+</script><meta property="og:title" content="C&#43;&#43;11并发与多线程(五)——多线程下的单例模式 | 傅万斌的个人网站" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
+
+
+<meta property="og:url" content="https://fuwanbin.github.io/posts/20220111_3/" />
+
+
+
+
+<meta property="og:description" content="一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !" />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="傅万斌的个人网站" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2022-01-11T23:36:08&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2022-01-11T23:36:08&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="多线程" />
+
+<meta property="article:tag" content="C&#43;&#43;11" />
+
+<meta property="article:tag" content="设计模式" />
+
+
+
+
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/20220111_2/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/20220111_1/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/20220109_3/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/20220109_2/" />
+
+<meta property="og:see_also" content="https://fuwanbin.github.io/posts/20220110/" />
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if ((storageColorScheme == 'Auto' && window.matchMedia("(prefers-color-scheme: light)").matches) || storageColorScheme == "Light") {
+        document.getElementsByTagName('html')[0].classList.remove('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">傅万斌的个人网站</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Posts</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == 'Auto') {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'adjust')
+        element.firstElementChild.classList.add('fa-adjust')
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-11</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <h2 id="一单线程下的单例模式实现">一、单线程下的单例模式实现</h2>
+<pre><code class="language-cpp">class A {
+private:
+    A() {} //私有化构造函数
+
+private:
+    static A* instance;
+
+public:
+    static A* getInstance() {
+        if (instance == nullptr) {
+            instance = new A();
+            //  由于gc是static的，所以能用于在整个程序结束时回收instance。
+            static GC gc; 
+        }
+        return instance;
+    }
+    // 内部类，用来释放对象
+    class GC {
+    public:
+        // 整个程序退出时调用，释放内存，instance置空防止悬空指针
+        ~GC() {
+            if (instance != nullptr) {
+                delete instance;
+                instance = nullptr;
+            }
+        }
+    };
+};
+// static成员的初始化
+A* A::instance = nullptr;
+int main(void)
+{
+    A* a = A::getInstance(); 
+    A* b = A::getInstance();
+    return 0;
+}
+</code></pre>
+<h2 id="二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</h2>
+<p>  我们给以上代码加点东西。</p>
+<pre><code class="language-cpp">void mythread() {
+    cout &lt;&lt; &quot;线程开始\n&quot;;
+    A* a = A::getInstance();
+    cout &lt;&lt; &quot;线程结束\n&quot;;
+}
+int main() {
+    thread myt1(mythread);
+    thread myt2(mythread);
+    myt1.join();
+    myt2.join();
+}
+</code></pre>
+<p>  代码中存在一个问题，就是当两个线程同时走进getInstance()函数，同时判断instance是否为nullptr，得到的结果是，两个线程都能走进if里面，先后生成了2个A类对象。因此在判断instance是否为空之前，我们要用互斥量上锁。<br></p>
+<pre><code class="language-cpp">std::mutex mymutex;
+class A{
+    // 略
+public:
+    static A* getInstance() {
+        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
+        if (instance == nullptr) {
+            instance = new A();
+            static GC gc;
+        }
+        return instance;
+    }
+    // 略
+}
+</code></pre>
+<p>  这次，我们加入了互斥量，解决了会重复创建A类对象的问题，但是这还不够。我们知道，instance的初始化，在程序中只会发生一次，之后调用getInstance()返回new过的instance即可，其实根本不需要用到互斥量。而以上代码，为了第一次的初始化，牺牲了整个程序之后的效率，不是个很好的处理方式。我们使用双重检查改进代码。</p>
+<pre><code class="language-cpp">static A* getInstance() {
+    // 只有在第一次初始化会进入第一个if，只后会直接返回instance
+    if (instance == nullptr) { // 双重检查
+        std::unique_lock&lt;std::mutex&gt; mylock(mymutex);
+        if (instance == nullptr) {  
+            instance = new A();
+            static GC gc;
+        }
+    }
+    return instance;
+}
+</code></pre>
+<p>  现在应该是没有其他的问题了。为了方便，C++11已经实现了一个函数来保证一个函数只会调用一次：std::call_once()。</p>
+<h2 id="三stdcall_once">三、std::call_once()</h2>
+<pre><code class="language-cpp">std::once_flag f; // 系统定义的标记
+class A {
+private:
+    A() {} //私有化构造函数
+    static void createInstance() { 
+        // 执行程序，发现只会输出一次
+        cout &lt;&lt; &quot;instance被创建&quot;;
+        instance = new A();
+        static GC gc;
+    }
+private:
+    static A* instance;
+
+public:
+    static A* getInstance() {
+        std::call_once(f, createInstance); //第二个参数写入只执行一次的函数名
+        return instance;
+    }
+    //略
+};
+void mythread() {
+    A* a = A::getInstance();
+}
+A* A::instance = nullptr;
+int main(void)
+{
+    thread myt1(mythread);
+    thread myt2(mythread);
+    myt1.join();
+    myt2.join();
+    return 0;
+}
+</code></pre>
+<p><br><br><br></p>
+<h1 id="参考资料">参考资料</h1>
+<p><a href="https://www.bilibili.com/video/BV1Yb411L7ak">https://www.bilibili.com/video/BV1Yb411L7ak</a></p>
+
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="https://fuwanbin.github.io/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#多线程</a>
+    
+    <a href="https://fuwanbin.github.io/tags/c&#43;&#43;11/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#C&#43;&#43;11</a>
+    
+    <a href="https://fuwanbin.github.io/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#设计模式</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+        <span class="block font-bold">Previous</span>
+        <a href="https://fuwanbin.github.io/posts/20220112_1/" class="block">C&#43;&#43;11并发与多线程(六)——std::condition_variable介绍</a>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">Next</span>
+        <a href="https://fuwanbin.github.io/posts/20220111_2/" class="block">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+    <div class="col-span-2">
+        
+        
+        <div class="sticky top-16 z-10 hidden lg:block px-6 py-4  bg-primary-bg ">
+    <span class="text-lg font-semibold">On This Page</span>
+</div>
+<div class="sticky-toc hidden lg:block px-6 pb-6 ">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#一单线程下的单例模式实现">一、单线程下的单例模式实现</a></li>
+    <li><a href="#二多线程下的单例模式问题分析">二、多线程下的单例模式问题分析</a></li>
+    <li><a href="#三stdcall_once">三、std::call_once()</a></li>
+  </ul>
+</nav>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        enableStickyToc();
+    });
+</script>
+        
+    </div>
+    
+
+    
+    
+    <div
+        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded p-6">
+        <h2 class="text-lg font-semibold mb-4">See Also</h2>
+        <div class="content">
+            
+            <a href="https://fuwanbin.github.io/posts/20220111_2/">C&#43;&#43;11并发与多线程(四)——unique_lock类模板详解</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/20220111_1/">C&#43;&#43;11并发与多线程(三)——多个线程间的数据保护|mutex</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/20220109_3/">C&#43;&#43;11并发与多线程(二)——子线程传参</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/20220109_2/">C&#43;&#43;11并发与多线程(一)——创建一个子线程</a>
+            <br />
+            
+            <a href="https://fuwanbin.github.io/posts/20220110/">对象创建的线程安全</a>
+            <br />
+            
+        </div>
+    </div>
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://fuwanbin.github.io/">Wanbin Fu</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>
