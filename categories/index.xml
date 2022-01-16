@@ -8,11 +8,20 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Thu, 13 Jan 2022 23:39:31 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 15:36:43 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lua</title>
+      <link>https://fuwanbin.github.io/categories/lua/</link>
+      <pubDate>Sun, 16 Jan 2022 15:36:43 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/categories/lua/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;</title>
       <link>https://fuwanbin.github.io/categories/c&#43;&#43;/</link>
-      <pubDate>Thu, 13 Jan 2022 23:39:31 +0800</pubDate>
+      <pubDate>Wed, 12 Jan 2022 23:33:13 +0800</pubDate>
       
       <guid>https://fuwanbin.github.io/categories/c&#43;&#43;/</guid>
       <description></description>

@@ -8,15 +8,16 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Thu, 13 Jan 2022 23:39:31 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 16 Jan 2022 15:36:43 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>左值，右值，右值引用，std::move，std::forward介绍</title>
-      <link>https://fuwanbin.github.io/posts/20220113/</link>
-      <pubDate>Thu, 13 Jan 2022 23:39:31 +0800</pubDate>
+      <title>Lua快速入门</title>
+      <link>https://fuwanbin.github.io/posts/20220116/</link>
+      <pubDate>Sun, 16 Jan 2022 15:36:43 +0800</pubDate>
       
-      <guid>https://fuwanbin.github.io/posts/20220113/</guid>
-      <description>参考资料 Stephen Prata（张海龙 袁国忠译). C++ Primer Plus[M]. 第六版. 人民邮电出版社, 2012.
-https://www.cnblogs.com/KillerAery/p/12802771.html</description>
+      <guid>https://fuwanbin.github.io/posts/20220116/</guid>
+      <description>Lua相关链接 Lua在线模拟器
+Lua5.3参考手册
+基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个&#39;\t&#39;  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000.</description>
     </item>
     
     <item>

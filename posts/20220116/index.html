@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang='en' class="dark" ><meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+
+
+<title>Lua快速入门 | 傅万斌的个人网站</title>
+
+<meta name="generator" content="Hugo Eureka 0.8.4" />
+<link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
+<script defer src="https://fuwanbin.github.io/js/eureka.min.js"></script>
+
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload"
+  href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap"
+  as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/styles/solarized-light.min.css"
+   media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/highlight.min.js"
+   crossorigin></script>
+
+  <script defer src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.1.0/build/languages/dart.min.js"
+     crossorigin></script>
+
+<script defer src="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/js/all.min.js"
+   integrity="sha256-uNYoXefWRqv&#43;PsIF/OflNmwtKM4lStn9yrz2gVl6ymo="  crossorigin></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css"
+   integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3&#43;Aro6EYUG4&#43;cU&#43;KJWu/X"  media="print"
+  onload="this.media='all';this.onload=null" crossorigin>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.js" 
+  integrity="sha384-g7c&#43;Jr9ZivxKLnZTDUhnkOnsh30B4H0rpLUpJ4jAIKs4fnJI&#43;sEnkvrMWph2EDg4"  crossorigin></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+   integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC&#43;Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa"  crossorigin></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    renderMathInElement(document.body, {
+      delimiters: [
+        { left: "$$", right: "$$", display: true },
+        { left: "$", right: "$", display: false },
+        { left: "\\(", right: "\\)", display: false },
+        { left: "\\[", right: "\\]", display: true }
+      ],
+    });
+  });
+</script>
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/mermaid@8.9.2/dist/mermaid.min.js" 
+  integrity="sha256-Zmpaaj&#43;GXFsPF5WdPArSrnW3b30dovldeKsW00xBVwE="  crossorigin></script>
+
+
+<link rel="icon" type="image/png" sizes="32x32" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_32x32_fill_box_center_3.png">
+<link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
+
+<meta name="description"
+  content="Lua相关链接 Lua在线模拟器
+Lua5.3参考手册
+基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个&#39;\t&#39;  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Posts",
+      "item":"https://fuwanbin.github.io/posts/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"Lua快速入门",
+      "item":"https://fuwanbin.github.io/posts/20220116/"}]
+}
+</script>
+
+
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https://fuwanbin.github.io/posts/20220116/"
+    },
+    "headline": "Lua快速入门 | 傅万斌的个人网站","datePublished": "2022-01-16T15:36:43+08:00",
+    "dateModified": "2022-01-16T15:36:43+08:00",
+    "wordCount":  354 ,
+    "publisher": {
+        "@type": "Person",
+        "name": "傅万斌的个人网站",
+        "logo": {
+            "@type": "ImageObject",
+            "url": "https://fuwanbin.github.io/images/icon.png"
+        }
+        },
+    "description": "Lua相关链接 Lua在线模拟器\nLua5.3参考手册\n基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个\u0027\\t\u0027  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000."
+}
+</script><meta property="og:title" content="Lua快速入门 | 傅万斌的个人网站" />
+<meta property="og:type" content="article" />
+
+
+<meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
+
+
+<meta property="og:url" content="https://fuwanbin.github.io/posts/20220116/" />
+
+
+
+
+<meta property="og:description" content="Lua相关链接 Lua在线模拟器
+Lua5.3参考手册
+基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个&#39;\t&#39;  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000." />
+
+
+
+
+<meta property="og:locale" content="en" />
+
+
+
+
+<meta property="og:site_name" content="傅万斌的个人网站" />
+
+
+
+
+
+
+<meta property="article:published_time" content="2022-01-16T15:36:43&#43;08:00" />
+
+
+<meta property="article:modified_time" content="2022-01-16T15:36:43&#43;08:00" />
+
+
+
+<meta property="article:section" content="posts" />
+
+
+<meta property="article:tag" content="Lua" />
+
+
+
+
+
+<body class="flex flex-col min-h-screen">
+  <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
+    <div class="w-full max-w-screen-xl mx-auto"><script>
+    let storageColorScheme = localStorage.getItem("lightDarkMode")
+    if ((storageColorScheme == 'Auto' && window.matchMedia("(prefers-color-scheme: light)").matches) || storageColorScheme == "Light") {
+        document.getElementsByTagName('html')[0].classList.remove('dark')
+    }
+</script>
+<nav class="flex items-center justify-between flex-wrap px-4 py-4 md:py-0">
+    <a href="/" class="mr-6 text-primary-text text-xl font-bold">傅万斌的个人网站</a>
+    <button id="navbar-btn" class="md:hidden flex items-center px-3 py-2" aria-label="Open Navbar">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div id="target"
+        class="hidden block md:flex md:flex-grow md:justify-between md:items-center w-full md:w-auto text-primary-text z-20">
+        <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
+            <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
+            <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Posts</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
+        </div>
+
+        <div class="flex">
+            <div class="relative pt-4 md:pt-0">
+                <div class="cursor-pointer hover:text-eureka" id="lightDarkMode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-30" id="is-open">
+                </div>
+                <div class="absolute flex flex-col left-0 md:left-auto right-auto md:right-0 hidden bg-secondary-bg w-48 rounded py-2 border border-tertiary-bg cursor-pointer z-40"
+                    id='lightDarkOptions'>
+                    <span class="px-4 py-1 hover:text-eureka" name="Light">Light</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Dark">Dark</span>
+                    <span class="px-4 py-1 hover:text-eureka" name="Auto">Auto</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="fixed hidden inset-0 opacity-0 h-full w-full cursor-default z-0" id="is-open-mobile">
+    </div>
+
+</nav>
+<script>
+    
+    let element = document.getElementById('lightDarkMode')
+    if (storageColorScheme == 'Auto') {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'adjust')
+        element.firstElementChild.classList.add('fa-adjust')
+        document.addEventListener('DOMContentLoaded', () => {
+            window.matchMedia("(prefers-color-scheme: dark)").addEventListener('change', switchDarkMode)
+        })
+    } else if (storageColorScheme == "Light") {
+        element.firstElementChild.classList.remove('fa-moon')
+        element.firstElementChild.setAttribute("data-icon", 'sun')
+        element.firstElementChild.classList.add('fa-sun')
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        getcolorscheme();
+        switchBurger();
+    });
+</script>
+</div>
+  </header>
+  <main class="flex-grow pt-16">
+    <div class="pl-scrollbar">
+      <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
+
+
+<div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
+    <div
+        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Lua快速入门</h1>
+        <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-16</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/lua/" class="hover:text-eureka">Lua</a>
+        
+    </div>
+    
+
+    
+</div>
+        
+        
+        
+
+        <div class="content">
+            <h2 id="lua相关链接">Lua相关链接</h2>
+<p><a href="https://wiki.luatos.com/_static/luatos-emulator/lua.html" target="_blank">Lua在线模拟器</a></p>
+<p><a href="http://www.lua.org/manual/5.3/" target="_blank">Lua5.3参考手册</a></p>
+<h2 id="基本语法">基本语法</h2>
+<h3 id="添加注释">添加注释</h3>
+<pre><code class="language-lua">--这是单行注释
+
+--[[这是多行注释
+  这是多行注释
+--]]
+</code></pre>
+<h3 id="声明变量">声明变量</h3>
+<pre><code class="language-lua">--能在多个文件中调用
+a = 10
+--作用域仅为当前文件
+local b = 10
+--声明多个变量
+c, d = 10, 20
+</code></pre>
+<h3 id="输出语句">输出语句</h3>
+<pre><code class="language-lua">a = 10
+print(a)
+b, c, d = 10, 20, 30
+print(b, c, d) --输出结果中每个变量中间都有一个'\t'
+</code></pre>
+<h3 id="nil">nil</h3>
+<pre><code class="language-lua">--Lua里的nil类似于NULL或null
+print(a) --输出未初始化的变量，输出结果为nil
+</code></pre>
+<h3 id="number类型">number类型</h3>
+<pre><code class="language-lua">a = 10       --10
+b = 0x12     --18
+c = 2e5      --200000.0
+d = 2 ^ 4    --16
+e = 1 &lt;&lt; 3   --8
+-- a, b, c, d, e 都是number类型
+-- a++ a-- 不支持自增自减操作
+</code></pre>
+<h3 id="字符串">字符串</h3>
+<pre><code class="language-lua">a = &quot;abcdas&quot;
+b = 'zzz'
+c = &quot;ab\nasd&quot;     --'\n'会转换成一个换行
+d = [[123
+123\\\\n\t
+]]                --可以打印出多行字符串，并完全保留字符串里的内容，即'\n'不会转换成换行 
+
+e = a..b          --两个字符串的连接
+
+f = tostring(123) --输出结果为字符串“123”
+
+g = tonumber(&quot;13&quot;)--13
+g = tonumber(abc) --输出结果为nil
+
+print(#f)         --输出长度，3
+
+s = string.char(0x30, 0x31, 0x32)  
+print(s)                        --输出结果为012
+n = string.byte(s, 2)           --输出结果为49，表示'1'     
+
+</code></pre>
+<h3 id="函数">函数</h3>
+<pre><code class="language-lua">function f(a, b)
+    print(a, b, c)
+    return a, b
+end
+--或
+f = function(a, b)
+-- ...
+end
+
+f(1, 2)          --打印结果为 1  2   nil
+print(f(1, 2))   --函数返回结果为 1  2
+
+i, j = f(1, 2)   --多重赋值
+print(i, j)      --函数返回结果为 1  2
+</code></pre>
+<h3 id="table数组">table（数组）</h3>
+<pre><code class="language-lua">a = {1, &quot;abc&quot;, {}, function() end}  --可以存任何类型
+
+print(a[2])                         --下标从1开始，打印结果为&quot;abc&quot;
+print(a[5])                         --未定义的，结果为nil
+
+a[5] = 123                          
+print(a[5])                         --此时可以打印出123
+
+print(#a)                           --输出数组长度，5
+
+table.insert(a, &quot;abab&quot;)             --在a[6]插入
+table.insert(a, 2, &quot;abab&quot;)          --在a[2]插入，后面的元素后移一位
+table.remove(a, 2)                  --删除a[2]，返回值为a[2]，后面的元素前移一位
+</code></pre>
+<h3 id="用字符串当table下标">用字符串当table下标</h3>
+<pre><code class="language-lua">a = {
+    a = 1,
+    b = &quot;123ab&quot;,
+    c = function()
+
+    end,
+    d = {},
+    [&quot;,;&quot;] = 123
+}                         --初始化
+print(a[&quot;,;&quot;])            --输出123
+print(a.a)                --输出1
+print(a[&quot;xyz&quot;])           --输出nil
+</code></pre>
+<h3 id="全局表_g">全局表_G</h3>
+<pre><code class="language-lua">-- 本身是一个table，存储所有全局变量，即没有local修饰的变量
+a = 1
+print(_G[&quot;a&quot;])             --1
+
+print(_G[&quot;table&quot;][&quot;insert&quot;]) 
+</code></pre>
+<h3 id="布尔型">布尔型</h3>
+<pre><code class="language-lua">print(1 ~= 2)   --~=表示不等于
+
+--在Lua里，只有false和nil代表假，0也代表真
+                    a = true           a = 0   --真
+                    b = false          b = nil --假
+
+print(a and b)       false             nil
+print(a or b)        true              0 
+print(not a)         false             false
+
+--and or 会返回a，b的值，而not不会受到影响
+print(1 &gt; 10 and &quot;yes&quot; or &quot;no&quot;)                --输出结果为&quot;no&quot;
+</code></pre>
+<h3 id="分支判断">分支判断</h3>
+<pre><code class="language-lua">if 1 &gt; 10 then
+    print(&quot;1 &gt; 10&quot;)
+elseif 1 &gt; 5 then
+    print(&quot;1 &gt; 5&quot;)
+else 
+    print(&quot;1 &lt; 10&quot;)
+end
+</code></pre>
+<h3 id="循环语句">循环语句</h3>
+<pre><code class="language-lua">for i = 1, 10 do              --打印 1 到 10，步长默认为 1
+    print(i)
+end
+
+for i = 1, 10, 2 do           --打印 1 到 10，步长为 2
+    print(i)
+    i = 10                    --没用，在循环里不能修改 i 的值
+    if i &gt;= 5 then break end
+end
+
+n = 10
+while n &gt; 1 do
+
+end
+</code></pre>
+<p><br/><br/><br/></p>
+<h1 id="参考资料">参考资料</h1>
+<p><a href="https://www.bilibili.com/video/BV1vf4y1L7Rb">https://www.bilibili.com/video/BV1vf4y1L7Rb</a></p>
+
+        </div>
+        
+        <div class="my-4">
+    
+    <a href="https://fuwanbin.github.io/tags/lua/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#Lua</a>
+    
+</div>
+        
+        
+        
+
+
+        
+        
+        
+        
+<div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
+    <div>
+        
+    </div>
+    <div class="md:text-right mt-4 md:mt-0">
+        
+        <span class="block font-bold">Next</span>
+        <a href="https://fuwanbin.github.io/posts/20220112_2/" class="block">C&#43;&#43;11并发与多线程(七)——std::async和std::future</a>
+        
+    </div>
+</div>
+
+        
+
+
+
+    </div>
+    
+    <div class="col-span-2">
+        
+        
+        <div class="sticky top-16 z-10 hidden lg:block px-6 py-4  bg-primary-bg ">
+    <span class="text-lg font-semibold">On This Page</span>
+</div>
+<div class="sticky-toc hidden lg:block px-6 pb-6 ">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lua相关链接">Lua相关链接</a></li>
+    <li><a href="#基本语法">基本语法</a>
+      <ul>
+        <li><a href="#添加注释">添加注释</a></li>
+        <li><a href="#声明变量">声明变量</a></li>
+        <li><a href="#输出语句">输出语句</a></li>
+        <li><a href="#nil">nil</a></li>
+        <li><a href="#number类型">number类型</a></li>
+        <li><a href="#字符串">字符串</a></li>
+        <li><a href="#函数">函数</a></li>
+        <li><a href="#table数组">table（数组）</a></li>
+        <li><a href="#用字符串当table下标">用字符串当table下标</a></li>
+        <li><a href="#全局表_g">全局表_G</a></li>
+        <li><a href="#布尔型">布尔型</a></li>
+        <li><a href="#分支判断">分支判断</a></li>
+        <li><a href="#循环语句">循环语句</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</div>
+<script>
+    window.addEventListener('DOMContentLoaded', () => {
+        enableStickyToc();
+    });
+</script>
+        
+    </div>
+    
+
+    
+    
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', ()=>{
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+
+      </div>
+    </div>
+    
+  </main>
+  <footer class="pl-scrollbar">
+    <div class="w-full max-w-screen-xl mx-auto"><div class="text-center p-6 pin-b">
+    <p class="text-sm text-tertiary-text">&copy; 2021 <a href="https://fuwanbin.github.io/">Wanbin Fu</a>
+ &middot;  Powered by the <a href="https://github.com/wangchucheng/hugo-eureka" class="hover:text-eureka">Eureka</a> theme for <a href="https://gohugo.io" class="hover:text-eureka">Hugo</a></p>
+</div></div>
+  </footer>
+</body>
+
+</html>

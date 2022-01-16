@@ -8,17 +8,7 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Thu, 13 Jan 2022 23:39:31 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/tags/c++11/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>左值，右值，右值引用，std::move，std::forward介绍</title>
-      <link>https://fuwanbin.github.io/posts/20220113/</link>
-      <pubDate>Thu, 13 Jan 2022 23:39:31 +0800</pubDate>
-      
-      <guid>https://fuwanbin.github.io/posts/20220113/</guid>
-      <description>参考资料 Stephen Prata（张海龙 袁国忠译). C++ Primer Plus[M]. 第六版. 人民邮电出版社, 2012.
-https://www.cnblogs.com/KillerAery/p/12802771.html</description>
-    </item>
-    
+    <lastBuildDate>Wed, 12 Jan 2022 23:33:13 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/tags/c++11/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>C&#43;&#43;11并发与多线程(七)——std::async和std::future</title>
       <link>https://fuwanbin.github.io/posts/20220112_2/</link>
