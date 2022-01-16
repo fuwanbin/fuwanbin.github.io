@@ -8,7 +8,29 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Wed, 12 Jan 2022 23:33:13 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 17 Jan 2022 00:25:16 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>C&#43;&#43;进程间通信——共享内存、信号量结合使用</title>
+      <link>https://fuwanbin.github.io/posts/20220117_1/</link>
+      <pubDate>Mon, 17 Jan 2022 00:25:16 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/20220117_1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C&#43;&#43;进程间通信——共享内存、信号量介绍</title>
+      <link>https://fuwanbin.github.io/posts/20220116_2/</link>
+      <pubDate>Sun, 16 Jan 2022 18:07:57 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/20220116_2/</guid>
+      <description>一、进程 概念  进程就是正在内存中运行中的程序，Linux下一个进程在内存里有三部分的数据,就是“代码段”、“堆栈段”和“数据段”。
+ “代码段”存放程序代码。“堆栈段” 存放程序的返回地址、程序的参数以及程序的局部变量。而“数据段”存放程序的全局量,常数以及动态数据分配的数据空间(比如用new函数分配的空间)。
+ 系统如果同时运行多个相同的程序,它们的“代码段”是相同的，“堆栈段&amp;quot; 和“数据段&amp;quot;是不同的。
+查看进程 ps #显示当前终端进程 ps -ef #显示系统所有进程 ps -ef|grep name #显示与name相关的进程  查看当前进程编号 pid_t getpid();  创建一个进程 // 返回值为0表示当前位于子进程，否则为主进程 pid_t fork();  二、进程通信方式  进程通信的方式大概分为六种。
+ 1)管道:包括无名管道( pipe )及命名管道( named pipe) , 无名管道可用于具有父进程和子进程之间的通信。命名管道克服了管道 没有名字的限制,因此,除具有管道所具有的功能外,它还允许无亲缘关系进程间的通信。</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;11并发与多线程(七)——std::async和std::future</title>
       <link>https://fuwanbin.github.io/posts/20220112_2/</link>

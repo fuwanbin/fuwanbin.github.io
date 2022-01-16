@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>Lua | 傅万斌的个人网站</title>
+<title>多进程，IPC进程间通信 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -66,12 +66,12 @@
   "itemListElement": [{
       "@type": "ListItem",
       "position": 1 ,
-      "name":"Categories",
-      "item":"https://fuwanbin.github.io/categories/"},{
+      "name":"Tags",
+      "item":"https://fuwanbin.github.io/tags/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"Lua",
-      "item":"https://fuwanbin.github.io/categories/lua/"}]
+      "name":"多进程，IPC进程间通信",
+      "item":"https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8Bipc%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/"}]
 }
 </script>
 
@@ -85,20 +85,26 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
-            "name": "Lua快速入门",
-            "description": "Lua相关链接 Lua在线模拟器\nLua5.3参考手册\n基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个'\\t'  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000.",
-            "url": "https://fuwanbin.github.io/posts/20220116_1/"
+            "name": "C++进程间通信——共享内存、信号量结合使用",
+            "description": "Eureka is a elegant and powerful theme for Hugo.",
+            "url": "https://fuwanbin.github.io/posts/20220117_1/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
+            "name": "C++进程间通信——共享内存、信号量介绍",
+            "description": "一、进程 概念  进程就是正在内存中运行中的程序，Linux下一个进程在内存里有三部分的数据,就是“代码段”、“堆栈段”和“数据段”。\n “代码段”存放程序代码。“堆栈段” 存放程序的返回地址、程序的参数以及程序的局部变量。而“数据段”存放程序的全局量,常数以及动态数据分配的数据空间(比如用new函数分配的空间)。\n 系统如果同时运行多个相同的程序,它们的“代码段”是相同的，“堆栈段\u0026quot; 和“数据段\u0026quot;是不同的。\n查看进程 ps #显示当前终端进程 ps -ef #显示系统所有进程 ps -ef|grep name #显示与name相关的进程  查看当前进程编号 pid_t getpid();  创建一个进程 // 返回值为0表示当前位于子进程，否则为主进程 pid_t fork();  二、进程通信方式  进程通信的方式大概分为六种。\n 1)管道:包括无名管道( pipe )及命名管道( named pipe) , 无名管道可用于具有父进程和子进程之间的通信。命名管道克服了管道 没有名字的限制,因此,除具有管道所具有的功能外,它还允许无亲缘关系进程间的通信。",
+            "url": "https://fuwanbin.github.io/posts/20220116_2/"
         }
     ]
 }
-</script><meta property="og:title" content="Lua | 傅万斌的个人网站" />
+</script><meta property="og:title" content="多进程，IPC进程间通信 | 傅万斌的个人网站" />
 <meta property="og:type" content="website" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/categories/lua/" />
+<meta property="og:url" content="https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8Bipc%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/" />
 
 
 
@@ -122,14 +128,14 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-16T15:36:43&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-17T00:25:16&#43;08:00" />
 
 
 
-<meta property="article:section" content="categories" />
+<meta property="article:section" content="tags" />
 
 
-<link rel="alternate" type="application/rss+xml" href="https://fuwanbin.github.io/categories/lua/index.xml" title="傅万斌的个人网站" />
+<link rel="alternate" type="application/rss+xml" href="https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8Bipc%E8%BF%9B%E7%A8%8B%E9%97%B4%E9%80%9A%E4%BF%A1/index.xml" title="傅万斌的个人网站" />
 
 <body class="flex flex-col min-h-screen">
   <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
@@ -150,7 +156,7 @@
         <div class="md:flex md:h-16 text-sm md:flex-grow pb-4 md:pb-0 border-b md:border-b-0">
             <a href="/#about" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">About</a>
             <a href="/posts/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Posts</a>
-            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  selected-menu-item  mr-4">Categories</a>
+            <a href="/categories/" class="block mt-4 md:inline-block md:mt-0 md:h-(16-4px) md:leading-(16-4px) box-border md:border-t-2 md:border-b-2  border-transparent  mr-4">Categories</a>
         </div>
 
         <div class="flex">
@@ -201,7 +207,7 @@
     <div class="pl-scrollbar">
       <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
 <article class="mx-6 my-8">
-    <h1 class="font-bold text-3xl text-primary-text">Lua</h1>
+    <h1 class="font-bold text-3xl text-primary-text">多进程，IPC进程间通信</h1>
     
 </article>
 <div class="bg-secondary-bg rounded px-6">
@@ -212,13 +218,58 @@
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/20220116_1/" class="font-bold text-xl hover:text-eureka">Lua快速入门</a>
+  <a href="https://fuwanbin.github.io/posts/20220117_1/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;进程间通信——共享内存、信号量结合使用</a>
 </div>
 <div class="content">
   
-    Lua相关链接 Lua在线模拟器
-Lua5.3参考手册
-基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个&#39;\t&#39;  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000.
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-17</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>0 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/linux/" class="hover:text-eureka">Linux</a>
+        
+        
+        <span>, </span>
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/20220116_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;进程间通信——共享内存、信号量介绍</a>
+</div>
+<div class="content">
+  
+    一、进程 概念  进程就是正在内存中运行中的程序，Linux下一个进程在内存里有三部分的数据,就是“代码段”、“堆栈段”和“数据段”。
+ “代码段”存放程序代码。“堆栈段” 存放程序的返回地址、程序的参数以及程序的局部变量。而“数据段”存放程序的全局量,常数以及动态数据分配的数据空间(比如用new函数分配的空间)。
+ 系统如果同时运行多个相同的程序,它们的“代码段”是相同的，“堆栈段&#34; 和“数据段&#34;是不同的。
+查看进程 ps #显示当前终端进程 ps -ef #显示系统所有进程 ps -ef|grep name #显示与name相关的进程  查看当前进程编号 pid_t getpid();  创建一个进程 // 返回值为0表示当前位于子进程，否则为主进程 pid_t fork();  二、进程通信方式  进程通信的方式大概分为六种。
+ 1)管道:包括无名管道( pipe )及命名管道( named pipe) , 无名管道可用于具有父进程和子进程之间的通信。命名管道克服了管道 没有名字的限制,因此,除具有管道所具有的功能外,它还允许无亲缘关系进程间的通信。
   
 </div>
 
@@ -229,14 +280,18 @@ Lua5.3参考手册
     </div>
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
+        <span>3 min read</span>
     </div>
     
     
     <div class="mr-6 my-2">
         <i class="fas fa-folder mr-1"></i>
         
-        <a href="https://fuwanbin.github.io/categories/lua/" class="hover:text-eureka">Lua</a>
+        <a href="https://fuwanbin.github.io/categories/linux/" class="hover:text-eureka">Linux</a>
+        
+        
+        <span>, </span>
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
         
     </div>
     
