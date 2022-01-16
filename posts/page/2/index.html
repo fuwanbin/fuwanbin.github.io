@@ -70,33 +70,33 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
-            "name": "C++11并发与多线程(五)——多线程下的单例模式",
-            "description": "一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !",
-            "url": "https://fuwanbin.github.io/posts/20220111_3/"
-        },{
-            "@type":"ListItem",
-            "position":  2 ,
             "name": "C++11并发与多线程(四)——unique_lock类模板详解",
             "description": "一、概念  unique_lock在一般情况（无第二参数）下，能和lock_guard互相替换，但unique_lock相比而言更加灵活，因此时空效率上会差点。\n二、第二参数 std::adopt_lock  表示这个互斥量已经调用过lock()函数（所以你应该在这之前调用该互斥量的lock()函数，否则会报异常）。和lock_guard的用法、作用相同。\nstd::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中一个线程拿到了锁，其他线程就会阻塞，白白浪费系统资源。当第二参数为std::try_to_lock，unique_lock就会去尝试拿锁，并立即得到结果owns_lock()，不会阻塞，我们可以根据结果来让线程走不同的分支。\n代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 100000; i++) { cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; std::unique_lock\u0026lt;std::mutex\u0026gt; my_guard1(my_mutex1, std::try_to_lock); if (my_guard1.",
             "url": "https://fuwanbin.github.io/posts/20220111_2/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  2 ,
             "name": "C++11并发与多线程(三)——多个线程间的数据保护|mutex",
             "description": "一、没有任何保护措施的代码 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 100000; i++) { cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; q.push_back(i); // 假设i是我们收到的消息 } } // 把消息从消息队列取出 void outQ() { for (int i = 0; i \u0026lt; 100000; i++) { if (!",
             "url": "https://fuwanbin.github.io/posts/20220111_1/"
         },{
             "@type":"ListItem",
-            "position":  4 ,
+            "position":  3 ,
             "name": "对象创建的线程安全",
             "description": "参考资料 陈硕. Linux多线程服务端编程 使用muduo C++网络库[M]. 1. 电子工业出版社, 2013-1-15.",
             "url": "https://fuwanbin.github.io/posts/20220110/"
         },{
             "@type":"ListItem",
-            "position":  5 ,
+            "position":  4 ,
             "name": "C++11并发与多线程(二)——子线程传参",
             "description": "一、在创建线程时传递参数 代码演示  在初始化子线程时，第一个参数为 可调用对象，之后依次填入函数需要的参数。\nclass A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; x \u0026lt;\u0026lt; endl; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main(void) { int x = 5; //函数 thread myt1(fun, x); myt1.",
             "url": "https://fuwanbin.github.io/posts/20220109_3/"
+        },{
+            "@type":"ListItem",
+            "position":  5 ,
+            "name": "C++11并发与多线程(一)——创建一个子线程",
+            "description": "看这篇文章默认你已经学会多线程，并发等相关基础概念。\n一、引言  在之前，Windows和Linux下创建线程的函数是不同的，不能跨平台。从C++11新标准开始，C++语言本身增加对多线程的支持，意味着可移植性（跨平台），大大减少开发人员的工作量。\n 为了引入C++11的多线程函数库，我们要包含一个头文件：thread。\n二、创建一个子线程 程序演示  以下程序包含两个线程，对应两条程序执行线路。主线程执行main()函数，在main()函数中会创建一个子线程，这个子线程会执行fun()。\n#include \u0026lt;iostream\u0026gt; #include \u0026lt;thread\u0026gt; using namespace std; // 创建一个函数作为线程的入口。 void fun() { cout \u0026lt;\u0026lt; \u0026quot;线程开始执行\\n\u0026quot;; cout \u0026lt;\u0026lt; \u0026quot;线程执行完毕\\n\u0026quot;; } int main() { // 创建一个thread实例,用我们写的函数fun初始化，创建完毕该线程会自动执行我们给定的函数。 // 可用其他的 可调用对象 初始化，下面会讲 thread myt(fun); cout \u0026lt;\u0026lt; myt.",
+            "url": "https://fuwanbin.github.io/posts/20220109_2/"
         }
     ]
 }
@@ -131,7 +131,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-17T00:25:16&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-16T18:07:57&#43;08:00" />
 
 
 
@@ -215,47 +215,6 @@
 </article>
 <div class="bg-secondary-bg rounded px-6">
     <div class="overflow-hidden divide-y">
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/20220111_3/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
-</div>
-<div class="content">
-  
-    一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-11</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
   
   <div class="py-6">
     <div class="flex flex-col-reverse lg:flex-row justify-between">
@@ -394,6 +353,51 @@ std::try_to_lock 概念  当多个线程都要一个互斥量的锁，其中�
   
     一、在创建线程时传递参数 代码演示  在初始化子线程时，第一个参数为 可调用对象，之后依次填入函数需要的参数。
 class A { public: void operator()(int x) { fun(x); } }; void fun(int x) { cout &lt;&lt; &#34;线程开始执行\n&#34;; cout &lt;&lt; x &lt;&lt; endl; cout &lt;&lt; &#34;线程执行完毕\n&#34;; } int main(void) { int x = 5; //函数 thread myt1(fun, x); myt1.
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-09</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/20220109_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(一)——创建一个子线程</a>
+</div>
+<div class="content">
+  
+    看这篇文章默认你已经学会多线程，并发等相关基础概念。
+一、引言  在之前，Windows和Linux下创建线程的函数是不同的，不能跨平台。从C&#43;&#43;11新标准开始，C&#43;&#43;语言本身增加对多线程的支持，意味着可移植性（跨平台），大大减少开发人员的工作量。
+ 为了引入C&#43;&#43;11的多线程函数库，我们要包含一个头文件：thread。
+二、创建一个子线程 程序演示  以下程序包含两个线程，对应两条程序执行线路。主线程执行main()函数，在main()函数中会创建一个子线程，这个子线程会执行fun()。
+#include &lt;iostream&gt; #include &lt;thread&gt; using namespace std; // 创建一个函数作为线程的入口。 void fun() { cout &lt;&lt; &#34;线程开始执行\n&#34;; cout &lt;&lt; &#34;线程执行完毕\n&#34;; } int main() { // 创建一个thread实例,用我们写的函数fun初始化，创建完毕该线程会自动执行我们给定的函数。 // 可用其他的 可调用对象 初始化，下面会讲 thread myt(fun); cout &lt;&lt; myt.
   
 </div>
 

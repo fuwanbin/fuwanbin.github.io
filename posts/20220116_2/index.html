@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>C&#43;&#43;进程间通信——共享内存、信号量介绍 | 傅万斌的个人网站</title>
+<title>C&#43;&#43;进程间通信——共享内存、信号量 | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -74,7 +74,7 @@
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"C++进程间通信——共享内存、信号量介绍",
+      "name":"C++进程间通信——共享内存、信号量",
       "item":"https://fuwanbin.github.io/posts/20220116_2/"}]
 }
 </script>
@@ -89,9 +89,9 @@
         "@type": "WebPage",
         "@id": "https://fuwanbin.github.io/posts/20220116_2/"
     },
-    "headline": "C\u002b\u002b进程间通信——共享内存、信号量介绍 | 傅万斌的个人网站","datePublished": "2022-01-16T18:07:57+08:00",
+    "headline": "C\u002b\u002b进程间通信——共享内存、信号量 | 傅万斌的个人网站","datePublished": "2022-01-16T18:07:57+08:00",
     "dateModified": "2022-01-16T18:07:57+08:00",
-    "wordCount":  630 ,
+    "wordCount":  634 ,
     "publisher": {
         "@type": "Person",
         "name": "傅万斌的个人网站",
@@ -102,7 +102,7 @@
         },
     "description": "一、进程 概念  进程就是正在内存中运行中的程序，Linux下一个进程在内存里有三部分的数据,就是“代码段”、“堆栈段”和“数据段”。\n “代码段”存放程序代码。“堆栈段” 存放程序的返回地址、程序的参数以及程序的局部变量。而“数据段”存放程序的全局量,常数以及动态数据分配的数据空间(比如用new函数分配的空间)。\n 系统如果同时运行多个相同的程序,它们的“代码段”是相同的，“堆栈段\u0026quot; 和“数据段\u0026quot;是不同的。\n查看进程 ps #显示当前终端进程 ps -ef #显示系统所有进程 ps -ef|grep name #显示与name相关的进程  查看当前进程编号 pid_t getpid();  创建一个进程 \/\/ 返回值为0表示当前位于子进程，否则为主进程 pid_t fork();  二、进程通信方式  进程通信的方式大概分为六种。\n 1)管道:包括无名管道( pipe )及命名管道( named pipe) , 无名管道可用于具有父进程和子进程之间的通信。命名管道克服了管道 没有名字的限制,因此,除具有管道所具有的功能外,它还允许无亲缘关系进程间的通信。"
 }
-</script><meta property="og:title" content="C&#43;&#43;进程间通信——共享内存、信号量介绍 | 傅万斌的个人网站" />
+</script><meta property="og:title" content="C&#43;&#43;进程间通信——共享内存、信号量 | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
@@ -225,7 +225,7 @@
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
         class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;进程间通信——共享内存、信号量介绍</h1>
+        <h1 class="font-bold text-3xl text-primary-text">C&#43;&#43;进程间通信——共享内存、信号量</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
@@ -598,6 +598,11 @@ bool CSEM::destroy()
 <pre><code>ipcs-s                  #查看系统信号量
 ipcrm sem &lt;信号量编号&gt;   #删除该编号信号量
 </code></pre>
+<h2 id="五结合使用">五、结合使用</h2>
+<p>  共享内存可以让多个进程共享一个区域的值，缺点是没办法保证在写的同时不会被其他进程干扰。加入信号量就能解决这个问题。在对共享内存进行操作之前，必须先持有一个信号量，才能操作，这样也能防止其他进程想要操作共享内存时拿不到信号量，保护了进程对共享内存的写入。在对共享内存的数据处理完时，释放信号量，其他进程才有机会获得该信号量。</p>
+<p><br/><br/><br/></p>
+<h1 id="参考资料">参考资料</h1>
+<p><a href="https://www.bilibili.com/video/BV1YD4y127aM">https://www.bilibili.com/video/BV1YD4y127aM</a></p>
 
         </div>
         
@@ -617,9 +622,6 @@ ipcrm sem &lt;信号量编号&gt;   #删除该编号信号量
         
 <div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
     <div>
-        
-        <span class="block font-bold">Previous</span>
-        <a href="https://fuwanbin.github.io/posts/20220117_1/" class="block">C&#43;&#43;进程间通信——共享内存、信号量结合使用</a>
         
     </div>
     <div class="md:text-right mt-4 md:mt-0">
@@ -685,6 +687,7 @@ ipcrm sem &lt;信号量编号&gt;   #删除该编号信号量
         <li><a href="#相关命令">相关命令</a></li>
       </ul>
     </li>
+    <li><a href="#五结合使用">五、结合使用</a></li>
   </ul>
 </nav>
 </div>
