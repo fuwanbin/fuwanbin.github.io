@@ -85,18 +85,12 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
-            "name": "CMake基础中文教程",
-            "description": "Step 1: 从最基础的开始  对简单的项目来说，一个3行的CMakeLists.txt就足够了。\n# CMake 最低版本号要求 cmake_minimum_required(VERSION 3.10) # 设置项目名称 project(Demo) # 指定生成目标 add_executable(Demo demo.cc)   注意，这个例子在CMakeLists.txt文件中使用了小写命令。CMake支持大小写和混合大小写命令。下面的示例demo.cc，用来计算一个数字的幂次。\n#include \u0026lt;stdio.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; int poww(int a, int b) { int ans = 1, base = a; while (b != 0) { if (b \u0026amp; 1 !",
-            "url": "https://fuwanbin.github.io/posts/20220120/"
-        },{
-            "@type":"ListItem",
-            "position":  2 ,
             "name": "C++进程间通信——共享内存、信号量",
             "description": "一、进程 概念  进程就是正在内存中运行中的程序，Linux下一个进程在内存里有三部分的数据,就是“代码段”、“堆栈段”和“数据段”。\n “代码段”存放程序代码。“堆栈段” 存放程序的返回地址、程序的参数以及程序的局部变量。而“数据段”存放程序的全局量,常数以及动态数据分配的数据空间(比如用new函数分配的空间)。\n 系统如果同时运行多个相同的程序,它们的“代码段”是相同的，“堆栈段\u0026quot; 和“数据段\u0026quot;是不同的。\n查看进程 ps #显示当前终端进程 ps -ef #显示系统所有进程 ps -ef|grep name #显示与name相关的进程  查看当前进程编号 pid_t getpid();  创建一个进程 // 返回值为0表示当前位于子进程，否则为主进程 pid_t fork();  二、进程通信方式  进程通信的方式大概分为六种。\n 1)管道:包括无名管道( pipe )及命名管道( named pipe) , 无名管道可用于具有父进程和子进程之间的通信。命名管道克服了管道 没有名字的限制,因此,除具有管道所具有的功能外,它还允许无亲缘关系进程间的通信。",
             "url": "https://fuwanbin.github.io/posts/20220116_2/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  2 ,
             "name": "Linux信号",
             "description": "一、引言  我们知道，对于一个可执行文件main， 我们可以用./main运行。在程序运行时，输出的信息都可以在黑框里看到，用Ctrl + C 可以终止该文件。如果想让程序在后台运行，执行程序的时候，命令的最后面加“\u0026amp;”符号。\n./main \u0026amp;   这时，main程序就会在后台运行，脱离了终端控制，Ctrl + C想要终止该程序也是不行的。我们先暂时用以下命令杀死进程。区别详见链接 \nkillall main #或 kill \u0026lt;进程id\u0026gt;   二、signal信号  在程序运行时，Ctrl + C、killall或kill本质就是向程序发送一个信号，程序对该信号的缺省行为是终止程序运行。这里说缺省行为，是因为在代码中我们可以自定义程序对任意信号的行为。\n程序演示 #include \u0026lt;stdio.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;signal.h\u0026gt; // 这是我们自定义的函数表示对信号的行为，自定义的行为会覆盖掉缺省行为 void fun(int sig) { printf(\u0026quot;收到了信号: %d\\n\u0026quot;, sig); } int main() { // 指定信号对应的行为, 同时覆盖掉其缺省的 使程序终止 的行为 // SIGINT和SIGTERM是宏定义，表示信号值 signal(SIGINT, fun); // 键盘中断Ctrl + C signal(SIGTERM, fun); // killall或kill while(1) { } return 0; }   现在程序收到Ctrl + C的信号时已经不会终止，反而会执行我们指定的fun()函数。为了能跳出程序，方便之后的程序演示，我们按Ctrl + Z暂时挂起程序,挂起的程序还会留在进程中，并暂停运行。   如我们之前所说，killall和kill也不能终止程序了。那这时候我们要怎么终止程序呢？从之前给的链接我们学到，可以添加参数 -9 来强制杀死进程。",
             "url": "https://fuwanbin.github.io/posts/20220109_1/"
@@ -134,7 +128,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-20T22:48:36&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-16T18:07:57&#43;08:00" />
 
 
 
@@ -218,53 +212,6 @@
 </article>
 <div class="bg-secondary-bg rounded px-6">
     <div class="overflow-hidden divide-y">
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/20220120/" class="font-bold text-xl hover:text-eureka">CMake基础中文教程</a>
-</div>
-<div class="content">
-  
-    Step 1: 从最基础的开始  对简单的项目来说，一个3行的CMakeLists.txt就足够了。
-# CMake 最低版本号要求 cmake_minimum_required(VERSION 3.10) # 设置项目名称 project(Demo) # 指定生成目标 add_executable(Demo demo.cc)   注意，这个例子在CMakeLists.txt文件中使用了小写命令。CMake支持大小写和混合大小写命令。下面的示例demo.cc，用来计算一个数字的幂次。
-#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; int poww(int a, int b) { int ans = 1, base = a; while (b != 0) { if (b &amp; 1 !
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-20</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/linux/" class="hover:text-eureka">Linux</a>
-        
-        
-        <span>, </span>
-        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
   
   <div class="py-6">
     <div class="flex flex-col-reverse lg:flex-row justify-between">
