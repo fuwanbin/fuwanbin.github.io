@@ -91,6 +91,12 @@
             "name": "Codeforces#645",
             "description": "传送门\nA.Park Lighting 给n×m个格子，格子之间那条线是路；你可以在路的中间放一个路灯，来照亮相邻两个格子，求照亮所有格子的最少路灯数。\nint n, m;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rif (n % 2 == 0 || m % 2 == 0)\rcout \u0026lt;\u0026lt; m * n / 2 \u0026lt;\u0026lt; endl;\relse\rcout \u0026lt;\u0026lt; m * (n - 1) / 2 + (m + 1) / 2 \u0026lt;\u0026lt; endl;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/20200527/"
+        },{
+            "@type":"ListItem",
+            "position":  5 ,
+            "name": "Hello_client.c",
+            "description": "#include \u0026lt;stdio.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;string.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;arpa/inet.h\u0026gt; #include \u0026lt;sys/socket.h\u0026gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(\u0026quot;Usage : %s \u0026lt;IP\u0026gt; \u0026lt;port\u0026gt;\\n\u0026quot;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(\u0026quot;socket() error\u0026quot;); memset(\u0026amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.",
+            "url": "https://fuwanbin.github.io/posts/hello_client.c/"
         }
     ]
 }
@@ -383,6 +389,47 @@ int n, m;void solve(){cin &gt;&gt; n &gt;&gt; m;if (n % 2 == 0 || m % 2 == 0
 </div>
   </div>
   
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/hello_client.c/" class="font-bold text-xl hover:text-eureka">Hello_client.c</a>
+</div>
+<div class="content">
+  
+    #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/socket.h&gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(&#34;Usage : %s &lt;IP&gt; &lt;port&gt;\n&#34;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(&#34;socket() error&#34;); memset(&amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>0001-01-01</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/code/" class="hover:text-eureka">code</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
 </div>
 
 
@@ -407,11 +454,14 @@ int n, m;void solve(){cin &gt;&gt; n &gt;&gt; m;if (n % 2 == 0 || m % 2 == 0
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
+      <li class="page-item">
+        <a href="/posts/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
       </li>
-      <li class="page-item disabled">
-        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item">
+        <a href="/posts/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
+      </li>
+      <li class="page-item">
+        <a href="/posts/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
 

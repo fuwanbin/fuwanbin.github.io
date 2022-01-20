@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>傅万斌的个人网站</title>
+<title>code | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -59,17 +59,52 @@
 
 <meta name="description"
   content="Eureka is a elegant and powerful theme for Hugo.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1 ,
+      "name":"Categories",
+      "item":"https://fuwanbin.github.io/categories/"},{
+      "@type": "ListItem",
+      "position": 2 ,
+      "name":"code",
+      "item":"https://fuwanbin.github.io/categories/code/"}]
+}
+</script>
 
 
 
-<meta property="og:title" content="傅万斌的个人网站" />
+
+<script type="application/ld+json">
+{
+    "@context":"https://schema.org",
+    "@type":"ItemList",
+    "itemListElement":[{
+            "@type":"ListItem",
+            "position":  1 ,
+            "name": "Hello_client.c",
+            "description": "#include \u0026lt;stdio.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;string.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;arpa/inet.h\u0026gt; #include \u0026lt;sys/socket.h\u0026gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(\u0026quot;Usage : %s \u0026lt;IP\u0026gt; \u0026lt;port\u0026gt;\\n\u0026quot;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(\u0026quot;socket() error\u0026quot;); memset(\u0026amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.",
+            "url": "https://fuwanbin.github.io/posts/hello_client.c/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
+            "name": "Hello_server.c",
+            "description": "#include \u0026lt;stdio.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;string.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;arpa/inet.h\u0026gt; #include \u0026lt;sys/socket.h\u0026gt; void error_handling(char *message); int main(int argc, char *argv[]) { int serv_sock; int clnt_sock; struct sockaddr_in serv_addr; struct sockaddr_in clnt_addr; socklen_t clnt_addr_size; char message[] = \u0026quot;Hello World!\u0026quot;; if (argc !",
+            "url": "https://fuwanbin.github.io/posts/hello_server.c/"
+        }
+    ]
+}
+</script><meta property="og:title" content="code | 傅万斌的个人网站" />
 <meta property="og:type" content="website" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/categories/" />
+<meta property="og:url" content="https://fuwanbin.github.io/categories/code/" />
 
 
 
@@ -93,14 +128,12 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-20T23:59:39&#43;08:00" />
-
 
 
 <meta property="article:section" content="categories" />
 
 
-<link rel="alternate" type="application/rss+xml" href="https://fuwanbin.github.io/categories/index.xml" title="傅万斌的个人网站" />
+<link rel="alternate" type="application/rss+xml" href="https://fuwanbin.github.io/categories/code/index.xml" title="傅万斌的个人网站" />
 
 <body class="flex flex-col min-h-screen">
   <header class="fixed flex items-center w-full min-h-16 pl-scrollbar z-50 bg-secondary-bg shadow-sm">
@@ -172,36 +205,99 @@
     <div class="pl-scrollbar">
       <div class="w-full max-w-screen-xl lg:px-4 xl:px-8 mx-auto">
 <article class="mx-6 my-8">
-    <h1 class="font-bold text-3xl text-primary-text">Categories</h1>
+    <h1 class="font-bold text-3xl text-primary-text">code</h1>
     
 </article>
-<div class="bg-secondary-bg rounded px-6 py-8">
+<div class="bg-secondary-bg rounded px-6">
+    <div class="overflow-hidden divide-y">
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/hello_client.c/" class="font-bold text-xl hover:text-eureka">Hello_client.c</a>
+</div>
+<div class="content">
+  
+    #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/socket.h&gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(&#34;Usage : %s &lt;IP&gt; &lt;port&gt;\n&#34;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(&#34;socket() error&#34;); memset(&amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>0001-01-01</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1 min read</span>
+    </div>
     
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="text-eureka hover:underline">网络编程</a>
-    </h2>
     
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="text-eureka hover:underline">C&#43;&#43;</a>
-    </h2>
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/code/" class="hover:text-eureka">code</a>
+        
+    </div>
     
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/linux/" class="text-eureka hover:underline">Linux</a>
-    </h2>
-    
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/lua/" class="text-eureka hover:underline">Lua</a>
-    </h2>
-    
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="text-eureka hover:underline">CF题解</a>
-    </h2>
-    
-    <h2 class="text-lg text-primary-text my-2">
-        <a href="https://fuwanbin.github.io/categories/code/" class="text-eureka hover:underline">code</a>
-    </h2>
+
     
 </div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/hello_server.c/" class="font-bold text-xl hover:text-eureka">Hello_server.c</a>
+</div>
+<div class="content">
+  
+    #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/socket.h&gt; void error_handling(char *message); int main(int argc, char *argv[]) { int serv_sock; int clnt_sock; struct sockaddr_in serv_addr; struct sockaddr_in clnt_addr; socklen_t clnt_addr_size; char message[] = &#34;Hello World!&#34;; if (argc !
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>0001-01-01</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/code/" class="hover:text-eureka">code</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
+  
+</div>
+
+
+</div>
+
 
       </div>
     </div>

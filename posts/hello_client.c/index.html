@@ -3,7 +3,7 @@
 <meta name="viewport" content="width=device-width">
 
 
-<title>《TCP/IP网络编程》笔记 | 傅万斌的个人网站</title>
+<title>Hello_client.c | 傅万斌的个人网站</title>
 
 <meta name="generator" content="Hugo Eureka 0.8.4" />
 <link rel="stylesheet" href="https://fuwanbin.github.io/css/eureka.min.css">
@@ -58,10 +58,7 @@
 <link rel="apple-touch-icon" sizes="180x180" href="https://fuwanbin.github.io/images/icon_hu319d26b1e58c89bb1021c66fccb9aeca_21082_180x180_fill_box_center_3.png">
 
 <meta name="description"
-  content="第一章、理解网络编程和套接字 1.1 网络编程和套接字  网络编程就是编写程序使两台联网的计算机相互交换数据。操作系统会提供名叫socket的部件进行网络数据传输。
-1.2 构建套接字 socket函数初识 #include &lt;sys/socket.h&gt; int socket(int domain, int type, int protocol); // 成功时返回文件描述符，失败时返回-1  在Linux中，万物皆文件，socket也不例外。该函数会创建一个socket，并返回其对应的文件描述符，知道了文件描述符，我们就能做很多事情。
-bind函数初识 #include &lt;sys/socket.h&gt; int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen); // 成功时返回0，失败时返回-1  调用bind函数给刚刚创建好的socket分配地址。
-listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int backlog); // 成功时返回0，失败时返回-1  调用listen使该socket进入监听状态，这时才能收到来自客户端的连接请求。">
+  content="#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/socket.h&gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(&quot;Usage : %s &lt;IP&gt; &lt;port&gt;\n&quot;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(&quot;socket() error&quot;); memset(&amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -73,8 +70,8 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
       "item":"https://fuwanbin.github.io/posts/"},{
       "@type": "ListItem",
       "position": 2 ,
-      "name":"《TCP/IP网络编程》笔记",
-      "item":"https://fuwanbin.github.io/posts/20220120_2/"}]
+      "name":"Hello_client.c",
+      "item":"https://fuwanbin.github.io/posts/hello_client.c/"}]
 }
 </script>
 
@@ -86,11 +83,9 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
     "@type": "Article",
     "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://fuwanbin.github.io/posts/20220120_2/"
+        "@id": "https://fuwanbin.github.io/posts/hello_client.c/"
     },
-    "headline": "《TCP\/IP网络编程》笔记 | 傅万斌的个人网站","datePublished": "2022-01-20T23:59:39+08:00",
-    "dateModified": "2022-01-20T23:59:39+08:00",
-    "wordCount":  78 ,
+    "headline": "Hello_client.c | 傅万斌的个人网站","wordCount":  119 ,
     "publisher": {
         "@type": "Person",
         "name": "傅万斌的个人网站",
@@ -99,24 +94,21 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
             "url": "https://fuwanbin.github.io/images/icon.png"
         }
         },
-    "description": "第一章、理解网络编程和套接字 1.1 网络编程和套接字  网络编程就是编写程序使两台联网的计算机相互交换数据。操作系统会提供名叫socket的部件进行网络数据传输。\n1.2 构建套接字 socket函数初识 #include \u0026lt;sys\/socket.h\u0026gt; int socket(int domain, int type, int protocol); \/\/ 成功时返回文件描述符，失败时返回-1  在Linux中，万物皆文件，socket也不例外。该函数会创建一个socket，并返回其对应的文件描述符，知道了文件描述符，我们就能做很多事情。\nbind函数初识 #include \u0026lt;sys\/socket.h\u0026gt; int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen); \/\/ 成功时返回0，失败时返回-1  调用bind函数给刚刚创建好的socket分配地址。\nlisten函数初识 #include \u0026lt;sys\/socket.h\u0026gt; int listen(int sockfd, int backlog); \/\/ 成功时返回0，失败时返回-1  调用listen使该socket进入监听状态，这时才能收到来自客户端的连接请求。"
+    "description": "#include \u0026lt;stdio.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;string.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;arpa\/inet.h\u0026gt; #include \u0026lt;sys\/socket.h\u0026gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(\u0026quot;Usage : %s \u0026lt;IP\u0026gt; \u0026lt;port\u0026gt;\\n\u0026quot;, argv[0]); exit(1); } \/\/创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 \/\/如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(\u0026quot;socket() error\u0026quot;); memset(\u0026amp;serv_addr, 0, sizeof(serv_addr)); serv_addr."
 }
-</script><meta property="og:title" content="《TCP/IP网络编程》笔记 | 傅万斌的个人网站" />
+</script><meta property="og:title" content="Hello_client.c | 傅万斌的个人网站" />
 <meta property="og:type" content="article" />
 
 
 <meta property="og:image" content="https://fuwanbin.github.io/images/icon.png">
 
 
-<meta property="og:url" content="https://fuwanbin.github.io/posts/20220120_2/" />
+<meta property="og:url" content="https://fuwanbin.github.io/posts/hello_client.c/" />
 
 
 
 
-<meta property="og:description" content="第一章、理解网络编程和套接字 1.1 网络编程和套接字  网络编程就是编写程序使两台联网的计算机相互交换数据。操作系统会提供名叫socket的部件进行网络数据传输。
-1.2 构建套接字 socket函数初识 #include &lt;sys/socket.h&gt; int socket(int domain, int type, int protocol); // 成功时返回文件描述符，失败时返回-1  在Linux中，万物皆文件，socket也不例外。该函数会创建一个socket，并返回其对应的文件描述符，知道了文件描述符，我们就能做很多事情。
-bind函数初识 #include &lt;sys/socket.h&gt; int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen); // 成功时返回0，失败时返回-1  调用bind函数给刚刚创建好的socket分配地址。
-listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int backlog); // 成功时返回0，失败时返回-1  调用listen使该socket进入监听状态，这时才能收到来自客户端的连接请求。" />
+<meta property="og:description" content="#include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/socket.h&gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(&quot;Usage : %s &lt;IP&gt; &lt;port&gt;\n&quot;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(&quot;socket() error&quot;); memset(&amp;serv_addr, 0, sizeof(serv_addr)); serv_addr." />
 
 
 
@@ -133,20 +125,10 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
 
 
 
-<meta property="article:published_time" content="2022-01-20T23:59:39&#43;08:00" />
-
-
-<meta property="article:modified_time" content="2022-01-20T23:59:39&#43;08:00" />
 
 
 
 <meta property="article:section" content="posts" />
-
-
-<meta property="article:tag" content="TCP/IP网络编程" />
-
-<meta property="article:tag" content="网络编程" />
-
 
 
 
@@ -224,12 +206,12 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
 
 <div class="grid grid-cols-2 lg:grid-cols-8 gap-4 lg:pt-12">
     <div
-        class="col-span-2  lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
-        <h1 class="font-bold text-3xl text-primary-text">《TCP/IP网络编程》笔记</h1>
+        class="col-span-2 lg:col-start-2 lg:col-span-6 bg-secondary-bg rounded px-6 py-8">
+        <h1 class="font-bold text-3xl text-primary-text">Hello_client.c</h1>
         <div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
     <div class="mr-6 my-2">
         <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-20</span>
+        <span>0001-01-01</span>
     </div>
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
@@ -240,7 +222,7 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
     <div class="mr-6 my-2">
         <i class="fas fa-folder mr-1"></i>
         
-        <a href="https://fuwanbin.github.io/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="hover:text-eureka">网络编程</a>
+        <a href="https://fuwanbin.github.io/categories/code/" class="hover:text-eureka">code</a>
         
     </div>
     
@@ -252,54 +234,58 @@ listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int back
         
 
         <div class="content">
-            <h2 id="第一章理解网络编程和套接字">第一章、理解网络编程和套接字</h2>
-<h3 id="11-网络编程和套接字">1.1 网络编程和套接字</h3>
-<p>  网络编程就是编写程序使两台联网的计算机相互交换数据。操作系统会提供名叫socket的部件进行网络数据传输。</p>
-<h3 id="12-构建套接字">1.2 构建套接字</h3>
-<h4 id="socket函数初识">socket函数初识</h4>
-<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
-int socket(int domain, int type, int protocol);
-// 成功时返回文件描述符，失败时返回-1
+            <pre><code class="language-cpp">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;arpa/inet.h&gt;
+#include &lt;sys/socket.h&gt;
+void error_handling(char *message);
+
+int main(int argc, char *argv[])
+{
+    int sock;
+    struct sockaddr_in serv_addr;
+    char message[30];
+    int str_len;
+
+    if (argc != 3)
+    {
+        printf(&quot;Usage : %s &lt;IP&gt; &lt;port&gt;\n&quot;, argv[0]);
+        exit(1);
+    }
+    //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字
+    //如果调用 connect 函数，将成为客户端套接字
+    sock = socket(PF_INET, SOCK_STREAM, 0);
+    if (sock == -1)
+        error_handling(&quot;socket() error&quot;);
+
+    memset(&amp;serv_addr, 0, sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = inet_addr(argv[1]);
+    serv_addr.sin_port = htons(atoi(argv[2]));
+    //调用 connect 函数向服务器发送连接请求
+    if (connect(sock, (struct sockaddr *)&amp;serv_addr, sizeof(serv_addr)) == -1)
+        error_handling(&quot;connect() error!&quot;);
+
+    str_len = read(sock, message, sizeof(message) - 1);
+    if (str_len == -1)
+        error_handling(&quot;read() error!&quot;);
+
+    printf(&quot;Message from server : %s \n&quot;, message);
+    close(sock);
+    return 0;
+}
+
+void error_handling(char *message)
+{
+    fputs(message, stderr);
+    fputc('\n', stderr);
+    exit(1);
+}
 </code></pre>
-<p>在Linux中，万物皆文件，socket也不例外。该函数会创建一个socket，并返回其对应的文件描述符，知道了文件描述符，我们就能做很多事情。</p>
-<h4 id="bind函数初识">bind函数初识</h4>
-<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
-int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen);
-// 成功时返回0，失败时返回-1
-</code></pre>
-<p>调用bind函数给刚刚创建好的socket分配地址。</p>
-<h4 id="listen函数初识">listen函数初识</h4>
-<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
-int listen(int sockfd, int backlog);
-// 成功时返回0，失败时返回-1
-</code></pre>
-<p>调用listen使该socket进入监听状态，这时才能收到来自客户端的连接请求。</p>
-<h4 id="accept函数初识">accept函数初识</h4>
-<pre><code class="language-cpp">#include &lt;sys/socket.h&gt;
-int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
-// 成功时返回0，失败时返回-1
-</code></pre>
-<p>调用accept会同意来自客户端的连接请求。</p>
-<h4 id="套接字创建过程">套接字创建过程</h4>
-<ol>
-<li>第一步：调用 socket 函数创建套接字。</li>
-<li>第二步：调用 bind 函数分配IP地址和端口号。</li>
-<li>第三步：调用 listen 函数转换为可接受请求状态。</li>
-<li>第四步：调用 accept 函数受理套接字请求。</li>
-</ol>
-<h3 id="13-编写-hello-world-套接字程序">1.3 编写 &ldquo;Hello World!&rdquo; 套接字程序</h3>
-<p>服务端程序详见：<a href="fuwanbin.github.io/posts/hello_server.c" target="_blank">hello_server.c</a></p>
-<p>客户端程序详见：<a href="fuwanbin.github.io/posts/hello_client.c" target="_blank">hello_client.c</a></p>
 
         </div>
-        
-        <div class="my-4">
-    
-    <a href="https://fuwanbin.github.io/tags/tcp/ip%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#TCP/IP网络编程</a>
-    
-    <a href="https://fuwanbin.github.io/tags/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="inline-block bg-tertiary-bg text-sm rounded px-3 py-1 my-1 mr-2 hover:text-eureka">#网络编程</a>
-    
-</div>
         
         
         
@@ -312,11 +298,14 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 <div class="flex flex-col md:flex-row md:justify-between -mx-2 mt-4 px-2 pt-4 border-t">
     <div>
         
+        <span class="block font-bold">Previous</span>
+        <a href="https://fuwanbin.github.io/posts/20200527/" class="block">Codeforces#645</a>
+        
     </div>
     <div class="md:text-right mt-4 md:mt-0">
         
         <span class="block font-bold">Next</span>
-        <a href="https://fuwanbin.github.io/posts/20220116_2/" class="block">C&#43;&#43;进程间通信——共享内存、信号量</a>
+        <a href="https://fuwanbin.github.io/posts/hello_server.c/" class="block">Hello_server.c</a>
         
     </div>
 </div>
@@ -325,41 +314,6 @@ int accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen);
 
 
 
-    </div>
-    
-    <div class="col-span-2">
-        
-        
-        <div class="sticky top-16 z-10 hidden lg:block px-6 py-4  bg-primary-bg ">
-    <span class="text-lg font-semibold">On This Page</span>
-</div>
-<div class="sticky-toc hidden lg:block px-6 pb-6 ">
-    <nav id="TableOfContents">
-  <ul>
-    <li><a href="#第一章理解网络编程和套接字">第一章、理解网络编程和套接字</a>
-      <ul>
-        <li><a href="#11-网络编程和套接字">1.1 网络编程和套接字</a></li>
-        <li><a href="#12-构建套接字">1.2 构建套接字</a>
-          <ul>
-            <li><a href="#socket函数初识">socket函数初识</a></li>
-            <li><a href="#bind函数初识">bind函数初识</a></li>
-            <li><a href="#listen函数初识">listen函数初识</a></li>
-            <li><a href="#accept函数初识">accept函数初识</a></li>
-            <li><a href="#套接字创建过程">套接字创建过程</a></li>
-          </ul>
-        </li>
-        <li><a href="#13-编写-hello-world-套接字程序">1.3 编写 &ldquo;Hello World!&rdquo; 套接字程序</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav>
-</div>
-<script>
-    window.addEventListener('DOMContentLoaded', () => {
-        enableStickyToc();
-    });
-</script>
-        
     </div>
     
 
