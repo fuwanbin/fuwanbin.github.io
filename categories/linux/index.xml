@@ -8,7 +8,18 @@
     <language>en</language>
     <copyright>&amp;copy; 2021 &lt;a href=&#34;https://fuwanbin.github.io/&#34;&gt;Wanbin Fu&lt;/a&gt;
 </copyright>
-    <lastBuildDate>Sun, 16 Jan 2022 18:07:57 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 20 Jan 2022 22:48:36 +0800</lastBuildDate><atom:link href="https://fuwanbin.github.io/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>CMake基础中文教程</title>
+      <link>https://fuwanbin.github.io/posts/20220120/</link>
+      <pubDate>Thu, 20 Jan 2022 22:48:36 +0800</pubDate>
+      
+      <guid>https://fuwanbin.github.io/posts/20220120/</guid>
+      <description>Step 1: 从最基础的开始  对简单的项目来说，一个3行的CMakeLists.txt就足够了。
+# CMake 最低版本号要求 cmake_minimum_required(VERSION 3.10) # 设置项目名称 project(Demo) # 指定生成目标 add_executable(Demo demo.cc)   注意，这个例子在CMakeLists.txt文件中使用了小写命令。CMake支持大小写和混合大小写命令。下面的示例demo.cc，用来计算一个数字的幂次。
+#include &amp;lt;stdio.h&amp;gt; #include &amp;lt;stdlib.h&amp;gt; int poww(int a, int b) { int ans = 1, base = a; while (b != 0) { if (b &amp;amp; 1 !</description>
+    </item>
+    
     <item>
       <title>C&#43;&#43;进程间通信——共享内存、信号量</title>
       <link>https://fuwanbin.github.io/posts/20220116_2/</link>
