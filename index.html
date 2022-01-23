@@ -93,7 +93,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-20T23:59:39&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-16T18:07:57&#43;08:00" />
 
 
 
@@ -339,52 +339,6 @@
   
   <div class="w-full ">
     <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/20220120_2/" class="font-bold text-xl hover:text-eureka">《TCP/IP网络编程》笔记</a>
-</div>
-<div class="content">
-  
-    第一章、理解网络编程和套接字 1.1 网络编程和套接字  网络编程就是编写程序使两台联网的计算机相互交换数据。操作系统会提供名叫socket的部件进行网络数据传输。
-1.2 构建套接字 socket函数初识 #include &lt;sys/socket.h&gt; int socket(int domain, int type, int protocol); // 成功时返回文件描述符，失败时返回-1  在Linux中，万物皆文件，socket也不例外。该函数会创建一个socket，并返回其对应的文件描述符，知道了文件描述符，我们就能做很多事情。
-bind函数初识 #include &lt;sys/socket.h&gt; int bind(int sockfd, struct sockaddr *myaddr, socklen_t addrlen); // 成功时返回0，失败时返回-1  调用bind函数给刚刚创建好的socket分配地址。
-listen函数初识 #include &lt;sys/socket.h&gt; int listen(int sockfd, int backlog); // 成功时返回0，失败时返回-1  调用listen使该socket进入监听状态，这时才能收到来自客户端的连接请求。
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-20</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/%E7%BD%91%E7%BB%9C%E7%BC%96%E7%A8%8B/" class="hover:text-eureka">网络编程</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-</div>
-</div>
-
-<div class="mb-6">
-  <div class="bg-secondary-bg rounded border hover:shadow-lg transition ease-in-out duration-200 px-6 pt-6 pb-4">
-  <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
   <a href="https://fuwanbin.github.io/posts/20220116_2/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;进程间通信——共享内存、信号量</a>
 </div>
 <div class="content">
@@ -544,6 +498,49 @@ Lua5.3参考手册
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
         <span>1 min read</span>
+    </div>
+    
+    
+    <div class="mr-6 my-2">
+        <i class="fas fa-folder mr-1"></i>
+        
+        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
+        
+    </div>
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+</div>
+</div>
+
+<div class="mb-6">
+  <div class="bg-secondary-bg rounded border hover:shadow-lg transition ease-in-out duration-200 px-6 pt-6 pb-4">
+  <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/20220111_3/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
+</div>
+<div class="content">
+  
+    一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-01-11</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>2 min read</span>
     </div>
     
     

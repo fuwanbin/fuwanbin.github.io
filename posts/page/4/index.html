@@ -70,33 +70,21 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
-            "name": "Codeforces#648",
-            "description": "传送门\nA.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可\n#define clr(a, b) memset((a), (b), sizeof(a))\rint n, m, a;\rint l[55], r[55];\rvoid solve()\r{\rclr(l, 0);//有t个case，记得初始化\rclr(r, 0);\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rint L = n, R = m;//记录还有几行几列是没有1的\rfor (int i = 1; i \u0026lt;= n; i++)\rfor (int j = 1; j \u0026lt;= m; j++)\r{\rcin \u0026gt;\u0026gt; a;\rif (a == 1)\r{\rif (l[i] == 0)L--;\rif (r[j] == 0)R--;\rl[i] = r[j] = 1;\r}\r}\rif (min(L, R) % 2 == 1)cout \u0026lt;\u0026lt; \u0026quot;Ashish\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;Vivek\\n\u0026quot;;\r}\r B.",
-            "url": "https://fuwanbin.github.io/posts/20200608/"
-        },{
-            "@type":"ListItem",
-            "position":  2 ,
             "name": "Codeforces#646",
             "description": "传送门\nA.Odd Selection 给你$n$个数，问能不能在其中选$x$个数使得$sum$为奇数。 我们知道，只有选 奇数个数的 奇数，$sum$才会是奇数。 数据范围不大，我们直接枚举每一种取 奇数个数的 奇数 的情况，然后再看看偶数够不够取，即可\nint n, m, k, x;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; x;\rint odd = 0, ev = 0;\rfor (int i = 1; i \u0026lt;= n; i++)\r{\rcin \u0026gt;\u0026gt; k;\rif (k % 2 == 1)odd++;\relse ev++;\r}\rbool f = 0;\rfor (int i = 0; i \u0026lt;= odd; i++)\rif (i % 2 == 1 \u0026amp;\u0026amp; i \u0026lt;= x \u0026amp;\u0026amp; x - i \u0026lt;= ev)f = 1;\rif (f)cout \u0026lt;\u0026lt; \u0026quot;YES\\n\u0026quot;;\relse cout \u0026lt;\u0026lt; \u0026quot;NO\\n\u0026quot;;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/20200601/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  2 ,
             "name": "Codeforces-Edu#88",
             "description": "传送门\nA.Berland Poker 给你n张牌，其中m张joker，平均分给k个人，保证n%k==0\n问分数的最大值。这里分数指拿到joker最多的人的牌的数量-拿到joker最少的人的牌的数量。那么我们可以知道，让其中一个人尽可能全部拿joker，剩下的尽可能平分即可。\nint n, m, k;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m \u0026gt;\u0026gt; k;\rint maxn = n / k;\rif (maxn \u0026lt;= m)\rcout \u0026lt;\u0026lt; maxn - (int)ceil((1.0 * m - maxn) / (1.0 * k - 1)) \u0026lt;\u0026lt; endl;\relse\rcout \u0026lt;\u0026lt; m \u0026lt;\u0026lt; endl;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/20200529/"
         },{
             "@type":"ListItem",
-            "position":  4 ,
+            "position":  3 ,
             "name": "Codeforces#645",
             "description": "传送门\nA.Park Lighting 给n×m个格子，格子之间那条线是路；你可以在路的中间放一个路灯，来照亮相邻两个格子，求照亮所有格子的最少路灯数。\nint n, m;\rvoid solve()\r{\rcin \u0026gt;\u0026gt; n \u0026gt;\u0026gt; m;\rif (n % 2 == 0 || m % 2 == 0)\rcout \u0026lt;\u0026lt; m * n / 2 \u0026lt;\u0026lt; endl;\relse\rcout \u0026lt;\u0026lt; m * (n - 1) / 2 + (m + 1) / 2 \u0026lt;\u0026lt; endl;\r}\r B.",
             "url": "https://fuwanbin.github.io/posts/20200527/"
-        },{
-            "@type":"ListItem",
-            "position":  5 ,
-            "name": "Hello_client.c",
-            "description": "#include \u0026lt;stdio.h\u0026gt; #include \u0026lt;stdlib.h\u0026gt; #include \u0026lt;string.h\u0026gt; #include \u0026lt;unistd.h\u0026gt; #include \u0026lt;arpa/inet.h\u0026gt; #include \u0026lt;sys/socket.h\u0026gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(\u0026quot;Usage : %s \u0026lt;IP\u0026gt; \u0026lt;port\u0026gt;\\n\u0026quot;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(\u0026quot;socket() error\u0026quot;); memset(\u0026amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.",
-            "url": "https://fuwanbin.github.io/posts/hello_client.c/"
         }
     ]
 }
@@ -131,7 +119,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-20T23:59:39&#43;08:00" />
+<meta property="og:updated_time" content="2022-01-16T18:07:57&#43;08:00" />
 
 
 
@@ -215,49 +203,6 @@
 </article>
 <div class="bg-secondary-bg rounded px-6">
     <div class="overflow-hidden divide-y">
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/20200608/" class="font-bold text-xl hover:text-eureka">Codeforces#648</a>
-</div>
-<div class="content">
-  
-    传送门
-A.Matrix Game  给你一个$n×m$的01矩阵，两个玩家一先一后把为0的$a$$ij$变为1，条件为第$i$行和第$j$列没有1，当一名玩家无点可改，lose。我们每改一个点，就会有1行和1列失效。显而易见，在这个$n×m$的01矩阵中，最多可以变$min(n, m)$个点。 因为在最初给的01矩阵中，也可能有1，我们要先算出还有几个点可改，再判奇偶性即可
-#define clr(a, b) memset((a), (b), sizeof(a))int n, m, a;int l[55], r[55];void solve(){clr(l, 0);//有t个case，记得初始化clr(r, 0);cin &gt;&gt; n &gt;&gt; m;int L = n, R = m;//记录还有几行几列是没有1的for (int i = 1; i &lt;= n; i&#43;&#43;)for (int j = 1; j &lt;= m; j&#43;&#43;){cin &gt;&gt; a;if (a == 1){if (l[i] == 0)L--;if (r[j] == 0)R--;l[i] = r[j] = 1;}}if (min(L, R) % 2 == 1)cout &lt;&lt; &#34;Ashish\n&#34;;else cout &lt;&lt; &#34;Vivek\n&#34;;} B.
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2020-06-08</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>4 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/cf%E9%A2%98%E8%A7%A3/" class="hover:text-eureka">CF题解</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
   
   <div class="py-6">
     <div class="flex flex-col-reverse lg:flex-row justify-between">
@@ -389,47 +334,6 @@ int n, m;void solve(){cin &gt;&gt; n &gt;&gt; m;if (n % 2 == 0 || m % 2 == 0
 </div>
   </div>
   
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/hello_client.c/" class="font-bold text-xl hover:text-eureka">Hello_client.c</a>
-</div>
-<div class="content">
-  
-    #include &lt;stdio.h&gt; #include &lt;stdlib.h&gt; #include &lt;string.h&gt; #include &lt;unistd.h&gt; #include &lt;arpa/inet.h&gt; #include &lt;sys/socket.h&gt; void error_handling(char *message); int main(int argc, char *argv[]) { int sock; struct sockaddr_in serv_addr; char message[30]; int str_len; if (argc != 3) { printf(&#34;Usage : %s &lt;IP&gt; &lt;port&gt;\n&#34;, argv[0]); exit(1); } //创建套接字，此时套接字并不马上分为服务端和客户端。如果紧接着调用 bind,listen 函数，将成为服务器套接字 //如果调用 connect 函数，将成为客户端套接字 sock = socket(PF_INET, SOCK_STREAM, 0); if (sock == -1) error_handling(&#34;socket() error&#34;); memset(&amp;serv_addr, 0, sizeof(serv_addr)); serv_addr.
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>0001-01-01</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>1 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/code/" class="hover:text-eureka">code</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
 </div>
 
 
@@ -454,14 +358,11 @@ int n, m;void solve(){cin &gt;&gt; n &gt;&gt; m;if (n % 2 == 0 || m % 2 == 0
       <li class="page-item active">
         <a aria-current="page" aria-label="Page 4" class="page-link" role="button">4</a>
       </li>
-      <li class="page-item">
-        <a href="/posts/page/5/" aria-label="Page 5" class="page-link" role="button">5</a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Next" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;</span></a>
       </li>
-      <li class="page-item">
-        <a href="/posts/page/5/" aria-label="Next" class="page-link" role="button"><span aria-hidden="true">&raquo;</span></a>
-      </li>
-      <li class="page-item">
-        <a href="/posts/page/5/" aria-label="Last" class="page-link" role="button"><span aria-hidden="true">&raquo;&raquo;</span></a>
+      <li class="page-item disabled">
+        <a aria-disabled="true" aria-label="Last" class="page-link" role="button" tabindex="-1"><span aria-hidden="true">&raquo;&raquo;</span></a>
       </li>
     </ul>
 
