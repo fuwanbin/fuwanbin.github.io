@@ -70,33 +70,33 @@
     "itemListElement":[{
             "@type":"ListItem",
             "position":  1 ,
+            "name": "简历",
+            "description": "傅万斌\n电话：13757912354\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;邮箱：fwbinnn@163.com\n个人网站：https://fuwanbin.github.io/ \u0026emsp;\u0026emsp;\u0026emsp;\u0026emsp;投递岗位：C++后端开发\n 教育经历 南阳师范学院 2018.09 - 2022.07\n软件工程 本科 计算机科学与技术学院\n专业成绩排名学院前10%，获得2020年校级奖学金\n相关课程：操作系统，计算机网络，数据结构，SQLServer，Linux操作系统等\n专业技能   C++：能够熟练编写代码，深刻理解STL库里常用容器的底层原理并能熟练运用STL库中的函数\n  具有良好的数据结构和算法功底，有良好的代码风格和编程习惯\n  熟悉Linux下的TCP/IP网络编程，多线程/多进程编程\n  Linux：熟练掌握基本的命令，熟悉Makefile，gdb\n  能熟练使用SVN或Git，更好的进行团队工作\n  了解MySQL，会简单使用SQL语句\n  了解Lua，Shell脚本语言\n  实习经历 北京涂鸦多得科技有限公司 2021.",
+            "url": "https://fuwanbin.github.io/posts/20220212/"
+        },{
+            "@type":"ListItem",
+            "position":  2 ,
             "name": "C++进程间通信——共享内存、信号量",
             "description": "一、进程 概念  进程就是正在内存中运行中的程序，Linux下一个进程在内存里有三部分的数据,就是“代码段”、“堆栈段”和“数据段”。\n “代码段”存放程序代码。“堆栈段” 存放程序的返回地址、程序的参数以及程序的局部变量。而“数据段”存放程序的全局量,常数以及动态数据分配的数据空间(比如用new函数分配的空间)。\n 系统如果同时运行多个相同的程序,它们的“代码段”是相同的，“堆栈段\u0026quot; 和“数据段\u0026quot;是不同的。\n查看进程 ps #显示当前终端进程 ps -ef #显示系统所有进程 ps -ef|grep name #显示与name相关的进程  查看当前进程编号 pid_t getpid();  创建一个进程 // 返回值为0表示当前位于子进程，否则为主进程 pid_t fork();  二、进程通信方式  进程通信的方式大概分为六种。\n 1)管道:包括无名管道( pipe )及命名管道( named pipe) , 无名管道可用于具有父进程和子进程之间的通信。命名管道克服了管道 没有名字的限制,因此,除具有管道所具有的功能外,它还允许无亲缘关系进程间的通信。",
             "url": "https://fuwanbin.github.io/posts/20220116_2/"
         },{
             "@type":"ListItem",
-            "position":  2 ,
+            "position":  3 ,
             "name": "Lua快速入门",
             "description": "Lua相关链接 Lua在线模拟器\nLua5.3参考手册\n基本语法 添加注释 --这是单行注释 --[[这是多行注释 这是多行注释 --]]  声明变量 --能在多个文件中调用 a = 10 --作用域仅为当前文件 local b = 10 --声明多个变量 c, d = 10, 20  输出语句 a = 10 print(a) b, c, d = 10, 20, 30 print(b, c, d) --输出结果中每个变量中间都有一个'\\t'  nil --Lua里的nil类似于NULL或null print(a) --输出未初始化的变量，输出结果为nil  number类型 a = 10 --10 b = 0x12 --18 c = 2e5 --200000.",
             "url": "https://fuwanbin.github.io/posts/20220116_1/"
         },{
             "@type":"ListItem",
-            "position":  3 ,
+            "position":  4 ,
             "name": "C++11并发与多线程(七)——std::async和std::future",
             "description": "一、概念  std::async是一个函数模板，用来启动一个异步任务，返回一个std::future对象，std::future是个类模板。\n 异步任务：创建一个线程并开始执行对应线程的入口函数，返回一个std::future对象，它含有线程入口函数返回的结果，用std::future::get()来获取结果。\n std::future，也可以说是提供了一种访问异步操作结果的机制。std::future对象里会保存一个值，在将来（异步操作执行完之后）可以拿到。\n二、用法 头文件 #include \u0026lt;future\u0026gt;  初始化 int fun() { return 123; } // ... // 用一个可调用对象创建一个线程并开始执行，流程不会卡到这 // 尖括号里的类型就是函数的返回类型 std::future\u0026lt;int\u0026gt; res = std::async(fun);  get() （只能调用一次） // 如果运行到了get()而还没得到结果（fun()还没有return），就会阻塞到这一行直到拿到了结果 cout \u0026lt;\u0026lt; res.get() \u0026lt;\u0026lt; endl; // 123  wait() // 进入阻塞状态直到之前创建的线程走完 res.",
             "url": "https://fuwanbin.github.io/posts/20220112_2/"
         },{
             "@type":"ListItem",
-            "position":  4 ,
+            "position":  5 ,
             "name": "C++11并发与多线程(六)——std::condition_variable介绍",
             "description": "一、引言  在之前的文章中，我们通过循环来判断消息队列是否为空，这样做其实浪费了不少系统资源。有没有一种方法可以在“插入消息”的线程往队列里添加了消息之后通知“取出消息”的线程，或者满足其他条件时通知到其他线程，并且在通知到之前，另一个线程一直保持阻塞状态达到节省系统资源的目的呢？\n二、代码演示 class A { public: // 把收到的消息push进消息队列 void inQ() { for (int i = 0; i \u0026lt; 10000; i++) { std::unique_lock\u0026lt;std::mutex\u0026gt; my_guard1(my_mutex1); cout \u0026lt;\u0026lt; \u0026quot;inQ执行，插入\u0026quot; \u0026lt;\u0026lt; i \u0026lt;\u0026lt; endl; q.push_back(i); // 唤醒另一个线程的wait() // 只有另一个线程卡在wait()里时，该函数才有作用 my_cond.notify_one(); } } // 把消息从消息队列取出 void outQ() { int cmd = 0; while (1) { std::unique_lock\u0026lt;std::mutex\u0026gt; my_lock(my_mutex1); // 当其他线程用notify_one()将本线程从阻塞状态唤醒 my_cond.",
             "url": "https://fuwanbin.github.io/posts/20220112_1/"
-        },{
-            "@type":"ListItem",
-            "position":  5 ,
-            "name": "C++11并发与多线程(五)——多线程下的单例模式",
-            "description": "一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !",
-            "url": "https://fuwanbin.github.io/posts/20220111_3/"
         }
     ]
 }
@@ -131,7 +131,7 @@
 
 
 
-<meta property="og:updated_time" content="2022-01-16T18:07:57&#43;08:00" />
+<meta property="og:updated_time" content="2022-02-12T22:36:59&#43;08:00" />
 
 
 
@@ -215,6 +215,54 @@
 </article>
 <div class="bg-secondary-bg rounded px-6">
     <div class="overflow-hidden divide-y">
+  
+  <div class="py-6">
+    <div class="flex flex-col-reverse lg:flex-row justify-between">
+  
+  <div class="w-full ">
+    <div class="mb-4">
+  <a href="https://fuwanbin.github.io/posts/20220212/" class="font-bold text-xl hover:text-eureka">简历</a>
+</div>
+<div class="content">
+  
+    傅万斌
+电话：13757912354              邮箱：fwbinnn@163.com
+个人网站：https://fuwanbin.github.io/     投递岗位：C&#43;&#43;后端开发
+ 教育经历 南阳师范学院 2018.09 - 2022.07
+软件工程 本科 计算机科学与技术学院
+专业成绩排名学院前10%，获得2020年校级奖学金
+相关课程：操作系统，计算机网络，数据结构，SQLServer，Linux操作系统等
+专业技能   C&#43;&#43;：能够熟练编写代码，深刻理解STL库里常用容器的底层原理并能熟练运用STL库中的函数
+  具有良好的数据结构和算法功底，有良好的代码风格和编程习惯
+  熟悉Linux下的TCP/IP网络编程，多线程/多进程编程
+  Linux：熟练掌握基本的命令，熟悉Makefile，gdb
+  能熟练使用SVN或Git，更好的进行团队工作
+  了解MySQL，会简单使用SQL语句
+  了解Lua，Shell脚本语言
+  实习经历 北京涂鸦多得科技有限公司 2021.
+  
+</div>
+
+<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
+    <div class="mr-6 my-2">
+        <i class="fas fa-calendar mr-1"></i>
+        <span>2022-02-12</span>
+    </div>
+    <div class="mr-6 my-2">
+        <i class="fas fa-clock mr-1"></i>
+        <span>1 min read</span>
+    </div>
+    
+    
+
+    
+</div>
+
+  </div>
+
+  
+</div>
+  </div>
   
   <div class="py-6">
     <div class="flex flex-col-reverse lg:flex-row justify-between">
@@ -374,47 +422,6 @@ Lua5.3参考手册
     <div class="mr-6 my-2">
         <i class="fas fa-clock mr-1"></i>
         <span>1 min read</span>
-    </div>
-    
-    
-    <div class="mr-6 my-2">
-        <i class="fas fa-folder mr-1"></i>
-        
-        <a href="https://fuwanbin.github.io/categories/c&#43;&#43;/" class="hover:text-eureka">C&#43;&#43;</a>
-        
-    </div>
-    
-
-    
-</div>
-
-  </div>
-
-  
-</div>
-  </div>
-  
-  <div class="py-6">
-    <div class="flex flex-col-reverse lg:flex-row justify-between">
-  
-  <div class="w-full ">
-    <div class="mb-4">
-  <a href="https://fuwanbin.github.io/posts/20220111_3/" class="font-bold text-xl hover:text-eureka">C&#43;&#43;11并发与多线程(五)——多线程下的单例模式</a>
-</div>
-<div class="content">
-  
-    一、单线程下的单例模式实现 class A { private: A() {} //私有化构造函数 private: static A* instance; public: static A* getInstance() { if (instance == nullptr) { instance = new A(); // 由于gc是static的，所以能用于在整个程序结束时回收instance。 static GC gc; } return instance; } // 内部类，用来释放对象 class GC { public: // 整个程序退出时调用，释放内存，instance置空防止悬空指针 ~GC() { if (instance !
-  
-</div>
-
-<div class="flex flex-wrap flex-row items-center mt-2 text-tertiary-text">
-    <div class="mr-6 my-2">
-        <i class="fas fa-calendar mr-1"></i>
-        <span>2022-01-11</span>
-    </div>
-    <div class="mr-6 my-2">
-        <i class="fas fa-clock mr-1"></i>
-        <span>2 min read</span>
     </div>
     
     

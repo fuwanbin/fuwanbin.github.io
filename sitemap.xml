@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://fuwanbin.github.io/posts/</loc>
+    <lastmod>2022-02-12T22:36:59+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/</loc>
+    <lastmod>2022-02-12T22:36:59+08:00</lastmod>
+  </url><url>
+    <loc>https://fuwanbin.github.io/posts/20220212/</loc>
+    <lastmod>2022-02-12T22:36:59+08:00</lastmod>
+  </url><url>
     <loc>https://fuwanbin.github.io/categories/c&#43;&#43;/</loc>
     <lastmod>2022-01-16T18:07:57+08:00</lastmod>
   </url><url>
@@ -17,13 +26,7 @@
     <loc>https://fuwanbin.github.io/categories/linux/</loc>
     <lastmod>2022-01-16T18:07:57+08:00</lastmod>
   </url><url>
-    <loc>https://fuwanbin.github.io/posts/</loc>
-    <lastmod>2022-01-16T18:07:57+08:00</lastmod>
-  </url><url>
     <loc>https://fuwanbin.github.io/tags/</loc>
-    <lastmod>2022-01-16T18:07:57+08:00</lastmod>
-  </url><url>
-    <loc>https://fuwanbin.github.io/</loc>
     <lastmod>2022-01-16T18:07:57+08:00</lastmod>
   </url><url>
     <loc>https://fuwanbin.github.io/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/</loc>
